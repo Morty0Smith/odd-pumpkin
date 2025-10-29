@@ -20,10 +20,6 @@ tile_map_data = PackedByteArray("AAD3/wUAAgAEAAIAAAD4/wUAAgAEAAIAAAD5/wUAAgAEAAI
 tile_set = ExtResource("1_4tjo5")
 use_kinematic_bodies = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(30, 28)
-zoom = Vector2(3.5, 3.5)
-
 [node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("input_component", "gravity_component", "movement_component", "animation_component")]
 position = Vector2(-57, 88)
 script = ExtResource("2_q64ej")
@@ -31,6 +27,15 @@ input_component = NodePath("InputComponent")
 gravity_component = NodePath("GravityComponent")
 movement_component = NodePath("MovementComponent")
 animation_component = NodePath("AnimationComponent")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(87, -60)
+zoom = Vector2(3, 3)
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.1
+drag_right_margin = 0.1
+editor_draw_drag_margin = true
 
 [node name="GravityComponent" parent="Player" instance=ExtResource("2_50bm4")]
 
