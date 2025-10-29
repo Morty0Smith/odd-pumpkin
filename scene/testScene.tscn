@@ -39,9 +39,10 @@ animation_component = NodePath("AnimationComponent")
 [node name="MovementComponent" parent="Player" instance=ExtResource("5_4omt7")]
 script = ExtResource("6_v0co7")
 
-[node name="AnimationComponent" parent="Player" node_paths=PackedStringArray("sprite") instance=ExtResource("7_v0co7")]
+[node name="AnimationComponent" parent="Player" node_paths=PackedStringArray("sprite", "hitbox") instance=ExtResource("7_v0co7")]
 script = ExtResource("8_1rwtc")
 sprite = NodePath("../CollisionShape2D/Punpkin")
+hitbox = NodePath("../CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(-34, -49)

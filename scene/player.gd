@@ -16,5 +16,7 @@ func _physics_process(delta: float) -> void:
 	movement_component.handle_horizontal_movement(self, input_component.input_horizontal, isEvolved)
 	if !isEvolved:
 		movement_component.handle_jump(self, input_component.get_jump_input())
-
+		animation_component.handle_roll_animation(input_component.input_horizontal)
+	else:
+		animation_component.handle_move_animation(input_component.input_horizontal)
 	move_and_slide()
