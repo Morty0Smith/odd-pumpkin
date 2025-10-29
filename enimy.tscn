@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://csq2hy81hoqoh"]
+
+[ext_resource type="Script" uid="uid://dx4bcpymmfg7r" path="res://scripts/enimy.gd" id="1_slebx"]
+[ext_resource type="Texture2D" uid="uid://dddpdja1q0y4r" path="res://icon.svg" id="2_2b04r"]
+[ext_resource type="Script" uid="uid://bpoy5qpx0bvro" path="res://scripts/enimy_movement.gd" id="3_iasw0"]
+[ext_resource type="Script" uid="uid://bo5hlkc4pgqhy" path="res://scripts/viewcone.gd" id="4_xu20o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vixnb"]
+size = Vector2(121.06238, 126.50024)
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_u1fn3"]
+points = PackedVector2Array(78.000015, -129.00003, 120.00003, -3, 72.000015, 148.00003, -23, -9)
+
+[node name="Enimy" type="Node2D" node_paths=PackedStringArray("movement", "viewcone", "playerCollision")]
+script = ExtResource("1_slebx")
+movement = NodePath("EnimyMovement")
+viewcone = NodePath("CharacterBody/CollisionShape2D/Sprite2D/Viewcone")
+playerCollision = NodePath("")
+
+[node name="CharacterBody" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody"]
+position = Vector2(1.1920929e-07, 0)
+scale = Vector2(0.12267116, 0.3199988)
+shape = SubResource("RectangleShape2D_vixnb")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody/CollisionShape2D"]
+texture = ExtResource("2_2b04r")
+
+[node name="Viewcone" type="Area2D" parent="CharacterBody/CollisionShape2D/Sprite2D"]
+position = Vector2(-24.455624, 0)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody/CollisionShape2D/Sprite2D/Viewcone"]
+position = Vector2(269.0119, -21.87508)
+scale = Vector2(8.151874, 3.1250112)
+shape = SubResource("ConvexPolygonShape2D_u1fn3")
+
+[node name="RoamEdgeLeft" type="Node2D" parent="."]
+position = Vector2(-47, 2)
+
+[node name="RoamEdgeRight" type="Node2D" parent="."]
+position = Vector2(136, 3)
+
+[node name="EnimyMovement" type="Node" parent="." node_paths=PackedStringArray("characterBody", "roamEdgeLeft", "roamEdgeRight")]
+script = ExtResource("3_iasw0")
+characterBody = NodePath("../CharacterBody")
+roamEdgeLeft = NodePath("../RoamEdgeLeft")
+roamEdgeRight = NodePath("../RoamEdgeRight")
+moveSpeed = 40.0
+
+[node name="Viewcone" type="Node2D" parent="." node_paths=PackedStringArray("ray", "selfCollider")]
+script = ExtResource("4_xu20o")
+ray = NodePath("")
+selfCollider = NodePath("../CharacterBody")
