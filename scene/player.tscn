@@ -1,0 +1,51 @@
+[gd_scene load_steps=10 format=3 uid="uid://dcphqcnmub4lo"]
+
+[ext_resource type="Script" uid="uid://bxmlwoexbyb7l" path="res://scene/player.gd" id="1_g2vtq"]
+[ext_resource type="PackedScene" uid="uid://7wxtqrjwssae" path="res://scene/components/gravity_component.tscn" id="2_2fvbb"]
+[ext_resource type="PackedScene" uid="uid://gva21qp8rxt8" path="res://scene/components/input_component.tscn" id="3_ml7e8"]
+[ext_resource type="PackedScene" uid="uid://ctpwtvx0r1ifn" path="res://scene/components/movement_component.tscn" id="4_ihjo1"]
+[ext_resource type="Script" uid="uid://hl2ki3328msj" path="res://scene/components/movement_component.gd" id="5_dk1vr"]
+[ext_resource type="PackedScene" uid="uid://bwkbw6np82rvp" path="res://scene/components/animation_component.tscn" id="6_34jf3"]
+[ext_resource type="Script" uid="uid://dy7wigiqhqpvr" path="res://scene/components/animation_component.gd" id="7_u7b46"]
+[ext_resource type="Texture2D" uid="uid://dddpdja1q0y4r" path="res://icon.svg" id="8_j4wxg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w2vy6"]
+radius = 25.098053
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input_component", "gravity_component", "movement_component", "animation_component")]
+script = ExtResource("1_g2vtq")
+input_component = NodePath("InputComponent")
+gravity_component = NodePath("GravityComponent")
+movement_component = NodePath("MovementComponent")
+animation_component = NodePath("AnimationComponent")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(87, -60)
+zoom = Vector2(3, 3)
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.1
+drag_right_margin = 0.1
+editor_draw_drag_margin = true
+
+[node name="GravityComponent" parent="." instance=ExtResource("2_2fvbb")]
+
+[node name="InputComponent" parent="." instance=ExtResource("3_ml7e8")]
+
+[node name="MovementComponent" parent="." instance=ExtResource("4_ihjo1")]
+script = ExtResource("5_dk1vr")
+
+[node name="AnimationComponent" parent="." node_paths=PackedStringArray("sprite", "hitbox") instance=ExtResource("6_34jf3")]
+script = ExtResource("7_u7b46")
+sprite = NodePath("../CollisionShape2D/Punpkin")
+hitbox = NodePath("../CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-34, -49)
+scale = Vector2(0.28, 0.28)
+shape = SubResource("CircleShape2D_w2vy6")
+
+[node name="Punpkin" type="Sprite2D" parent="CollisionShape2D"]
+position = Vector2(-1.2397766e-05, -4.196167e-05)
+scale = Vector2(0.42892137, 0.44852933)
+texture = ExtResource("8_j4wxg")
