@@ -41,7 +41,6 @@ sprite = NodePath("../CollisionShape2D/Punpkin")
 hitbox = NodePath("../CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-34, -49)
 scale = Vector2(0.28, 0.28)
 shape = SubResource("CircleShape2D_w2vy6")
 

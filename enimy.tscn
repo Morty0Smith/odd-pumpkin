@@ -46,11 +46,12 @@ position = Vector2(-47, 2)
 [node name="RoamEdgeRight" type="Node2D" parent="."]
 position = Vector2(136, 3)
 
-[node name="EnimyMovement" type="Node" parent="." node_paths=PackedStringArray("characterBody", "roamEdgeLeft", "roamEdgeRight")]
+[node name="EnimyMovement" type="Node" parent="." node_paths=PackedStringArray("characterBody", "roamEdgeLeft", "roamEdgeRight", "enimySprite")]
 script = ExtResource("3_iasw0")
 characterBody = NodePath("../CharacterBody")
 roamEdgeLeft = NodePath("../RoamEdgeLeft")
 roamEdgeRight = NodePath("../RoamEdgeRight")
+enimySprite = NodePath("../CharacterBody/CollisionShape2D/Sprite2D")
 moveSpeed = 40.0
 
 [node name="Viewcone" type="Node2D" parent="." node_paths=PackedStringArray("selfCollider")]

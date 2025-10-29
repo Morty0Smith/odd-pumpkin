@@ -10,7 +10,8 @@ func _physics_process(delta: float) -> void:
 	gravity_component.handle_gravity(characterBody,delta)
 	var canSeePlayer:bool = playerCollision in viewcone.get_overlapping_bodies()
 	if (canSeePlayer):
-		movement.goToPos(playerCollision.position)
+		movement.goToPos(playerCollision.global_position)
+		pass
 	else:
 		movement.moveNormalCycle()
 	
