@@ -15,15 +15,15 @@ use_kinematic_bodies = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
+[node name="Player" type="RigidBody2D" parent="."]
 position = Vector2(-109.00001, -2.9999962)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(27.000006, -3.814697e-06)
 scale = Vector2(0.625, 0.625)
 shape = SubResource("CircleShape2D_w2vy6")
 
-[node name="Punpkin" type="Sprite2D" parent="RigidBody2D/CollisionShape2D"]
+[node name="Punpkin" type="Sprite2D" parent="Player/CollisionShape2D"]
 position = Vector2(-1.2397766e-05, -4.196167e-05)
 scale = Vector2(0.42892137, 0.44852933)
 texture = ExtResource("2_5lntk")
