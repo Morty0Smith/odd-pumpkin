@@ -14,13 +14,15 @@ tile_set = ExtResource("1_vixnb")
 use_kinematic_bodies = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(30, 28)
+zoom = Vector2(3.5, 3.5)
 
 [node name="Player" type="RigidBody2D" parent="."]
-position = Vector2(-109.00001, -2.9999962)
+position = Vector2(-57, 88)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(27.000006, -3.814697e-06)
-scale = Vector2(0.625, 0.625)
+position = Vector2(-34, -49)
+scale = Vector2(0.28, 0.28)
 shape = SubResource("CircleShape2D_w2vy6")
 
 [node name="Punpkin" type="Sprite2D" parent="Player/CollisionShape2D"]
