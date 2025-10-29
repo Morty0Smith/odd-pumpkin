@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Odd Pumpkin"
+run/main_scene="uid://d4bjpgqwy16ut"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
