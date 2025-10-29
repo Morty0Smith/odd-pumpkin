@@ -1,10 +1,19 @@
-[gd_scene load_steps=4 format=4 uid="uid://d4bjpgqwy16ut"]
+[gd_scene load_steps=9 format=4 uid="uid://d4bjpgqwy16ut"]
 
 [ext_resource type="TileSet" uid="uid://c5wlt3m300h6a" path="res://defaultTileset.tres" id="1_vixnb"]
 [ext_resource type="Texture2D" uid="uid://dddpdja1q0y4r" path="res://icon.svg" id="2_5lntk"]
+[ext_resource type="Script" uid="uid://bpoy5qpx0bvro" path="res://scripts/enimy_movement.gd" id="3_5lntk"]
+[ext_resource type="Script" uid="uid://dx4bcpymmfg7r" path="res://scripts/enimy.gd" id="3_u1fn3"]
+[ext_resource type="Script" uid="uid://bo5hlkc4pgqhy" path="res://scripts/viewcone.gd" id="3_w2vy6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w2vy6"]
 radius = 25.098053
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vixnb"]
+size = Vector2(121.06238, 126.50024)
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_u1fn3"]
+points = PackedVector2Array(78.000015, -129.00003, 120.00003, -3, 72.000015, 148.00003, -23, -9)
 
 [node name="Node2D" type="Node2D"]
 
@@ -18,10 +27,12 @@ position = Vector2(30, 28)
 zoom = Vector2(3.5, 3.5)
 
 [node name="Player" type="RigidBody2D" parent="."]
-position = Vector2(-57, 88)
+position = Vector2(37, 106)
+collision_layer = 3
+gravity_scale = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(-34, -49)
+position = Vector2(11, -51)
 scale = Vector2(0.28, 0.28)
 shape = SubResource("CircleShape2D_w2vy6")
 
@@ -29,3 +40,47 @@ shape = SubResource("CircleShape2D_w2vy6")
 position = Vector2(-1.2397766e-05, -4.196167e-05)
 scale = Vector2(0.42892137, 0.44852933)
 texture = ExtResource("2_5lntk")
+
+[node name="Enimy" type="Node2D" parent="." node_paths=PackedStringArray("movement", "viewcone", "playerCollision")]
+position = Vector2(12, 74)
+script = ExtResource("3_u1fn3")
+movement = NodePath("EnimyMovement")
+viewcone = NodePath("CharacterBody/CollisionShape2D/Sprite2D/Viewcone")
+playerCollision = NodePath("../Player")
+
+[node name="CharacterBody" type="CharacterBody2D" parent="Enimy"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enimy/CharacterBody"]
+position = Vector2(1.1920929e-07, 0)
+scale = Vector2(0.12267116, 0.3199988)
+shape = SubResource("RectangleShape2D_vixnb")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enimy/CharacterBody/CollisionShape2D"]
+texture = ExtResource("2_5lntk")
+
+[node name="Viewcone" type="Area2D" parent="Enimy/CharacterBody/CollisionShape2D/Sprite2D"]
+position = Vector2(-24.455624, 0)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enimy/CharacterBody/CollisionShape2D/Sprite2D/Viewcone"]
+position = Vector2(269.0119, -21.87508)
+scale = Vector2(8.151874, 3.1250112)
+shape = SubResource("ConvexPolygonShape2D_u1fn3")
+
+[node name="RoamEdgeLeft" type="Node2D" parent="Enimy"]
+position = Vector2(-47, 2)
+
+[node name="RoamEdgeRight" type="Node2D" parent="Enimy"]
+position = Vector2(136, 3)
+
+[node name="EnimyMovement" type="Node" parent="Enimy" node_paths=PackedStringArray("characterBody", "roamEdgeLeft", "roamEdgeRight")]
+script = ExtResource("3_5lntk")
+characterBody = NodePath("../CharacterBody")
+roamEdgeLeft = NodePath("../RoamEdgeLeft")
+roamEdgeRight = NodePath("../RoamEdgeRight")
+moveSpeed = 40.0
+
+[node name="Viewcone" type="Node2D" parent="Enimy" node_paths=PackedStringArray("ray", "selfCollider")]
+script = ExtResource("3_w2vy6")
+ray = NodePath("")
+selfCollider = NodePath("../CharacterBody")
