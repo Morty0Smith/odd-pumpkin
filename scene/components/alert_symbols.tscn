@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://lctlo20y5iy7"]
+
+[ext_resource type="Texture2D" uid="uid://b4kh65jotpwx4" path="res://scene/sprites/pumpSymbols.png" id="1_own1j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pd740"]
+atlas = ExtResource("1_own1j")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mpjre"]
+atlas = ExtResource("1_own1j")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8a0ig"]
+atlas = ExtResource("1_own1j")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_36spc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pd740")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mpjre")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8a0ig")
+}],
+"loop": true,
+"name": &"AltertSymbols",
+"speed": 5.0
+}]
+
+[node name="AlertSymbols" type="AnimatedSprite2D"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_36spc")
+animation = &"AltertSymbols"

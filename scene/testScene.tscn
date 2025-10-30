@@ -20,16 +20,6 @@ position = Vector2(64, 74)
 roamEdgeLeft = NodePath("../RoamEdges/RoamEdge")
 roamEdgeRight = NodePath("../RoamEdges/RoamEdge2")
 
-[node name="Enemy2" parent="." node_paths=PackedStringArray("roamEdgeLeft", "roamEdgeRight") instance=ExtResource("3_4tjo5")]
-position = Vector2(96, 72)
-roamEdgeLeft = NodePath("../RoamEdges/RoamEdge")
-roamEdgeRight = NodePath("../RoamEdges/RoamEdge2")
-
-[node name="Enemy3" parent="." node_paths=PackedStringArray("roamEdgeLeft", "roamEdgeRight") instance=ExtResource("3_4tjo5")]
-position = Vector2(128, 74)
-roamEdgeLeft = NodePath("../RoamEdges/RoamEdge")
-roamEdgeRight = NodePath("../RoamEdges/RoamEdge2")
-
 [node name="RoamEdges" type="Node" parent="."]
 
 [node name="RoamEdge" type="Node2D" parent="RoamEdges"]
