@@ -16,13 +16,14 @@ points = PackedVector2Array(78.000015, -129.00003, 120.00003, -3, 72.000015, 148
 [sub_resource type="CircleShape2D" id="CircleShape2D_3yqyl"]
 radius = 77.0065
 
-[node name="Enemy" type="Node2D" node_paths=PackedStringArray("movement", "viewcone", "characterBody", "blowUpArea", "enemyTimer", "gravity_component", "enemy_vision_component")]
+[node name="Enemy" type="Node2D" node_paths=PackedStringArray("movement", "viewcone", "characterBody", "blowUpArea", "enemyTimer", "damageTimer", "gravity_component", "enemy_vision_component")]
 script = ExtResource("1_slebx")
 movement = NodePath("EnemyMovement")
 viewcone = NodePath("CharacterBody/CollisionShape2D/Sprite2D/Viewcone")
 characterBody = NodePath("CharacterBody")
 blowUpArea = NodePath("CharacterBody/CollisionShape2D/BlowUpArea")
 enemyTimer = NodePath("EnemyTimer")
+damageTimer = NodePath("DamageTimer")
 gravity_component = NodePath("GravityComponent")
 enemy_vision_component = NodePath("enemy_vision_component")
 
@@ -88,4 +89,7 @@ enemySprite = NodePath("../CharacterBody/CollisionShape2D/Sprite2D")
 wait_time = 2.0
 one_shot = true
 
+[node name="DamageTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="EnemyTimer" to="." method="_on_enemy_timer_timeout"]
+[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]
