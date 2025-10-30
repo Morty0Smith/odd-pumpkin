@@ -14,11 +14,11 @@ func _ready():
 func handle_evolve(isEvolved: bool):
 	if isEvolved:
 		hitbox.apply_scale(Vector2(4,4))
-		sprite.apply_scale(Vector2(0.25,0.25))
+		#sprite.apply_scale(Vector2(0.25,0.25))
 		sprite.play("pumpMonsterIdle")
 	else:
 		hitbox.apply_scale(Vector2(0.25,0.25))
-		sprite.apply_scale(Vector2(4,4))
+		#sprite.apply_scale(Vector2(4,4))
 		sprite.play("pumpIdle")
 
 func handle_roll_animation(direction: float):
@@ -44,8 +44,8 @@ func handle_grab(holding_prey: bool):
 	if !holding_prey:
 		sprite.play("pumpMonGrab")
 		hitbox.apply_scale(Vector2(1.2,1.2))
-		sprite.apply_scale(Vector2(0.833333,0.833333))
+		#sprite.apply_scale(Vector2(0.833333,0.833333))
 	else:
 		sprite.play("pumpMonsterIdle")
 		hitbox.apply_scale(Vector2(0.833333,0.833333))
-		sprite.apply_scale(Vector2(1.2,1.2))
+		#sprite.apply_scale(Vector2(1.2,1.2))

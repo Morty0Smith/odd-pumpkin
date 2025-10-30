@@ -11,9 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://c5e5byx2ly1hu" path="res://scene/sprites/pumpMonsterIdle.png" id="9_2fvbb"]
 [ext_resource type="Texture2D" uid="uid://cxfv11xf77p7y" path="res://scene/sprites/pumpMonGrab.png" id="9_ml7e8"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_w2vy6"]
-radius = 25.098053
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_ihjo1"]
 atlas = ExtResource("8_g2vtq")
 region = Rect2(0, 0, 64, 64)
@@ -90,13 +87,16 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ml7e8"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_w2vy6"]
+radius = 25.098053
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input_component", "gravity_component", "movement_component", "animation_component", "grabHitbox")]
 script = ExtResource("1_g2vtq")
 input_component = NodePath("InputComponent")
 gravity_component = NodePath("GravityComponent")
 movement_component = NodePath("MovementComponent")
 animation_component = NodePath("AnimationComponent")
-grabHitbox = NodePath("CollisionShape2D/Punpkin/grabHitbox")
+grabHitbox = NodePath("Punpkin/grabHitbox")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(87, -60)
@@ -116,23 +116,24 @@ script = ExtResource("5_dk1vr")
 
 [node name="AnimationComponent" parent="." node_paths=PackedStringArray("sprite", "hitbox") instance=ExtResource("6_34jf3")]
 script = ExtResource("7_u7b46")
-sprite = NodePath("../CollisionShape2D/Punpkin")
+sprite = NodePath("../Punpkin")
 hitbox = NodePath("../CollisionShape2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Punpkin" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3.4713746e-06, -1.1749267e-05)
 scale = Vector2(0.28, 0.28)
-shape = SubResource("CircleShape2D_w2vy6")
-
-[node name="Punpkin" type="AnimatedSprite2D" parent="CollisionShape2D"]
-position = Vector2(-1.2397766e-05, -4.196167e-05)
 sprite_frames = SubResource("SpriteFrames_ihjo1")
 animation = &"pumpMonGrab"
 
-[node name="grabHitbox" type="Area2D" parent="CollisionShape2D/Punpkin"]
+[node name="grabHitbox" type="Area2D" parent="Punpkin"]
 position = Vector2(1.2397766e-05, 4.196167e-05)
 scale = Vector2(3.5714285, 3.5714285)
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/Punpkin/grabHitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Punpkin/grabHitbox"]
 position = Vector2(29, 23)
 shape = SubResource("CircleShape2D_ml7e8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.28, 0.28)
+shape = SubResource("CircleShape2D_w2vy6")
