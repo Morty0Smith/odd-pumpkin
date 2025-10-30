@@ -16,7 +16,7 @@ extends Node2D
 
 var player:CharacterBody2D
 var playerInMemoryTime
-var playerGrabPosRelative:Vector2
+var grabCollider:CollisionShape2D
 var isDazed = false
 var isDead = false
 var isInfected = false
@@ -29,7 +29,7 @@ func _physics_process(delta: float) -> void:
 	gravity_component.handle_gravity(characterBody,delta)
 	var canSeePlayer:bool = enemy_vision_component.canSeePlayer(playerMemoryDuration, player,viewcone,delta)
 	if isGrabbed and !isDazed and !isDead:
-		self.global_position = player.global_position + playerGrabPosRelative
+		characterBody.global_position.x = grabCollider.global_position.x
 	if canSeePlayer and !isDead and !isDazed and !isGrabbed:
 		movement.goToPos(player.global_position,playerChaseDistance,jumpVelocity)
 	if !canSeePlayer and !isDead and !isDazed and !isGrabbed:
@@ -47,7 +47,7 @@ func infect():
 
 func setGrabbed(grab:bool):
 	isGrabbed = grab
-	playerGrabPosRelative = player.global_position - self.global_position
+	grabCollider = player.get_node("PlayerCollider/Pumpkin/grabHitbox/grabCollider")
 
 func blowUp():
 	var objectsInRadius = blowUpArea.get_overlapping_bodies()

@@ -12,7 +12,7 @@ tile_set = ExtResource("1_4tjo5")
 use_kinematic_bodies = true
 
 [node name="Player" parent="." instance=ExtResource("2_dpac2")]
-position = Vector2(-20, 75)
+position = Vector2(-18, 57)
 collision_layer = 3
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("roamEdgeLeft", "roamEdgeRight") instance=ExtResource("3_4tjo5")]
