@@ -97,7 +97,6 @@ gravity_component = NodePath("GravityComponent")
 movement_component = NodePath("MovementComponent")
 animation_component = NodePath("AnimationComponent")
 grabHitbox = NodePath("CollisionShape2D/Punpkin/grabHitbox")
-isEvolved = null
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(87, -60)

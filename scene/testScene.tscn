@@ -14,7 +14,6 @@ use_kinematic_bodies = true
 [node name="Player" parent="." instance=ExtResource("2_dpac2")]
 position = Vector2(-20, 75)
 collision_layer = 3
-isEvolved = false
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("roamEdgeLeft", "roamEdgeRight") instance=ExtResource("3_4tjo5")]
 position = Vector2(64, 74)
