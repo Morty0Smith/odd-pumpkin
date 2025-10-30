@@ -2,6 +2,7 @@ class_name EnemyVisionComponent
 extends Node
 
 var playerMemoryTimer:float
+@export var stepRaycast:RayCast2D
 
 func canSeePlayer(playerMemoryDuration:float, player:CharacterBody2D, viewcone:Area2D, deltaT:float) ->bool:
 	var playerClass = player as Player
@@ -12,3 +13,9 @@ func canSeePlayer(playerMemoryDuration:float, player:CharacterBody2D, viewcone:A
 		playerMemoryTimer = playerMemoryDuration
 	var playerInMemory:bool = playerMemoryTimer > 0
 	return canSeePlayer or playerInMemory
+
+func checkForSteps() ->bool:
+	stepRaycast.force_raycast_update()
+	if stepRaycast.get_collider() is TileMapLayer:
+		return true
+	return false

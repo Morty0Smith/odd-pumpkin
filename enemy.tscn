@@ -42,11 +42,18 @@ position = Vector2(269.0119, -21.87508)
 scale = Vector2(8.151874, 3.1250112)
 shape = SubResource("ConvexPolygonShape2D_u1fn3")
 
-[node name="EnemyMovement" type="Node" parent="." node_paths=PackedStringArray("characterBody", "enemySprite")]
+[node name="RayCast2D" type="RayCast2D" parent="CharacterBody/CollisionShape2D/Sprite2D"]
+position = Vector2(65.215004, 46.875175)
+scale = Vector2(8.151875, 3.1250114)
+target_position = Vector2(9.000001, 0)
+hit_from_inside = true
+
+[node name="EnemyMovement" type="Node" parent="." node_paths=PackedStringArray("characterBody", "enemySprite", "enemy_vision_component")]
 script = ExtResource("3_iasw0")
 characterBody = NodePath("../CharacterBody")
 enemySprite = NodePath("../CharacterBody/CollisionShape2D/Sprite2D")
 moveSpeed = 40.0
+enemy_vision_component = NodePath("../enemy_vision_component")
 
 [node name="Viewcone" type="Node2D" parent="." node_paths=PackedStringArray("selfCollider")]
 script = ExtResource("4_xu20o")
@@ -54,4 +61,5 @@ selfCollider = NodePath("../CharacterBody")
 
 [node name="GravityComponent" parent="." instance=ExtResource("5_2b04r")]
 
-[node name="enemy_vision_component" parent="." instance=ExtResource("6_iasw0")]
+[node name="enemy_vision_component" parent="." node_paths=PackedStringArray("stepRaycast") instance=ExtResource("6_iasw0")]
+stepRaycast = NodePath("../CharacterBody/CollisionShape2D/Sprite2D/RayCast2D")

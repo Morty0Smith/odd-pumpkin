@@ -17,15 +17,13 @@ collision_layer = 3
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("roamEdgeLeft", "roamEdgeRight") instance=ExtResource("3_4tjo5")]
 position = Vector2(64, 74)
-playerMemoryDuration = 3.0
 roamEdgeLeft = NodePath("../RoamEdges/RoamEdge")
 roamEdgeRight = NodePath("../RoamEdges/RoamEdge2")
-playerChaseDistance = 20.0
 
 [node name="RoamEdges" type="Node" parent="."]
 
 [node name="RoamEdge" type="Node2D" parent="RoamEdges"]
-position = Vector2(34, 77)
+position = Vector2(-10, 85)
 
 [node name="RoamEdge2" type="Node2D" parent="RoamEdges"]
 position = Vector2(184, 76)

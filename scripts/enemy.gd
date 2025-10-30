@@ -9,6 +9,7 @@ extends Node2D
 @export var roamEdgeLeft:Node2D
 @export var roamEdgeRight:Node2D
 @export var playerChaseDistance:float = 20
+@export var jumpVelocity:float = 200
 
 var player:CharacterBody2D
 var playerInMemoryTime
@@ -20,7 +21,7 @@ func _physics_process(delta: float) -> void:
 	gravity_component.handle_gravity(characterBody,delta)
 	var canSeePlayer:bool = enemy_vision_component.canSeePlayer(playerMemoryDuration, player,viewcone,delta)
 	if (canSeePlayer):
-		movement.goToPos(player.global_position,playerChaseDistance)
+		movement.goToPos(player.global_position,playerChaseDistance,jumpVelocity)
 	else:
-		movement.moveNormalCycle(roamEdgeLeft,roamEdgeRight)
+		movement.moveNormalCycle(roamEdgeLeft,roamEdgeRight,jumpVelocity)
 	
