@@ -11,7 +11,13 @@ extends CharacterBody2D
 @export_subgroup("Settings")
 @export var isEvolved = false
 
+signal triggerInfection
+var testCounter:int = 0
+
 func _physics_process(delta: float) -> void:
+	testCounter += 1
+	if testCounter == 100:
+		triggerInfection.emit()
 	if input_component.get_evolved() and !attack_component.getHasGrabbed():
 		isEvolved = !isEvolved
 		animation_component.handle_evolve(isEvolved)

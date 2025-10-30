@@ -31,6 +31,7 @@ var isGrabbed:bool = false
 
 func _ready() -> void:
 	player = get_node("/root/SceneRoot/Player")
+	(player as Player).triggerInfection.connect(_on_player_trigger_infection)
 	
 func _physics_process(delta: float) -> void:
 	gravity_component.handle_gravity(characterBody,delta)
@@ -67,7 +68,6 @@ func blowUp():
 	for object in objectsInRadius:
 		var objectParent = object.get_parent()
 		if objectParent != null and objectParent is Enemy:
-			print(objectParent)
 			(objectParent as Enemy).kill()
 
 func _on_enemy_timer_timeout() -> void:
@@ -79,4 +79,9 @@ func _on_enemy_timer_timeout() -> void:
 
 
 func _on_damage_timer_timeout() -> void:
-	print("Ouchie")
+	pass # TODO: Add damage to player
+
+
+func _on_player_trigger_infection() -> void:
+	if isInfected:
+		blowUp()
