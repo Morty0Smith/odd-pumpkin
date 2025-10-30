@@ -27,9 +27,6 @@ func _physics_process(delta: float) -> void:
 		if input_component.get_grab():
 			animation_component.handle_grab(hasGrabbed)
 			hasGrabbed = !hasGrabbed
-			
-			print(holdingPrey)
-			
 			if !holdingPrey:
 				if !hasGrabbed:
 					var collidingBodies = grabHitbox.get_overlapping_bodies()
