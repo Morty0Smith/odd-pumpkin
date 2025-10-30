@@ -20,4 +20,6 @@ func _physics_process(delta: float) -> void:
 		animation_component.handle_roll_animation(input_component.input_horizontal)
 	else:
 		animation_component.handle_move_animation(input_component.input_horizontal)
+		if input_component.get_grab():
+			animation_component.handle_grab()
 	move_and_slide()

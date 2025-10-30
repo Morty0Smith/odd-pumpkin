@@ -38,3 +38,8 @@ func handle_horizontal_flip(move_direction: float) -> void:
 		return
 
 	sprite.flip_h = false if move_direction > 0 else true
+	
+func handle_grab():
+	sprite.play("pumpMonGrab")
+	hitbox.apply_scale(Vector2(1.20,1.20))
+	sprite.apply_scale(Vector2(0.8,0.8))
