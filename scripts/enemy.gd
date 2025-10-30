@@ -16,6 +16,7 @@ extends Node2D
 
 var player:CharacterBody2D
 var playerInMemoryTime
+var playerGrabPosRelative:Vector2
 var isDazed = false
 var isDead = false
 var isInfected = false
@@ -27,9 +28,11 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	gravity_component.handle_gravity(characterBody,delta)
 	var canSeePlayer:bool = enemy_vision_component.canSeePlayer(playerMemoryDuration, player,viewcone,delta)
-	if canSeePlayer and !isDead and !isDazed:
+	if isGrabbed and !isDazed and !isDead:
+		self.global_position = player.global_position + playerGrabPosRelative
+	if canSeePlayer and !isDead and !isDazed and !isGrabbed:
 		movement.goToPos(player.global_position,playerChaseDistance,jumpVelocity)
-	if !canSeePlayer and !isDead and !isDazed:
+	if !canSeePlayer and !isDead and !isDazed and !isGrabbed:
 		movement.moveNormalCycle(roamEdgeLeft,roamEdgeRight,jumpVelocity)
 	
 func kill():
@@ -42,6 +45,10 @@ func infect():
 	isGrabbed = false
 	enemyTimer.start(2)
 
+func setGrabbed(grab:bool):
+	isGrabbed = grab
+	playerGrabPosRelative = player.global_position - self.global_position
+
 func blowUp():
 	var objectsInRadius = blowUpArea.get_overlapping_bodies()
 	for object in objectsInRadius:
@@ -49,8 +56,6 @@ func blowUp():
 		if objectParent != null and objectParent is Enemy:
 			print(objectParent)
 			(objectParent as Enemy).kill()
-
-
 
 func _on_enemy_timer_timeout() -> void:
 	if isDazed: #After two seconds, the enemy get up from dazing
