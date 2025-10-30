@@ -25,8 +25,9 @@ func _physics_process(delta: float) -> void:
 	else:
 		animation_component.handle_move_animation(input_component.input_horizontal)
 		if input_component.get_grab():
-			hasGrabbed = !hasGrabbed
 			animation_component.handle_grab(hasGrabbed)
+			hasGrabbed = !hasGrabbed
+			
 			print(holdingPrey)
 			
 			if !holdingPrey:
