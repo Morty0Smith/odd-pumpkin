@@ -47,7 +47,7 @@ func infect():
 
 func setGrabbed(grab:bool):
 	isGrabbed = grab
-	grabCollider = player.get_node("PlayerCollider/Pumpkin/grabHitbox/grabCollider")
+	grabCollider = player.get_node("Pumpkin/grabHitbox/grabCollider")
 
 func blowUp():
 	var objectsInRadius = blowUpArea.get_overlapping_bodies()

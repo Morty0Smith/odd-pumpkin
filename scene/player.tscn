@@ -98,7 +98,7 @@ gravity_component = NodePath("GravityComponent")
 movement_component = NodePath("MovementComponent")
 animation_component = NodePath("AnimationComponent")
 attack_component = NodePath("AttackComponent")
-grabHitbox = NodePath("Punpkin/grabHitbox")
+grabHitbox = NodePath("Pumpkin/grabHitbox")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(87, -60)
@@ -118,28 +118,28 @@ script = ExtResource("5_dk1vr")
 
 [node name="AnimationComponent" parent="." node_paths=PackedStringArray("sprite", "hitbox") instance=ExtResource("6_34jf3")]
 script = ExtResource("7_u7b46")
-sprite = NodePath("../Punpkin")
-hitbox = NodePath("../CollisionShape2D")
+sprite = NodePath("../Pumpkin")
+hitbox = NodePath("../playerCollider")
 
 [node name="AttackComponent" parent="." node_paths=PackedStringArray("grabHitbox", "animation_component") instance=ExtResource("8_ihjo1")]
-grabHitbox = NodePath("../Punpkin/grabHitbox")
+grabHitbox = NodePath("../Pumpkin/grabHitbox")
 animation_component = NodePath("../AnimationComponent")
 
-[node name="Punpkin" type="AnimatedSprite2D" parent="."]
+[node name="Pumpkin" type="AnimatedSprite2D" parent="."]
 position = Vector2(-3.4713746e-06, -1.1749267e-05)
 scale = Vector2(0.28, 0.28)
 sprite_frames = SubResource("SpriteFrames_ihjo1")
 animation = &"pumpMonGrab"
 
-[node name="grabHitbox" type="Area2D" parent="Punpkin"]
+[node name="grabHitbox" type="Area2D" parent="Pumpkin"]
 position = Vector2(1.2397766e-05, 4.196167e-05)
 scale = Vector2(3.5714285, 3.5714285)
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Punpkin/grabHitbox"]
+[node name="grabCollider" type="CollisionShape2D" parent="Pumpkin/grabHitbox"]
 position = Vector2(29, 23)
 shape = SubResource("CircleShape2D_ml7e8")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="playerCollider" type="CollisionShape2D" parent="."]
 scale = Vector2(0.28, 0.28)
 shape = SubResource("CircleShape2D_w2vy6")
