@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var gravity_component: GravityComponent
 @export var movement_component: MovementComponent
 @export var animation_component: AnimationComponent
+@export var grabHitbox:Area2D
 @export_subgroup("Settings")
 @export var isEvolved = false
 var holdingPrey = false
@@ -22,6 +23,14 @@ func _physics_process(delta: float) -> void:
 	else:
 		animation_component.handle_move_animation(input_component.input_horizontal)
 		if input_component.get_grab():
+			var collidingBodies = grabHitbox.get_overlapping_bodies()
+			for body in collidingBodies:
+				
+				var parent = body.get_parent()
+				print(parent)
+				if parent != null and parent is Enemy:
+					holdingPrey = !holdingPrey
+					(parent as Player).setGrabbed(holdingPrey)
 			animation_component.handle_grab(holdingPrey)
 			holdingPrey = !holdingPrey
 	move_and_slide()
