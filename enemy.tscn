@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://csq2hy81hoqoh"]
+[gd_scene load_steps=9 format=3 uid="uid://csq2hy81hoqoh"]
 
 [ext_resource type="Script" uid="uid://dx4bcpymmfg7r" path="res://scripts/enemy.gd" id="1_slebx"]
 [ext_resource type="Texture2D" uid="uid://dddpdja1q0y4r" path="res://icon.svg" id="2_2b04r"]
 [ext_resource type="Script" uid="uid://bpoy5qpx0bvro" path="res://scripts/enemy_movement.gd" id="3_iasw0"]
-[ext_resource type="Script" uid="uid://bo5hlkc4pgqhy" path="res://scripts/viewcone.gd" id="4_xu20o"]
 [ext_resource type="PackedScene" uid="uid://7wxtqrjwssae" path="res://scene/components/gravity_component.tscn" id="5_2b04r"]
 [ext_resource type="PackedScene" uid="uid://2sc717stb6mh" path="res://scene/components/enemy_vision_component.tscn" id="6_iasw0"]
 
@@ -16,16 +15,16 @@ points = PackedVector2Array(78.000015, -129.00003, 120.00003, -3, 72.000015, 148
 [sub_resource type="CircleShape2D" id="CircleShape2D_3yqyl"]
 radius = 77.0065
 
-[node name="Enemy" type="Node2D" node_paths=PackedStringArray("movement", "viewcone", "characterBody", "blowUpArea", "enemyTimer", "damageTimer", "gravity_component", "enemy_vision_component")]
+[node name="Enemy" type="Node2D" node_paths=PackedStringArray("gravity_component", "enemy_vision_component", "movement", "characterBody", "viewcone", "blowUpArea", "enemyTimer", "damageTimer")]
 script = ExtResource("1_slebx")
+gravity_component = NodePath("GravityComponent")
+enemy_vision_component = NodePath("enemy_vision_component")
 movement = NodePath("EnemyMovement")
-viewcone = NodePath("CharacterBody/CollisionShape2D/Sprite2D/Viewcone")
 characterBody = NodePath("CharacterBody")
+viewcone = NodePath("CharacterBody/CollisionShape2D/Sprite2D/Viewcone")
 blowUpArea = NodePath("CharacterBody/CollisionShape2D/BlowUpArea")
 enemyTimer = NodePath("EnemyTimer")
 damageTimer = NodePath("DamageTimer")
-gravity_component = NodePath("GravityComponent")
-enemy_vision_component = NodePath("enemy_vision_component")
 
 [node name="CharacterBody" type="CharacterBody2D" parent="."]
 collision_layer = 4
@@ -73,10 +72,6 @@ characterBody = NodePath("../CharacterBody")
 enemySprite = NodePath("../CharacterBody/CollisionShape2D/Sprite2D")
 moveSpeed = 40.0
 enemy_vision_component = NodePath("../enemy_vision_component")
-
-[node name="Viewcone" type="Node2D" parent="." node_paths=PackedStringArray("selfCollider")]
-script = ExtResource("4_xu20o")
-selfCollider = NodePath("../CharacterBody")
 
 [node name="GravityComponent" parent="." instance=ExtResource("5_2b04r")]
 

@@ -1,17 +1,22 @@
 class_name Enemy
 extends Node2D
 
+@export_subgroup("Components")
+@export var gravity_component: GravityComponent
+@export var enemy_vision_component: EnemyVisionComponent
 @export var movement:EnemyMovement
-@export var viewcone:Area2D
+
+@export_subgroup("Nodes")
 @export var characterBody:CharacterBody2D
+@export var viewcone:Area2D
 @export var blowUpArea:Area2D
 @export var enemyTimer:Timer
 @export var damageTimer:Timer
-@export var gravity_component: GravityComponent
-@export var enemy_vision_component: EnemyVisionComponent
-@export var playerMemoryDuration:float = 3
 @export var roamEdgeLeft:Node2D
 @export var roamEdgeRight:Node2D
+
+@export_subgroup("Values")
+@export var playerMemoryDuration:float = 3
 @export var playerChaseDistance:float = 20
 @export var jumpVelocity:float = 200
 @export var damageIntervall = 0.5
