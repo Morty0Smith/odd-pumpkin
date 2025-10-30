@@ -13,3 +13,6 @@ func get_jump_input() -> bool:
 
 func get_evolved() -> bool:
 	return Input.is_action_just_pressed("evolve")
+	
+func get_grab() -> bool:
+	return Input.is_action_just_pressed("grab")
