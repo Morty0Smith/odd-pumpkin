@@ -21,7 +21,10 @@ func _physics_process(delta: float) -> void:
 		movement_component.handle_jump(self, input_component.get_jump_input())
 		animation_component.handle_roll_animation(input_component.input_horizontal)
 	else:
-		animation_component.handle_move_animation(input_component.input_horizontal)
+		if !attack_component.getHasGrabbed():
+			animation_component.handle_move_animation(input_component.input_horizontal)
+		else:
+			animation_component.handle_grab_move_animation(input_component.input_horizontal, self.velocity.x)
 		if input_component.get_grab():
 			animation_component.handle_grab(attack_component.getHasGrabbed())
 			attack_component.handle_grab()
