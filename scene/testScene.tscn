@@ -1,20 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://d4bjpgqwy16ut"]
+[gd_scene load_steps=4 format=4 uid="uid://d4bjpgqwy16ut"]
 
 [ext_resource type="TileSet" uid="uid://c5wlt3m300h6a" path="res://defaultTileset.tres" id="1_4tjo5"]
 [ext_resource type="PackedScene" uid="uid://dcphqcnmub4lo" path="res://scene/player.tscn" id="2_dpac2"]
-[ext_resource type="Script" uid="uid://dx4bcpymmfg7r" path="res://scripts/enimy.gd" id="3_n8fmr"]
-[ext_resource type="Texture2D" uid="uid://dddpdja1q0y4r" path="res://icon.svg" id="4_4omt7"]
-[ext_resource type="Script" uid="uid://bpoy5qpx0bvro" path="res://scripts/enimy_movement.gd" id="5_v0co7"]
-[ext_resource type="Script" uid="uid://bo5hlkc4pgqhy" path="res://scripts/viewcone.gd" id="6_1rwtc"]
-[ext_resource type="PackedScene" uid="uid://7wxtqrjwssae" path="res://scene/components/gravity_component.tscn" id="7_bt17n"]
+[ext_resource type="PackedScene" uid="uid://csq2hy81hoqoh" path="res://enimy.tscn" id="3_4tjo5"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vixnb"]
-size = Vector2(121.06238, 126.50024)
-
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_u1fn3"]
-points = PackedVector2Array(78.000015, -129.00003, 120.00003, -3, 72.000015, 148.00003, -23, -9)
-
-[node name="Node2D" type="Node2D"]
+[node name="SceneRoot" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAD3/wUAAgAEAAIAAAD4/wUAAgAEAAIAAAD5/wUAAgAEAAIAAAD6/wUAAgAEAAIAAAD7/wUAAgAEAAIAAAD8/wUAAgAEAAIAAAD8/wYAAgAEAAIAAAD9/wYAAgAEAAIAAAD+/wYAAgAEAAIAAAD//wYAAgAEAAIAAAAAAAYAAgAEAAIAAAABAAYAAgAEAAIAAAACAAYAAgAEAAIAAAADAAYAAgAEAAIAAAAEAAYAAgAEAAIAAAAFAAYAAgAEAAIAAAAGAAYAAgAEAAIAAAAHAAYAAgAEAAIAAAAIAAYAAgAEAAIAAAAJAAYAAgAEAAIAAAAKAAYAAgAEAAIAAAALAAYAAgAEAAIAAAAMAAYAAgAEAAIAAAANAAYAAgAEAAIAAAAOAAYAAgAEAAIAAAAPAAYAAgAEAAIAAAAPAAUAAgAEAAIAAAAQAAUAAgAEAAIAAAARAAUAAgAEAAIAAAASAAUAAgAEAAIAAAATAAUAAgAEAAIAAAAUAAUAAgAEAAIAAAAVAAUAAgAEAAIAAAAWAAUAAgAEAAIAAAAWAAQAAgAEAAIAAAAWAAMAAgAEAAIAAAAWAAIAAgAEAAIAAAAWAAEAAgAEAAIAAAAWAAAAAgAEAAIAAAAWAP//AgAEAAIAAAAWAP7/AgAEAAIAAAAWAP3/AgAEAAIAAAAWAPz/AgAEAAIAAAAWAPv/AgAEAAIAAAAVAPv/AgAEAAIAAAAVAPr/AgAEAAIAAAAUAPr/AgAEAAIAAAATAPr/AgAEAAIAAAASAPr/AgAEAAIAAAARAPr/AgAEAAIAAAAQAPr/AgAEAAIAAAAPAPr/AgAEAAIAAAAOAPr/AgAEAAIAAAANAPr/AgAEAAIAAAAMAPr/AgAEAAIAAAALAPr/AgAEAAIAAAAKAPr/AgAEAAIAAAAJAPr/AgAEAAIAAAAIAPr/AgAEAAIAAAAHAPr/AgAEAAIAAAAGAPr/AgAEAAIAAAAFAPr/AgAEAAIAAAAEAPr/AgAEAAIAAAADAPr/AgAEAAIAAAACAPr/AgAEAAIAAAABAPr/AgAEAAIAAAAAAPr/AgAEAAIAAAD///r/AgAEAAIAAAD+//r/AgAEAAIAAAD9//r/AgAEAAIAAAD8//r/AgAEAAIAAAD8//v/AgAEAAIAAAD7//v/AgAEAAIAAAD6//v/AgAEAAIAAAD5//v/AgAEAAIAAAD4//v/AgAEAAIAAAD3//v/AgAEAAIAAAD3//z/AgAEAAIAAAD3//3/AgAEAAIAAAD3//7/AgAEAAIAAAD3////AgAEAAIAAAD3/wAAAgAEAAIAAAD3/wEAAgAEAAIAAAD3/wIAAgAEAAIAAAD3/wMAAgAEAAIAAAD3/wQAAgAEAAIAAAD7/wYAAgADAAIAAAD6/wYAAgADAAIAAAD5/wYAAgADAAIAAAD4/wYAAgADAAIAAAD3/wYAAgADAAIAAAAQAAYAAgADAAIAAAARAAYAAgADAAIAAAASAAYAAgADAAIAAAATAAYAAgADAAIAAAAUAAYAAgADAAIAAAAVAAYAAgADAAIAAAAWAAYAAgADAAIAAAAWAAcAAgADAAIAAAAVAAcAAgADAAIAAAAUAAcAAgADAAIAAAATAAcAAgADAAIAAAASAAcAAgADAAIAAAARAAcAAgADAAIAAAAQAAcAAgADAAIAAAAPAAcAAgADAAIAAAAOAAcAAgADAAIAAAANAAcAAgADAAIAAAAMAAcAAgADAAIAAAALAAcAAgADAAIAAAAKAAcAAgADAAIAAAAJAAcAAgADAAIAAAAIAAcAAgADAAIAAAAHAAcAAgADAAIAAAAGAAcAAgADAAIAAAAFAAcAAgADAAIAAAAEAAcAAgADAAIAAAADAAcAAgADAAIAAAACAAcAAgADAAIAAAABAAcAAgADAAIAAAAAAAcAAgADAAIAAAD//wcAAgADAAIAAAD+/wcAAgADAAIAAAD9/wcAAgADAAIAAAD8/wcAAgADAAIAAAD7/wcAAgADAAIAAAD6/wcAAgADAAIAAAD5/wcAAgADAAIAAAD4/wcAAgADAAIAAAD3/wcAAgADAAIAAAA=")
@@ -25,53 +15,15 @@ use_kinematic_bodies = true
 position = Vector2(-20, 75)
 collision_layer = 3
 
-[node name="Enimy" type="Node2D" parent="." node_paths=PackedStringArray("movement", "viewcone", "playerCollision", "characterBody", "gravity_component")]
-position = Vector2(29, 74)
-script = ExtResource("3_n8fmr")
-movement = NodePath("EnimyMovement")
-viewcone = NodePath("CharacterBody/CollisionShape2D/Sprite2D/Viewcone")
-playerCollision = NodePath("../Player")
-characterBody = NodePath("CharacterBody")
-gravity_component = NodePath("GravityComponent")
+[node name="Enimy" parent="." node_paths=PackedStringArray("roamEdgeLeft", "roamEdgeRight") instance=ExtResource("3_4tjo5")]
+position = Vector2(64, 74)
+roamEdgeLeft = NodePath("../RoamEdges/RoamEdge")
+roamEdgeRight = NodePath("../RoamEdges/RoamEdge2")
 
-[node name="CharacterBody" type="CharacterBody2D" parent="Enimy"]
-scale = Vector2(-1, 1)
-collision_layer = 4
-collision_mask = 4
+[node name="RoamEdges" type="Node" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enimy/CharacterBody"]
-position = Vector2(1.1920929e-07, 0)
-scale = Vector2(0.12267116, 0.3199988)
-shape = SubResource("RectangleShape2D_vixnb")
+[node name="RoamEdge" type="Node2D" parent="RoamEdges"]
+position = Vector2(34, 77)
 
-[node name="Sprite2D" type="Sprite2D" parent="Enimy/CharacterBody/CollisionShape2D"]
-texture = ExtResource("4_4omt7")
-
-[node name="Viewcone" type="Area2D" parent="Enimy/CharacterBody/CollisionShape2D/Sprite2D"]
-position = Vector2(-24.455624, 0)
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enimy/CharacterBody/CollisionShape2D/Sprite2D/Viewcone"]
-position = Vector2(269.0119, -21.87508)
-scale = Vector2(8.151874, 3.1250112)
-shape = SubResource("ConvexPolygonShape2D_u1fn3")
-
-[node name="RoamEdgeLeft" type="Node2D" parent="Enimy"]
-position = Vector2(-47, 2)
-
-[node name="RoamEdgeRight" type="Node2D" parent="Enimy"]
-position = Vector2(136, 3)
-
-[node name="EnimyMovement" type="Node" parent="Enimy" node_paths=PackedStringArray("characterBody", "roamEdgeLeft", "roamEdgeRight", "enimySprite")]
-script = ExtResource("5_v0co7")
-characterBody = NodePath("../CharacterBody")
-roamEdgeLeft = NodePath("../RoamEdgeLeft")
-roamEdgeRight = NodePath("../RoamEdgeRight")
-enimySprite = NodePath("../CharacterBody/CollisionShape2D/Sprite2D")
-moveSpeed = 40.0
-
-[node name="Viewcone" type="Node2D" parent="Enimy" node_paths=PackedStringArray("selfCollider")]
-script = ExtResource("6_1rwtc")
-selfCollider = NodePath("../CharacterBody")
-
-[node name="GravityComponent" parent="Enimy" instance=ExtResource("7_bt17n")]
+[node name="RoamEdge2" type="Node2D" parent="RoamEdges"]
+position = Vector2(184, 76)

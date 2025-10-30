@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://csq2hy81hoqoh"]
+[gd_scene load_steps=9 format=3 uid="uid://csq2hy81hoqoh"]
 
 [ext_resource type="Script" uid="uid://dx4bcpymmfg7r" path="res://scripts/enimy.gd" id="1_slebx"]
 [ext_resource type="Texture2D" uid="uid://dddpdja1q0y4r" path="res://icon.svg" id="2_2b04r"]
 [ext_resource type="Script" uid="uid://bpoy5qpx0bvro" path="res://scripts/enimy_movement.gd" id="3_iasw0"]
 [ext_resource type="Script" uid="uid://bo5hlkc4pgqhy" path="res://scripts/viewcone.gd" id="4_xu20o"]
 [ext_resource type="PackedScene" uid="uid://7wxtqrjwssae" path="res://scene/components/gravity_component.tscn" id="5_2b04r"]
+[ext_resource type="PackedScene" uid="uid://2sc717stb6mh" path="res://scene/components/enimy_vision_component.tscn" id="6_iasw0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vixnb"]
 size = Vector2(121.06238, 126.50024)
@@ -12,12 +13,13 @@ size = Vector2(121.06238, 126.50024)
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_u1fn3"]
 points = PackedVector2Array(78.000015, -129.00003, 120.00003, -3, 72.000015, 148.00003, -23, -9)
 
-[node name="Enimy" type="Node2D" node_paths=PackedStringArray("movement", "viewcone", "characterBody", "gravity_component")]
+[node name="Enimy" type="Node2D" node_paths=PackedStringArray("movement", "viewcone", "characterBody", "gravity_component", "enimy_vision_component")]
 script = ExtResource("1_slebx")
 movement = NodePath("EnimyMovement")
 viewcone = NodePath("CharacterBody/CollisionShape2D/Sprite2D/Viewcone")
 characterBody = NodePath("CharacterBody")
 gravity_component = NodePath("GravityComponent")
+enimy_vision_component = NodePath("enimy_vision_component")
 
 [node name="CharacterBody" type="CharacterBody2D" parent="."]
 collision_layer = 4
@@ -40,17 +42,9 @@ position = Vector2(269.0119, -21.87508)
 scale = Vector2(8.151874, 3.1250112)
 shape = SubResource("ConvexPolygonShape2D_u1fn3")
 
-[node name="RoamEdgeLeft" type="Node2D" parent="."]
-position = Vector2(-47, 2)
-
-[node name="RoamEdgeRight" type="Node2D" parent="."]
-position = Vector2(136, 3)
-
-[node name="EnimyMovement" type="Node" parent="." node_paths=PackedStringArray("characterBody", "roamEdgeLeft", "roamEdgeRight", "enimySprite")]
+[node name="EnimyMovement" type="Node" parent="." node_paths=PackedStringArray("characterBody", "enimySprite")]
 script = ExtResource("3_iasw0")
 characterBody = NodePath("../CharacterBody")
-roamEdgeLeft = NodePath("../RoamEdgeLeft")
-roamEdgeRight = NodePath("../RoamEdgeRight")
 enimySprite = NodePath("../CharacterBody/CollisionShape2D/Sprite2D")
 moveSpeed = 40.0
 
@@ -59,3 +53,5 @@ script = ExtResource("4_xu20o")
 selfCollider = NodePath("../CharacterBody")
 
 [node name="GravityComponent" parent="." instance=ExtResource("5_2b04r")]
+
+[node name="enimy_vision_component" parent="." instance=ExtResource("6_iasw0")]
