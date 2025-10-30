@@ -3,6 +3,7 @@ extends Node2D
 @export var movement:EnemyMovement
 @export var viewcone:Area2D
 @export var characterBody:CharacterBody2D
+@export var InfectTimer:Timer
 @export var gravity_component: GravityComponent
 @export var enemy_vision_component: EnemyVisionComponent
 @export var playerMemoryDuration:float = 3
@@ -13,15 +14,29 @@ extends Node2D
 
 var player:CharacterBody2D
 var playerInMemoryTime
+var isDazed = false
+var isDead = false
+var isInfected = false
 
 func _ready() -> void:
 	player = get_node("/root/SceneRoot/Player")
+	infect()
 	
 func _physics_process(delta: float) -> void:
 	gravity_component.handle_gravity(characterBody,delta)
 	var canSeePlayer:bool = enemy_vision_component.canSeePlayer(playerMemoryDuration, player,viewcone,delta)
-	if (canSeePlayer):
+	if canSeePlayer and !isDead and !isDazed:
 		movement.goToPos(player.global_position,playerChaseDistance,jumpVelocity)
-	else:
+	if !canSeePlayer and !isDead and !isDazed:
 		movement.moveNormalCycle(roamEdgeLeft,roamEdgeRight,jumpVelocity)
 	
+func kill():
+	isDead = true
+
+func infect():
+	isDazed = true
+	isInfected = true
+	InfectTimer.start(2)
+
+func _on_infect_timer_timeout() -> void:
+	isDazed = false

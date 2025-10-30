@@ -13,11 +13,12 @@ size = Vector2(121.06238, 126.50024)
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_u1fn3"]
 points = PackedVector2Array(78.000015, -129.00003, 120.00003, -3, 72.000015, 148.00003, -23, -9)
 
-[node name="Enemy" type="Node2D" node_paths=PackedStringArray("movement", "viewcone", "characterBody", "gravity_component", "enemy_vision_component")]
+[node name="Enemy" type="Node2D" node_paths=PackedStringArray("movement", "viewcone", "characterBody", "InfectTimer", "gravity_component", "enemy_vision_component")]
 script = ExtResource("1_slebx")
 movement = NodePath("EnemyMovement")
 viewcone = NodePath("CharacterBody/CollisionShape2D/Sprite2D/Viewcone")
 characterBody = NodePath("CharacterBody")
+InfectTimer = NodePath("InfectTimer")
 gravity_component = NodePath("GravityComponent")
 enemy_vision_component = NodePath("enemy_vision_component")
 
@@ -69,3 +70,8 @@ selfCollider = NodePath("../CharacterBody")
 stepRaycast = NodePath("../CharacterBody/CollisionShape2D/Sprite2D/StepCast")
 visionRaycast = NodePath("../CharacterBody/CollisionShape2D/Sprite2D/VisionCast")
 enemySprite = NodePath("../CharacterBody/CollisionShape2D/Sprite2D")
+
+[node name="InfectTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="InfectTimer" to="." method="_on_infect_timer_timeout"]
