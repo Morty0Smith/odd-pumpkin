@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dcphqcnmub4lo"]
+[gd_scene load_steps=22 format=3 uid="uid://dcphqcnmub4lo"]
 
 [ext_resource type="Script" uid="uid://bxmlwoexbyb7l" path="res://scene/player.gd" id="1_g2vtq"]
 [ext_resource type="PackedScene" uid="uid://7wxtqrjwssae" path="res://scene/components/gravity_component.tscn" id="2_2fvbb"]
@@ -88,13 +88,14 @@ animations = [{
 "speed": 4.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ml7e8"]
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input_component", "gravity_component", "movement_component", "animation_component")]
 script = ExtResource("1_g2vtq")
 input_component = NodePath("InputComponent")
 gravity_component = NodePath("GravityComponent")
 movement_component = NodePath("MovementComponent")
 animation_component = NodePath("AnimationComponent")
-isEvolved = null
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(87, -60)
@@ -125,3 +126,11 @@ shape = SubResource("CircleShape2D_w2vy6")
 position = Vector2(-1.2397766e-05, -4.196167e-05)
 sprite_frames = SubResource("SpriteFrames_ihjo1")
 animation = &"pumpMonGrab"
+
+[node name="grabHitbox" type="Area2D" parent="CollisionShape2D/Punpkin"]
+position = Vector2(1.2397766e-05, 4.196167e-05)
+scale = Vector2(3.5714285, 3.5714285)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/Punpkin/grabHitbox"]
+position = Vector2(29, 23)
+shape = SubResource("CircleShape2D_ml7e8")

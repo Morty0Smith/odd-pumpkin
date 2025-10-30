@@ -8,9 +8,10 @@ extends CharacterBody2D
 @export var animation_component: AnimationComponent
 @export_subgroup("Settings")
 @export var isEvolved = false
+var holdingPrey = false
 
 func _physics_process(delta: float) -> void:
-	if input_component.get_evolved():
+	if input_component.get_evolved() and !holdingPrey:
 		isEvolved = !isEvolved
 		animation_component.handle_evolve(isEvolved)
 	gravity_component.handle_gravity(self, delta)
@@ -21,5 +22,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		animation_component.handle_move_animation(input_component.input_horizontal)
 		if input_component.get_grab():
-			animation_component.handle_grab()
+			animation_component.handle_grab(holdingPrey)
+			holdingPrey = !holdingPrey
 	move_and_slide()

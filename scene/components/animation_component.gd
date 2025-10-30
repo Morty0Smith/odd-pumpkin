@@ -36,10 +36,16 @@ func handle_move_animation(direction: float):
 func handle_horizontal_flip(move_direction: float) -> void:
 	if move_direction == 0:
 		return
-
-	sprite.flip_h = false if move_direction > 0 else true
+	var absScale  = abs(sprite.scale.x)
+	#sprite.flip_h = false if move_direction > 0 else true
+	sprite.scale.x = absScale if move_direction > 0 else -absScale
 	
-func handle_grab():
-	sprite.play("pumpMonGrab")
-	hitbox.apply_scale(Vector2(1.20,1.20))
-	sprite.apply_scale(Vector2(0.8,0.8))
+func handle_grab(holding_prey: bool):
+	if !holding_prey:
+		sprite.play("pumpMonGrab")
+		hitbox.apply_scale(Vector2(1.2,1.2))
+		sprite.apply_scale(Vector2(0.833333,0.833333))
+	else:
+		sprite.play("pumpMonsterIdle")
+		hitbox.apply_scale(Vector2(0.833333,0.833333))
+		sprite.apply_scale(Vector2(1.2,1.2))
