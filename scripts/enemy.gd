@@ -6,6 +6,7 @@ extends Node2D
 @export var characterBody:CharacterBody2D
 @export var blowUpArea:Area2D
 @export var enemyTimer:Timer
+@export var damageTimer:Timer
 @export var gravity_component: GravityComponent
 @export var enemy_vision_component: EnemyVisionComponent
 @export var playerMemoryDuration:float = 3
@@ -13,14 +14,15 @@ extends Node2D
 @export var roamEdgeRight:Node2D
 @export var playerChaseDistance:float = 20
 @export var jumpVelocity:float = 200
+@export var damageIntervall = 0.5
 
 var player:CharacterBody2D
 var playerInMemoryTime
 var grabCollider:CollisionShape2D
-var isDazed = false
-var isDead = false
-var isInfected = false
-var isGrabbed = false
+var isDazed:bool = false
+var isDead:bool = false
+var isInfected:bool = false
+var isGrabbed:bool = false
 
 func _ready() -> void:
 	player = get_node("/root/SceneRoot/Player")
@@ -29,10 +31,16 @@ func _physics_process(delta: float) -> void:
 	gravity_component.handle_gravity(characterBody,delta)
 	var canSeePlayer:bool = enemy_vision_component.canSeePlayer(playerMemoryDuration, player,viewcone,delta)
 	if isGrabbed and !isDazed and !isDead:
+		damageTimer.stop()
 		characterBody.global_position.x = grabCollider.global_position.x
 	if canSeePlayer and !isDead and !isDazed and !isGrabbed:
-		movement.goToPos(player.global_position,playerChaseDistance,jumpVelocity)
+		var hasReachedPlayer:bool = movement.goToPos(player.global_position,playerChaseDistance,jumpVelocity)
+		if !hasReachedPlayer:
+			damageTimer.stop()
+		if hasReachedPlayer and damageTimer.time_left == 0:
+			damageTimer.start(0.5)
 	if !canSeePlayer and !isDead and !isDazed and !isGrabbed:
+		damageTimer.stop()
 		movement.moveNormalCycle(roamEdgeLeft,roamEdgeRight,jumpVelocity)
 	
 func kill():
@@ -63,3 +71,7 @@ func _on_enemy_timer_timeout() -> void:
 		enemyTimer.start(58)
 	else: #After one minute, the health regenerates
 		isInfected = false
+
+
+func _on_damage_timer_timeout() -> void:
+	print("Ouchie")
