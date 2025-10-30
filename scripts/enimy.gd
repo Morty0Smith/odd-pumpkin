@@ -8,6 +8,7 @@ extends Node2D
 @export var playerMemoryDuration:float = 3
 @export var roamEdgeLeft:Node2D
 @export var roamEdgeRight:Node2D
+@export var playerChaseDistance:float = 20
 
 var player:CharacterBody2D
 var playerInMemoryTime
@@ -19,7 +20,7 @@ func _physics_process(delta: float) -> void:
 	gravity_component.handle_gravity(characterBody,delta)
 	var canSeePlayer:bool = enimy_vision_component.canSeePlayer(playerMemoryDuration, player,viewcone,delta)
 	if (canSeePlayer):
-		movement.goToPos(player.global_position)
+		movement.goToPos(player.global_position,playerChaseDistance)
 	else:
 		movement.moveNormalCycle(roamEdgeLeft,roamEdgeRight)
 	

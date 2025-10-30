@@ -6,15 +6,16 @@ extends Node
 @export var moveSpeed:float = 20
 
 var moveToLeft:bool = false
+var normalCycleTurnMargin:float = 5
 
 func moveNormalCycle(roamEdgeLeft:Node2D,roamEdgeRight:Node2D):
 	var targetPos:Vector2 = roamEdgeLeft.global_position if (moveToLeft) else roamEdgeRight.global_position
-	if(abs(targetPos.x - characterBody.global_position.x) < 5):
+	if(abs(targetPos.x - characterBody.global_position.x) < normalCycleTurnMargin):
 		moveToLeft = !moveToLeft
-	goToPos(targetPos)
+	goToPos(targetPos, normalCycleTurnMargin - 1)
 
-func goToPos(targetPos:Vector2):
-	if(abs(targetPos.x - characterBody.global_position.x) < 4):
+func goToPos(targetPos:Vector2, stopMargin:float):
+	if(abs(targetPos.x - characterBody.global_position.x) < stopMargin):
 		return
 	if (characterBody.global_position.x < targetPos.x):
 		characterBody.velocity.x = moveSpeed
