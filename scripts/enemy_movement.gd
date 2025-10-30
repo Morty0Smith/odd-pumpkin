@@ -1,8 +1,8 @@
-class_name EnimyMovement
+class_name EnemyMovement
 extends Node
 
 @export var characterBody:CharacterBody2D
-@export var enimySprite:Sprite2D
+@export var enemySprite:Sprite2D
 @export var moveSpeed:float = 20
 
 var moveToLeft:bool = false
@@ -19,8 +19,8 @@ func goToPos(targetPos:Vector2, stopMargin:float):
 		return
 	if (characterBody.global_position.x < targetPos.x):
 		characterBody.velocity.x = moveSpeed
-		enimySprite.scale.x = 1
+		enemySprite.scale.x = 1
 	if (characterBody.global_position.x > targetPos.x):
 		characterBody.velocity.x = -moveSpeed
-		enimySprite.scale.x = -1
+		enemySprite.scale.x = -1
 	characterBody.move_and_slide()

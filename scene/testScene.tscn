@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://c5wlt3m300h6a" path="res://defaultTileset.tres" id="1_4tjo5"]
 [ext_resource type="PackedScene" uid="uid://dcphqcnmub4lo" path="res://scene/player.tscn" id="2_dpac2"]
-[ext_resource type="PackedScene" uid="uid://csq2hy81hoqoh" path="res://enimy.tscn" id="3_4tjo5"]
+[ext_resource type="PackedScene" uid="uid://csq2hy81hoqoh" path="res://enemy.tscn" id="3_4tjo5"]
 
 [node name="SceneRoot" type="Node2D"]
 
@@ -15,10 +15,12 @@ use_kinematic_bodies = true
 position = Vector2(-20, 75)
 collision_layer = 3
 
-[node name="Enimy" parent="." node_paths=PackedStringArray("roamEdgeLeft", "roamEdgeRight") instance=ExtResource("3_4tjo5")]
+[node name="Enemy" parent="." node_paths=PackedStringArray("roamEdgeLeft", "roamEdgeRight") instance=ExtResource("3_4tjo5")]
 position = Vector2(64, 74)
+playerMemoryDuration = 3.0
 roamEdgeLeft = NodePath("../RoamEdges/RoamEdge")
 roamEdgeRight = NodePath("../RoamEdges/RoamEdge2")
+playerChaseDistance = 20.0
 
 [node name="RoamEdges" type="Node" parent="."]
 

@@ -1,4 +1,4 @@
-class_name EnimyVisionComponent
+class_name EnemyVisionComponent
 extends Node
 
 var playerMemoryTimer:float
