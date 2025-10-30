@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dcphqcnmub4lo"]
+[gd_scene load_steps=18 format=3 uid="uid://dcphqcnmub4lo"]
 
 [ext_resource type="Script" uid="uid://bxmlwoexbyb7l" path="res://scene/player.gd" id="1_g2vtq"]
 [ext_resource type="PackedScene" uid="uid://7wxtqrjwssae" path="res://scene/components/gravity_component.tscn" id="2_2fvbb"]
@@ -7,10 +7,66 @@
 [ext_resource type="Script" uid="uid://hl2ki3328msj" path="res://scene/components/movement_component.gd" id="5_dk1vr"]
 [ext_resource type="PackedScene" uid="uid://bwkbw6np82rvp" path="res://scene/components/animation_component.tscn" id="6_34jf3"]
 [ext_resource type="Script" uid="uid://dy7wigiqhqpvr" path="res://scene/components/animation_component.gd" id="7_u7b46"]
-[ext_resource type="Texture2D" uid="uid://dddpdja1q0y4r" path="res://icon.svg" id="8_j4wxg"]
+[ext_resource type="Texture2D" uid="uid://b4qpa1sdikeme" path="res://scene/sprites/pumpIdle.png" id="8_g2vtq"]
+[ext_resource type="Texture2D" uid="uid://c5e5byx2ly1hu" path="res://scene/sprites/pumpMonsterIdle.png" id="9_2fvbb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w2vy6"]
 radius = 25.098053
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihjo1"]
+atlas = ExtResource("8_g2vtq")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dk1vr"]
+atlas = ExtResource("8_g2vtq")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34jf3"]
+atlas = ExtResource("8_g2vtq")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7b46"]
+atlas = ExtResource("8_g2vtq")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fvbb"]
+atlas = ExtResource("9_2fvbb")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ml7e8"]
+atlas = ExtResource("9_2fvbb")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ihjo1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihjo1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dk1vr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34jf3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7b46")
+}],
+"loop": true,
+"name": &"pumpIdle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2fvbb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ml7e8")
+}],
+"loop": true,
+"name": &"pumpMonsterIdle",
+"speed": 4.0
+}]
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input_component", "gravity_component", "movement_component", "animation_component")]
 script = ExtResource("1_g2vtq")
@@ -44,7 +100,7 @@ hitbox = NodePath("../CollisionShape2D")
 scale = Vector2(0.28, 0.28)
 shape = SubResource("CircleShape2D_w2vy6")
 
-[node name="Punpkin" type="Sprite2D" parent="CollisionShape2D"]
+[node name="Punpkin" type="AnimatedSprite2D" parent="CollisionShape2D"]
 position = Vector2(-1.2397766e-05, -4.196167e-05)
-scale = Vector2(0.42892137, 0.44852933)
-texture = ExtResource("8_j4wxg")
+sprite_frames = SubResource("SpriteFrames_ihjo1")
+animation = &"pumpMonsterIdle"

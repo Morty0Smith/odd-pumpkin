@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var gravity_component: GravityComponent
 @export var movement_component: MovementComponent
 @export var animation_component: AnimationComponent
-
+@export_subgroup("Settings")
 @export var isEvolved = false
 
 func _physics_process(delta: float) -> void:

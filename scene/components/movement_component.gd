@@ -3,7 +3,7 @@ extends Node
 
 @export_subgroup("Settings")
 @export var roll_speed: float = 200
-@export var walk_speed: float = 100
+@export var walk_speed: float = 75
 @export var jump_velocity: float = -200.0
 
 var is_jumping: bool = false
