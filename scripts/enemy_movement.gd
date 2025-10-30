@@ -29,8 +29,6 @@ func goToPos(targetPos:Vector2, stopMargin:float, jumpVelocity:float):
 		jump(jumpVelocity)
 
 func jump(jumpVelocity:float):
-	print(characterBody.is_on_floor())
 	if (characterBody.is_on_floor()):
 		characterBody.velocity.y = -jumpVelocity
-		print(characterBody.velocity.y)
 		characterBody.move_and_slide()
