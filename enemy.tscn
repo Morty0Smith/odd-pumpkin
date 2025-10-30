@@ -42,9 +42,10 @@ position = Vector2(269.0119, -21.87508)
 scale = Vector2(8.151874, 3.1250112)
 shape = SubResource("ConvexPolygonShape2D_u1fn3")
 
-[node name="EnemyMovement" type="Node" parent="." node_paths=PackedStringArray("characterBody")]
+[node name="EnemyMovement" type="Node" parent="." node_paths=PackedStringArray("characterBody", "enemySprite")]
 script = ExtResource("3_iasw0")
 characterBody = NodePath("../CharacterBody")
+enemySprite = NodePath("../CharacterBody/CollisionShape2D/Sprite2D")
 moveSpeed = 40.0
 
 [node name="Viewcone" type="Node2D" parent="." node_paths=PackedStringArray("selfCollider")]
