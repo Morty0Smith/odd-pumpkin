@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://csq2hy81hoqoh"]
+[gd_scene load_steps=10 format=3 uid="uid://csq2hy81hoqoh"]
 
 [ext_resource type="Script" uid="uid://dx4bcpymmfg7r" path="res://scripts/enemy.gd" id="1_slebx"]
 [ext_resource type="Texture2D" uid="uid://dddpdja1q0y4r" path="res://icon.svg" id="2_2b04r"]
@@ -13,11 +13,16 @@ size = Vector2(121.06238, 126.50024)
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_u1fn3"]
 points = PackedVector2Array(78.000015, -129.00003, 120.00003, -3, 72.000015, 148.00003, -23, -9)
 
-[node name="Enemy" type="Node2D" node_paths=PackedStringArray("movement", "viewcone", "characterBody", "gravity_component", "enemy_vision_component")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_3yqyl"]
+radius = 77.0065
+
+[node name="Enemy" type="Node2D" node_paths=PackedStringArray("movement", "viewcone", "characterBody", "blowUpArea", "enemyTimer", "gravity_component", "enemy_vision_component")]
 script = ExtResource("1_slebx")
 movement = NodePath("EnemyMovement")
 viewcone = NodePath("CharacterBody/CollisionShape2D/Sprite2D/Viewcone")
 characterBody = NodePath("CharacterBody")
+blowUpArea = NodePath("CharacterBody/CollisionShape2D/BlowUpArea")
+enemyTimer = NodePath("EnemyTimer")
 gravity_component = NodePath("GravityComponent")
 enemy_vision_component = NodePath("enemy_vision_component")
 
@@ -42,11 +47,31 @@ position = Vector2(269.0119, -21.87508)
 scale = Vector2(8.151874, 3.1250112)
 shape = SubResource("ConvexPolygonShape2D_u1fn3")
 
-[node name="EnemyMovement" type="Node" parent="." node_paths=PackedStringArray("characterBody", "enemySprite")]
+[node name="StepCast" type="RayCast2D" parent="CharacterBody/CollisionShape2D/Sprite2D"]
+position = Vector2(65.215004, 46.875175)
+scale = Vector2(8.151875, 3.1250114)
+target_position = Vector2(9.000001, 0)
+hit_from_inside = true
+
+[node name="VisionCast" type="RayCast2D" parent="CharacterBody/CollisionShape2D/Sprite2D"]
+position = Vector2(81.51873, -46.875164)
+scale = Vector2(8.151873, 3.125011)
+
+[node name="BlowUpArea" type="Area2D" parent="CharacterBody/CollisionShape2D"]
+position = Vector2(-9.717792e-07, 0)
+scale = Vector2(8.151875, 3.1250114)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody/CollisionShape2D/BlowUpArea"]
+shape = SubResource("CircleShape2D_3yqyl")
+
+[node name="EnemyMovement" type="Node" parent="." node_paths=PackedStringArray("characterBody", "enemySprite", "enemy_vision_component")]
 script = ExtResource("3_iasw0")
 characterBody = NodePath("../CharacterBody")
 enemySprite = NodePath("../CharacterBody/CollisionShape2D/Sprite2D")
 moveSpeed = 40.0
+enemy_vision_component = NodePath("../enemy_vision_component")
 
 [node name="Viewcone" type="Node2D" parent="." node_paths=PackedStringArray("selfCollider")]
 script = ExtResource("4_xu20o")
@@ -54,4 +79,12 @@ selfCollider = NodePath("../CharacterBody")
 
 [node name="GravityComponent" parent="." instance=ExtResource("5_2b04r")]
 
-[node name="enemy_vision_component" parent="." instance=ExtResource("6_iasw0")]
+[node name="enemy_vision_component" parent="." node_paths=PackedStringArray("stepRaycast", "visionRaycast", "enemySprite") instance=ExtResource("6_iasw0")]
+stepRaycast = NodePath("../CharacterBody/CollisionShape2D/Sprite2D/StepCast")
+visionRaycast = NodePath("../CharacterBody/CollisionShape2D/Sprite2D/VisionCast")
+enemySprite = NodePath("../CharacterBody/CollisionShape2D/Sprite2D")
+
+[node name="EnemyTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="EnemyTimer" to="." method="_on_enemy_timer_timeout"]

@@ -24,7 +24,7 @@ roamEdgeRight = NodePath("../RoamEdges/RoamEdge2")
 [node name="RoamEdges" type="Node" parent="."]
 
 [node name="RoamEdge" type="Node2D" parent="RoamEdges"]
-position = Vector2(34, 77)
+position = Vector2(37, 82)
 
 [node name="RoamEdge2" type="Node2D" parent="RoamEdges"]
 position = Vector2(184, 76)
