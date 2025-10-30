@@ -6,15 +6,13 @@ extends CharacterBody2D
 @export var gravity_component: GravityComponent
 @export var movement_component: MovementComponent
 @export var animation_component: AnimationComponent
+@export var attack_component: AttackComponent
 @export var grabHitbox:Area2D
 @export_subgroup("Settings")
 @export var isEvolved = false
-var holdingPrey = false
-var hasGrabbed = false
-var prey
 
 func _physics_process(delta: float) -> void:
-	if input_component.get_evolved() and !holdingPrey:
+	if input_component.get_evolved() and !attack_component.getHasGrabbed():
 		isEvolved = !isEvolved
 		animation_component.handle_evolve(isEvolved)
 	gravity_component.handle_gravity(self, delta)
@@ -25,26 +23,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		animation_component.handle_move_animation(input_component.input_horizontal)
 		if input_component.get_grab():
-			animation_component.handle_grab(hasGrabbed)
-			hasGrabbed = !hasGrabbed
-			
-			print(holdingPrey)
-			
-			if !holdingPrey:
-				if !hasGrabbed:
-					var collidingBodies = grabHitbox.get_overlapping_bodies()
-					for body in collidingBodies:
-						var parent = body.get_parent()	
-						if parent != null and parent is Enemy:
-							holdingPrey = true
-							prey = parent
-							(prey as Enemy).setGrabbed(true)
-				else: #wiffed the grab
-					await get_tree().create_timer(0.5).timeout
-					hasGrabbed = false
-					animation_component.handle_grab(true)
-			else:
-				(prey as Enemy).setGrabbed(false)
-				holdingPrey = false
-			
+			animation_component.handle_grab(attack_component.getHasGrabbed())
+			attack_component.handle_grab()
 	move_and_slide()

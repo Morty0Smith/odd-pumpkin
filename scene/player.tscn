@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dcphqcnmub4lo"]
+[gd_scene load_steps=23 format=3 uid="uid://dcphqcnmub4lo"]
 
 [ext_resource type="Script" uid="uid://bxmlwoexbyb7l" path="res://scene/player.gd" id="1_g2vtq"]
 [ext_resource type="PackedScene" uid="uid://7wxtqrjwssae" path="res://scene/components/gravity_component.tscn" id="2_2fvbb"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bwkbw6np82rvp" path="res://scene/components/animation_component.tscn" id="6_34jf3"]
 [ext_resource type="Script" uid="uid://dy7wigiqhqpvr" path="res://scene/components/animation_component.gd" id="7_u7b46"]
 [ext_resource type="Texture2D" uid="uid://b4qpa1sdikeme" path="res://scene/sprites/pumpIdle.png" id="8_g2vtq"]
+[ext_resource type="PackedScene" uid="uid://dalscbf4j26ta" path="res://scene/components/attack_component.tscn" id="8_ihjo1"]
 [ext_resource type="Texture2D" uid="uid://c5e5byx2ly1hu" path="res://scene/sprites/pumpMonsterIdle.png" id="9_2fvbb"]
 [ext_resource type="Texture2D" uid="uid://cxfv11xf77p7y" path="res://scene/sprites/pumpMonGrab.png" id="9_ml7e8"]
 
@@ -90,12 +91,13 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_w2vy6"]
 radius = 25.098053
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input_component", "gravity_component", "movement_component", "animation_component", "grabHitbox")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input_component", "gravity_component", "movement_component", "animation_component", "attack_component", "grabHitbox")]
 script = ExtResource("1_g2vtq")
 input_component = NodePath("InputComponent")
 gravity_component = NodePath("GravityComponent")
 movement_component = NodePath("MovementComponent")
 animation_component = NodePath("AnimationComponent")
+attack_component = NodePath("AttackComponent")
 grabHitbox = NodePath("Punpkin/grabHitbox")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -118,6 +120,10 @@ script = ExtResource("5_dk1vr")
 script = ExtResource("7_u7b46")
 sprite = NodePath("../Punpkin")
 hitbox = NodePath("../CollisionShape2D")
+
+[node name="AttackComponent" parent="." node_paths=PackedStringArray("grabHitbox", "animation_component") instance=ExtResource("8_ihjo1")]
+grabHitbox = NodePath("../Punpkin/grabHitbox")
+animation_component = NodePath("../AnimationComponent")
 
 [node name="Punpkin" type="AnimatedSprite2D" parent="."]
 position = Vector2(-3.4713746e-06, -1.1749267e-05)
