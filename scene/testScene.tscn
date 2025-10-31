@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=4 uid="uid://d4bjpgqwy16ut"]
+[gd_scene load_steps=6 format=4 uid="uid://d4bjpgqwy16ut"]
 
 [ext_resource type="TileSet" uid="uid://c5wlt3m300h6a" path="res://defaultTileset.tres" id="1_4tjo5"]
 [ext_resource type="PackedScene" uid="uid://dcphqcnmub4lo" path="res://scene/player.tscn" id="2_dpac2"]
 [ext_resource type="PackedScene" uid="uid://csq2hy81hoqoh" path="res://enemy.tscn" id="3_4tjo5"]
+[ext_resource type="Texture2D" uid="uid://b4kh65jotpwx4" path="res://scene/sprites/pumpSymbols.png" id="4_wjqfg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wjqfg"]
+atlas = ExtResource("4_wjqfg")
+region = Rect2(0, 0, 16, 16)
 
 [node name="SceneRoot" type="Node2D"]
 
@@ -28,4 +33,16 @@ position = Vector2(37, 82)
 [node name="RoamEdge2" type="Node2D" parent="RoamEdges"]
 position = Vector2(184, 76)
 
-[connection signal="triggerInfection" from="Player" to="Enemy" method="_on_player_trigger_infection"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+texture_filter = 1
+custom_minimum_size = Vector2(75, 75)
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.05
+anchor_right = 0.5
+anchor_bottom = 0.05
+grow_horizontal = 2
+texture = SubResource("AtlasTexture_wjqfg")
+expand_mode = 2
