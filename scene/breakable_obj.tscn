@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://cioy3t7mdbwa0"]
+
+[ext_resource type="PackedScene" uid="uid://dfdrhkhbv33mg" path="res://scene/components/collision_component.tscn" id="1_120ia"]
+[ext_resource type="Script" uid="uid://n5bahx2x3ryr" path="res://scene/breakable_obj.gd" id="1_jbhqd"]
+[ext_resource type="PackedScene" uid="uid://7wxtqrjwssae" path="res://scene/components/gravity_component.tscn" id="2_jbhqd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1twgr"]
+size = Vector2(19.421875, 19.070313)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_bd0cl"]
+
+[node name="breakAbleObj" type="CharacterBody2D" node_paths=PackedStringArray("collision_component", "gravity_component")]
+collision_layer = 13
+collision_mask = 13
+script = ExtResource("1_jbhqd")
+collision_component = NodePath("CollisionComponent")
+gravity_component = NodePath("GravityComponent")
+speedNeededToBreak = 400
+
+[node name="CollisionComponent" parent="." instance=ExtResource("1_120ia")]
+
+[node name="GravityComponent" parent="." instance=ExtResource("2_jbhqd")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.46484375)
+shape = SubResource("RectangleShape2D_1twgr")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+position = Vector2(8.344647e-07, 0.03515452)
+scale = Vector2(20, 18.999998)
+texture = SubResource("PlaceholderTexture2D_bd0cl")
