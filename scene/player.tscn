@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dcphqcnmub4lo"]
+[gd_scene load_steps=36 format=3 uid="uid://dcphqcnmub4lo"]
 
 [ext_resource type="Script" uid="uid://bxmlwoexbyb7l" path="res://scene/player.gd" id="1_g2vtq"]
 [ext_resource type="PackedScene" uid="uid://7wxtqrjwssae" path="res://scene/components/gravity_component.tscn" id="2_2fvbb"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cxfv11xf77p7y" path="res://scene/sprites/pumpMonGrab.png" id="9_ml7e8"]
 [ext_resource type="Texture2D" uid="uid://pitmavnog5rd" path="res://scene/sprites/pumpMonGrabWalk.png" id="11_dk1vr"]
 [ext_resource type="Texture2D" uid="uid://dixyr2gk40a1r" path="res://scene/sprites/pumpMonKill.png" id="12_34jf3"]
+[ext_resource type="Texture2D" uid="uid://dllp48fqk1dm4" path="res://scene/sprites/pumpMonInf.png" id="12_u7b46"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ihjo1"]
 atlas = ExtResource("8_g2vtq")
@@ -45,6 +46,26 @@ region = Rect2(0, 0, 256, 256)
 [sub_resource type="AtlasTexture" id="AtlasTexture_v4iqv"]
 atlas = ExtResource("11_dk1vr")
 region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kk4ol"]
+atlas = ExtResource("12_u7b46")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4reak"]
+atlas = ExtResource("12_u7b46")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wt23p"]
+atlas = ExtResource("12_u7b46")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8m7u"]
+atlas = ExtResource("12_u7b46")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qucqc"]
+atlas = ExtResource("12_u7b46")
+region = Rect2(1024, 0, 256, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_42h83"]
 atlas = ExtResource("12_34jf3")
@@ -106,6 +127,26 @@ animations = [{
 "loop": true,
 "name": &"pumpMonGrabWalk",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kk4ol")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4reak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wt23p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8m7u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qucqc")
+}],
+"loop": false,
+"name": &"pumpMonInfect",
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -176,7 +217,8 @@ animation_component = NodePath("../AnimationComponent")
 position = Vector2(-3.4713746e-06, -1.1749267e-05)
 scale = Vector2(0.28, 0.28)
 sprite_frames = SubResource("SpriteFrames_ihjo1")
-animation = &"pumpMonKill"
+animation = &"pumpMonInfect"
+frame = 4
 frame_progress = 1.0
 
 [node name="grabHitbox" type="Area2D" parent="Pumpkin"]
