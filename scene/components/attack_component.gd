@@ -9,6 +9,9 @@ var holdingPrey = false
 var hasGrabbed = false
 var prey
 
+func getHasGrabbed():
+	return hasGrabbed
+
 func handle_grab():
 	hasGrabbed = !hasGrabbed
 	if !holdingPrey:
@@ -29,6 +32,11 @@ func handle_grab():
 	else:
 		(prey as Enemy).setGrabbed(false)
 		holdingPrey = false
-
-func getHasGrabbed():
-	return hasGrabbed
+		
+func handle_kill():
+	(prey as Enemy).setGrabbed(false)
+	holdingPrey = false
+	hasGrabbed = false
+	
+func handle_infect():
+	pass

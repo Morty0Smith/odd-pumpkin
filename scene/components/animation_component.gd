@@ -58,3 +58,9 @@ func handle_grab(holding_prey: bool):
 		sprite.play("pumpMonsterIdle")
 		hitbox.scale = monster_Size
 		#sprite.apply_scale(Vector2(1.2,1.2))
+		
+func handle_kill():
+	sprite.play("pumpMonKill")
+	await get_tree().create_timer(1).timeout
+	hitbox.scale = monster_Size
+	sprite.play("pumpMonsterIdle")
