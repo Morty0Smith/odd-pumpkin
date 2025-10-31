@@ -2,7 +2,7 @@ class_name EnemyMovement
 extends Node
 
 @export var characterBody:CharacterBody2D
-@export var enemySprite:Sprite2D
+@export var enemySprite:AnimatedSprite2D
 @export var moveSpeed:float = 20
 @export var enemy_vision_component:EnemyVisionComponent
 

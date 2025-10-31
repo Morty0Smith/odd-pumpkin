@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dcphqcnmub4lo" path="res://scene/player.tscn" id="2_dpac2"]
 [ext_resource type="PackedScene" uid="uid://csq2hy81hoqoh" path="res://enemy.tscn" id="3_4tjo5"]
 [ext_resource type="Texture2D" uid="uid://cimnk1hsnni6n" path="res://scene/sprites/pumpSymbols.png" id="4_wjqfg"]
-[ext_resource type="Script" uid="uid://dj5vjfvgl5ejy" path="res://scripts/ui_manager.gd" id="5_50bm4"]
+[ext_resource type="Script" path="res://scripts/ui_manager.gd" id="5_50bm4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wjqfg"]
 atlas = ExtResource("4_wjqfg")
