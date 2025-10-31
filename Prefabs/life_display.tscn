@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://ba21mk742r5lp"]
+
+[ext_resource type="Texture2D" uid="uid://bgimu70nf3aeg" path="res://sprites/pumpHeart.png" id="1_nccn1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8fmr"]
+atlas = ExtResource("1_nccn1")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q64ej"]
+atlas = ExtResource("1_nccn1")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4omt7"]
+atlas = ExtResource("1_nccn1")
+region = Rect2(0, 0, 16, 16)
+
+[node name="LifeDisplay" type="HBoxContainer"]
+anchors_preset = -1
+anchor_left = 0.04
+anchor_top = 0.05
+anchor_right = 0.04
+anchor_bottom = 0.05
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Heart" type="TextureRect" parent="."]
+texture_filter = 1
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = SubResource("AtlasTexture_n8fmr")
+expand_mode = 2
+
+[node name="Heart2" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 2
+texture = SubResource("AtlasTexture_q64ej")
+expand_mode = 2
+
+[node name="Heart3" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 2
+texture = SubResource("AtlasTexture_4omt7")
+expand_mode = 2

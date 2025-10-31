@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://2sc717stb6mh"]
+
+[ext_resource type="Script" uid="uid://cihxjlenmbus3" path="res://scripts/enemy_vision_component.gd" id="1_ga11m"]
+
+[node name="enimy_vision_component" type="Node"]
+script = ExtResource("1_ga11m")
