@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://d4bjpgqwy16ut"]
+[gd_scene load_steps=7 format=4 uid="uid://d4bjpgqwy16ut"]
 
 [ext_resource type="TileSet" uid="uid://c5wlt3m300h6a" path="res://defaultTileset.tres" id="1_4tjo5"]
 [ext_resource type="PackedScene" uid="uid://dcphqcnmub4lo" path="res://scene/player.tscn" id="2_dpac2"]
 [ext_resource type="PackedScene" uid="uid://csq2hy81hoqoh" path="res://enemy.tscn" id="3_4tjo5"]
 [ext_resource type="Texture2D" uid="uid://b4kh65jotpwx4" path="res://scene/sprites/pumpSymbols.png" id="4_wjqfg"]
+[ext_resource type="Script" uid="uid://dj5vjfvgl5ejy" path="res://scripts/ui_manager.gd" id="5_50bm4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wjqfg"]
 atlas = ExtResource("4_wjqfg")
@@ -35,7 +36,7 @@ position = Vector2(184, 76)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+[node name="EyeDisplay" type="TextureRect" parent="CanvasLayer"]
 texture_filter = 1
 custom_minimum_size = Vector2(75, 75)
 anchors_preset = -1
@@ -46,3 +47,7 @@ anchor_bottom = 0.05
 grow_horizontal = 2
 texture = SubResource("AtlasTexture_wjqfg")
 expand_mode = 2
+
+[node name="UI_Manager" type="Node" parent="CanvasLayer" node_paths=PackedStringArray("eye_Display")]
+script = ExtResource("5_50bm4")
+eye_Display = NodePath("../EyeDisplay")
