@@ -10,7 +10,7 @@ func canSeePlayer(playerMemoryDuration:float, player:CharacterBody2D, viewcone:A
 	var playerClass = player as Player
 	playerMemoryTimer -= deltaT
 	var playerIsMoving:bool = !(player.velocity == Vector2(0,0))
-	var spriteFlipped:bool = enemySprite.scale.x == -1
+	var spriteFlipped:bool = enemySprite.scale.x < 0
 	var playerViewObstructed:bool = !castToPlayer(player, spriteFlipped)
 	var playerVisible:bool = !playerViewObstructed and (playerIsMoving or playerClass.isEvolved) and player in viewcone.get_overlapping_bodies()
 	if playerVisible:
