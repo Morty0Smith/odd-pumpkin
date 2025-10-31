@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://h2aclw1q0hwk"]
+
+[ext_resource type="Texture2D" uid="uid://c1xmq3mvsldg6" path="res://sprites/crosshair.png" id="1_y3xj3"]
+[ext_resource type="Script" uid="uid://pqbaers1qneg" path="res://scripts/crosshair_component.gd" id="2_mubec"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xsw3c"]
+atlas = ExtResource("1_y3xj3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1uwf"]
+atlas = ExtResource("1_y3xj3")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ie14"]
+atlas = ExtResource("1_y3xj3")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pk8el"]
+atlas = ExtResource("1_y3xj3")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3vgh4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xsw3c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1uwf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ie14")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pk8el")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"crosshair_grow",
+"speed": 8.0
+}]
+
+[node name="CrosshairComponent" type="AnimatedSprite2D"]
+texture_filter = 1
+position = Vector2(0, -44)
+sprite_frames = SubResource("SpriteFrames_3vgh4")
+animation = &"crosshair_grow"
+autoplay = "crosshair_grow"
+frame = 1
+script = ExtResource("2_mubec")

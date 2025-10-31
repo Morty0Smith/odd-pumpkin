@@ -25,6 +25,7 @@ extends Node2D
 
 var ui_manager:UIManager
 var player:CharacterBody2D
+var playerClass:Player
 var playerInMemoryTime
 var grabCollider:CollisionShape2D
 var isDazed:bool = false
@@ -35,9 +36,12 @@ var isGrabbed:bool = false
 func _ready() -> void:
 	player = get_node("/root/SceneRoot/Player")
 	ui_manager = get_node("/root/SceneRoot/UI/UI_Manager") as UIManager
-	(player as Player).triggerInfection.connect(_on_player_trigger_infection)
+	playerClass = player as Player
+	playerClass.triggerInfection.connect(_on_player_trigger_infection)
 	
 func _physics_process(delta: float) -> void:
+	if (damageTimer.time_left == 0):
+		playerClass.animation_component.remove_crosshair(unique_id_component.getUID())
 	gravity_component.handle_gravity(characterBody,delta)
 	var canSeePlayer:bool = enemy_vision_component.canSeePlayer(playerMemoryDuration, player,viewcone,delta)
 	if isGrabbed and !isDazed and !isDead:
@@ -50,6 +54,7 @@ func _physics_process(delta: float) -> void:
 			damageTimer.stop()
 		if hasReachedPlayer and damageTimer.time_left == 0:
 			damageTimer.start(0.5)
+			playerClass.animation_component.add_crosshair(unique_id_component.getUID())
 	if !canSeePlayer and !isDead and !isDazed and !isGrabbed:
 		damageTimer.stop()
 		movement.moveNormalCycle(roamEdgeLeft,roamEdgeRight,jumpVelocity)
@@ -91,8 +96,9 @@ func _on_enemy_timer_timeout() -> void:
 
 
 func _on_damage_timer_timeout() -> void:
-	(player as Player).health_component.add_health(-1,ui_manager)
-
+	playerClass.health_component.add_health(-1,ui_manager)
+	playerClass.animation_component.add_crosshair(unique_id_component.getUID())
+	
 
 func _on_player_trigger_infection() -> void:
 	if isInfected:

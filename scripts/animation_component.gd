@@ -11,6 +11,9 @@ extends Node
 @export var monster_Size = Vector2(1.05,1.05)
 @export var monster_standup_Size = Vector2(1.4,1.4)
 
+var crosshairComponentScene = preload("res://components/crosshair_component.tscn")
+var crosshairs:Array[CrosshairComponent]
+
 func _ready():
 	sprite.play("pumpIdle")
 
@@ -70,3 +73,16 @@ func handle_infect():
 	await get_tree().create_timer(0.75).timeout
 	hitbox.scale = monster_Size
 	sprite.play("pumpMonsterIdle")
+
+func add_crosshair(UID:int):
+	var crosshair:CrosshairComponent = crosshairComponentScene.instantiate() as CrosshairComponent
+	self.get_parent().add_child(crosshair)
+	crosshair.setUID(UID)
+	crosshairs.append(crosshair)
+
+func remove_crosshair(UID:int):
+	for i in crosshairs.size():
+		if crosshairs.get(i).getUID() == UID:
+			self.get_parent().remove_child(crosshairs.get(i))
+			crosshairs.remove_at(i)
+			return
