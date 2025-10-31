@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cimnk1hsnni6n"
-path="res://.godot/imported/pumpSymbols.png-ba393f185994aeac7486a564bf9f9b77.ctex"
+uid="uid://dixyr2gk40a1r"
+path="res://.godot/imported/pumpMonKill.png-a3b6cdef43c1c0550644da0bee503650.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scene/sprites/pumpSymbols.png"
-dest_files=["res://.godot/imported/pumpSymbols.png-ba393f185994aeac7486a564bf9f9b77.ctex"]
+source_file="res://scene/sprites/pumpMonKill.png"
+dest_files=["res://.godot/imported/pumpMonKill.png-a3b6cdef43c1c0550644da0bee503650.ctex"]
 
 [params]
 

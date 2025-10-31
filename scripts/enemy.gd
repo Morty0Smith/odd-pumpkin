@@ -5,6 +5,7 @@ extends Node2D
 @export var gravity_component: GravityComponent
 @export var enemy_vision_component: EnemyVisionComponent
 @export var movement:EnemyMovement
+@export var unique_id_component:UniqueIdComponent
 
 @export_subgroup("Nodes")
 @export var characterBody:CharacterBody2D
@@ -21,6 +22,7 @@ extends Node2D
 @export var jumpVelocity:float = 200
 @export var damageIntervall = 0.5
 
+var ui_manager:UIManager
 var player:CharacterBody2D
 var playerInMemoryTime
 var grabCollider:CollisionShape2D
@@ -31,6 +33,7 @@ var isGrabbed:bool = false
 
 func _ready() -> void:
 	player = get_node("/root/SceneRoot/Player")
+	ui_manager = get_node("/root/SceneRoot/UI/UI_Manager") as UIManager
 	(player as Player).triggerInfection.connect(_on_player_trigger_infection)
 	
 func _physics_process(delta: float) -> void:
@@ -40,6 +43,7 @@ func _physics_process(delta: float) -> void:
 		damageTimer.stop()
 		characterBody.global_position.x = grabCollider.global_position.x
 	if canSeePlayer and !isDead and !isDazed and !isGrabbed:
+		ui_manager.setSeenLevel(2,unique_id_component.getUID())
 		var hasReachedPlayer:bool = movement.goToPos(player.global_position,playerChaseDistance,jumpVelocity)
 		if !hasReachedPlayer:
 			damageTimer.stop()
@@ -48,6 +52,8 @@ func _physics_process(delta: float) -> void:
 	if !canSeePlayer and !isDead and !isDazed and !isGrabbed:
 		damageTimer.stop()
 		movement.moveNormalCycle(roamEdgeLeft,roamEdgeRight,jumpVelocity)
+	if !canSeePlayer or isDead or isDazed:
+		ui_manager.resetSeenLevel(unique_id_component.getUID())
 	
 func kill():
 	isDead = true
