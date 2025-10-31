@@ -32,3 +32,6 @@ func castToPlayer(player:CharacterBody2D, spriteFlipped:bool) ->bool:
 		visionRaycast.target_position.x *= -1
 	visionRaycast.force_raycast_update()
 	return visionRaycast.is_colliding() and visionRaycast.get_collider() == player
+
+func forgetPlayer():
+	playerMemoryTimer = 0

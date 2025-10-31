@@ -57,6 +57,7 @@ func _physics_process(delta: float) -> void:
 		ui_manager.resetSeenLevel(unique_id_component.getUID())
 	if isDead or isDazed:
 		visual_viewcone.visible = false
+		enemy_vision_component.forgetPlayer()
 	else:
 		visual_viewcone.visible = true
 	
