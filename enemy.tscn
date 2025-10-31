@@ -60,6 +60,7 @@ hit_from_inside = true
 position = Vector2(81.51873, -46.875164)
 scale = Vector2(8.151873, 3.125011)
 collision_mask = 7
+hit_from_inside = true
 
 [node name="Sprite2D2" type="Sprite2D" parent="CharacterBody/CollisionShape2D/Sprite2D"]
 texture_filter = 1
