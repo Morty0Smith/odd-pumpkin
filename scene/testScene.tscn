@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://d4bjpgqwy16ut"]
+[gd_scene load_steps=6 format=4 uid="uid://d4bjpgqwy16ut"]
 
 [ext_resource type="TileSet" uid="uid://c5wlt3m300h6a" path="res://defaultTileset.tres" id="1_4tjo5"]
 [ext_resource type="PackedScene" uid="uid://dcphqcnmub4lo" path="res://scene/player.tscn" id="2_dpac2"]
 [ext_resource type="PackedScene" uid="uid://csq2hy81hoqoh" path="res://enemy.tscn" id="3_4tjo5"]
 [ext_resource type="PackedScene" uid="uid://foqfb8oc6agj" path="res://scene/object.tscn" id="4_wjqfg"]
+[ext_resource type="PackedScene" uid="uid://cioy3t7mdbwa0" path="res://scene/breakable_obj.tscn" id="5_50bm4"]
 
 [node name="SceneRoot" type="Node2D"]
 
@@ -18,7 +19,7 @@ collision_layer = 11
 collision_mask = 9
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("roamEdgeLeft", "roamEdgeRight") instance=ExtResource("3_4tjo5")]
-position = Vector2(64, 74)
+position = Vector2(-107, 54)
 roamEdgeLeft = NodePath("../RoamEdges/RoamEdge")
 roamEdgeRight = NodePath("../RoamEdges/RoamEdge2")
 
@@ -31,5 +32,9 @@ position = Vector2(37, 82)
 position = Vector2(184, 76)
 
 [node name="Object" parent="." instance=ExtResource("4_wjqfg")]
-position = Vector2(109, -45)
-push_force = 1000
+position = Vector2(-76, 59)
+
+[node name="breakAbleObj" parent="." instance=ExtResource("5_50bm4")]
+position = Vector2(160, -45)
+speedNeededToBreak = 300
+push_force = 100
