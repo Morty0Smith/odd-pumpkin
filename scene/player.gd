@@ -52,7 +52,7 @@ func _physics_process(delta: float) -> void:
 # ---------- SeenLevel ----------
 	if ui_manager.getSeenLevel() >= 2:
 		return
-	if velocity.x == 0 and velocity.y == 0:
+	if velocity.x == 0 and velocity.y == 0 and !isEvolved:
 		ui_manager.setSeenLevel(0,uid_component.getUID())
 	else:
 		ui_manager.setSeenLevel(1,uid_component.getUID())
