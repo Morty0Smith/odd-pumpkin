@@ -2,7 +2,7 @@ class_name EnemyMovement
 extends Node
 
 @export var characterBody:CharacterBody2D
-@export var enemySprite:Sprite2D
+@export var enemySprite:AnimatedSprite2D
 @export var moveSpeed:float = 20
 @export var enemy_vision_component:EnemyVisionComponent
 
@@ -20,10 +20,10 @@ func goToPos(targetPos:Vector2, stopMargin:float, jumpVelocity:float) ->bool: # 
 		return true
 	if (characterBody.global_position.x < targetPos.x):
 		characterBody.velocity.x = moveSpeed
-		enemySprite.scale.x = 1
+		enemySprite.scale.x = abs(enemySprite.scale.x)
 	if (characterBody.global_position.x > targetPos.x):
 		characterBody.velocity.x = -moveSpeed
-		enemySprite.scale.x = -1
+		enemySprite.scale.x = -abs(enemySprite.scale.x)
 	characterBody.move_and_slide()
 	if enemy_vision_component.checkForSteps():
 		jump(jumpVelocity)
