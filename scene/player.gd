@@ -7,17 +7,19 @@ extends CharacterBody2D
 @export var movement_component: MovementComponent
 @export var animation_component: AnimationComponent
 @export var attack_component: AttackComponent
+@export var uid_component: UniqueIdComponent
 @export var grabHitbox:Area2D
 @export_subgroup("Settings")
 @export var isEvolved = false
 
 signal triggerInfection
-var testCounter:int = 0
+var ui_manager:UIManager
+
+func _ready() -> void:
+	ui_manager = get_node("/root/SceneRoot/UI/UI_Manager") as UIManager
+	print(get_node("/root/SceneRoot/UI/UI_Manager"))
 
 func _physics_process(delta: float) -> void:
-	testCounter += 1
-	if testCounter == 100:
-		triggerInfection.emit()
 	if input_component.get_evolved() and !attack_component.getHasGrabbed():
 		isEvolved = !isEvolved
 		animation_component.handle_evolve(isEvolved)
@@ -43,3 +45,10 @@ func _physics_process(delta: float) -> void:
 			attack_component.handle_grab()
 		
 	move_and_slide()
+# ---------- SeenLevel ----------
+	if ui_manager.getSeenLevel() >= 2:
+		return
+	if velocity.x == 0 and velocity.y == 0:
+		ui_manager.setSeenLevel(0,uid_component.getUID())
+	else:
+		ui_manager.setSeenLevel(1,uid_component.getUID())

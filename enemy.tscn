@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://csq2hy81hoqoh"]
+[gd_scene load_steps=10 format=3 uid="uid://csq2hy81hoqoh"]
 
 [ext_resource type="Script" uid="uid://dx4bcpymmfg7r" path="res://scripts/enemy.gd" id="1_slebx"]
 [ext_resource type="Texture2D" uid="uid://dddpdja1q0y4r" path="res://icon.svg" id="2_2b04r"]
 [ext_resource type="Script" uid="uid://bpoy5qpx0bvro" path="res://scripts/enemy_movement.gd" id="3_iasw0"]
 [ext_resource type="PackedScene" uid="uid://7wxtqrjwssae" path="res://scene/components/gravity_component.tscn" id="5_2b04r"]
+[ext_resource type="PackedScene" uid="uid://bqnegl0kr5b1r" path="res://scene/components/unique_id_component.tscn" id="6_3yqyl"]
 [ext_resource type="PackedScene" uid="uid://2sc717stb6mh" path="res://scene/components/enemy_vision_component.tscn" id="6_iasw0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vixnb"]
@@ -15,11 +16,12 @@ points = PackedVector2Array(78.000015, -129.00003, 120.00003, -3, 72.000015, 148
 [sub_resource type="CircleShape2D" id="CircleShape2D_3yqyl"]
 radius = 77.0065
 
-[node name="Enemy" type="Node2D" node_paths=PackedStringArray("gravity_component", "enemy_vision_component", "movement", "characterBody", "viewcone", "blowUpArea", "enemyTimer", "damageTimer")]
+[node name="Enemy" type="Node2D" node_paths=PackedStringArray("gravity_component", "enemy_vision_component", "movement", "unique_id_component", "characterBody", "viewcone", "blowUpArea", "enemyTimer", "damageTimer")]
 script = ExtResource("1_slebx")
 gravity_component = NodePath("GravityComponent")
 enemy_vision_component = NodePath("enemy_vision_component")
 movement = NodePath("EnemyMovement")
+unique_id_component = NodePath("unique_id_component")
 characterBody = NodePath("CharacterBody")
 viewcone = NodePath("CharacterBody/CollisionShape2D/Sprite2D/Viewcone")
 blowUpArea = NodePath("CharacterBody/CollisionShape2D/BlowUpArea")
@@ -28,7 +30,6 @@ damageTimer = NodePath("DamageTimer")
 
 [node name="CharacterBody" type="CharacterBody2D" parent="."]
 collision_layer = 4
-collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody"]
 position = Vector2(1.1920929e-07, 0)
@@ -40,7 +41,8 @@ texture = ExtResource("2_2b04r")
 
 [node name="Viewcone" type="Area2D" parent="CharacterBody/CollisionShape2D/Sprite2D"]
 position = Vector2(-24.455624, 0)
-collision_layer = 2
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody/CollisionShape2D/Sprite2D/Viewcone"]
 position = Vector2(269.0119, -21.87508)
@@ -56,6 +58,7 @@ hit_from_inside = true
 [node name="VisionCast" type="RayCast2D" parent="CharacterBody/CollisionShape2D/Sprite2D"]
 position = Vector2(81.51873, -46.875164)
 scale = Vector2(8.151873, 3.125011)
+collision_mask = 7
 
 [node name="BlowUpArea" type="Area2D" parent="CharacterBody/CollisionShape2D"]
 position = Vector2(-9.717792e-07, 0)
@@ -85,6 +88,8 @@ wait_time = 2.0
 one_shot = true
 
 [node name="DamageTimer" type="Timer" parent="."]
+
+[node name="unique_id_component" parent="." instance=ExtResource("6_3yqyl")]
 
 [connection signal="timeout" from="EnemyTimer" to="." method="_on_enemy_timer_timeout"]
 [connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]

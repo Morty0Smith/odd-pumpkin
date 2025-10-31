@@ -3,7 +3,7 @@
 [ext_resource type="TileSet" uid="uid://c5wlt3m300h6a" path="res://defaultTileset.tres" id="1_4tjo5"]
 [ext_resource type="PackedScene" uid="uid://dcphqcnmub4lo" path="res://scene/player.tscn" id="2_dpac2"]
 [ext_resource type="PackedScene" uid="uid://csq2hy81hoqoh" path="res://enemy.tscn" id="3_4tjo5"]
-[ext_resource type="Texture2D" uid="uid://b4kh65jotpwx4" path="res://scene/sprites/pumpSymbols.png" id="4_wjqfg"]
+[ext_resource type="Texture2D" uid="uid://cimnk1hsnni6n" path="res://scene/sprites/pumpSymbols.png" id="4_wjqfg"]
 [ext_resource type="Script" uid="uid://dj5vjfvgl5ejy" path="res://scripts/ui_manager.gd" id="5_50bm4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wjqfg"]
@@ -18,11 +18,27 @@ tile_set = ExtResource("1_4tjo5")
 use_kinematic_bodies = true
 
 [node name="Player" parent="." instance=ExtResource("2_dpac2")]
-position = Vector2(-18, 57)
-collision_layer = 3
+position = Vector2(304, 41)
+collision_layer = 2
+collision_mask = 1
+
+[node name="Player2" parent="." instance=ExtResource("2_dpac2")]
+position = Vector2(304, 41)
+collision_layer = 2
+collision_mask = 1
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("roamEdgeLeft", "roamEdgeRight") instance=ExtResource("3_4tjo5")]
-position = Vector2(64, 74)
+position = Vector2(48, 74)
+roamEdgeLeft = NodePath("../RoamEdges/RoamEdge")
+roamEdgeRight = NodePath("../RoamEdges/RoamEdge2")
+
+[node name="Enemy2" parent="." node_paths=PackedStringArray("roamEdgeLeft", "roamEdgeRight") instance=ExtResource("3_4tjo5")]
+position = Vector2(104, 73)
+roamEdgeLeft = NodePath("../RoamEdges/RoamEdge")
+roamEdgeRight = NodePath("../RoamEdges/RoamEdge2")
+
+[node name="Enemy3" parent="." node_paths=PackedStringArray("roamEdgeLeft", "roamEdgeRight") instance=ExtResource("3_4tjo5")]
+position = Vector2(150, 73)
 roamEdgeLeft = NodePath("../RoamEdges/RoamEdge")
 roamEdgeRight = NodePath("../RoamEdges/RoamEdge2")
 
@@ -34,9 +50,9 @@ position = Vector2(37, 82)
 [node name="RoamEdge2" type="Node2D" parent="RoamEdges"]
 position = Vector2(184, 76)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="."]
 
-[node name="EyeDisplay" type="TextureRect" parent="CanvasLayer"]
+[node name="EyeDisplay" type="TextureRect" parent="UI"]
 texture_filter = 1
 custom_minimum_size = Vector2(75, 75)
 anchors_preset = -1
@@ -48,6 +64,6 @@ grow_horizontal = 2
 texture = SubResource("AtlasTexture_wjqfg")
 expand_mode = 2
 
-[node name="UI_Manager" type="Node" parent="CanvasLayer" node_paths=PackedStringArray("eye_Display")]
+[node name="UI_Manager" type="Node" parent="UI" node_paths=PackedStringArray("eye_Display")]
 script = ExtResource("5_50bm4")
 eye_Display = NodePath("../EyeDisplay")
