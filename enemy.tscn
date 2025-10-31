@@ -20,65 +20,65 @@ script = ExtResource("1_slebx")
 gravity_component = NodePath("GravityComponent")
 enemy_vision_component = NodePath("enemy_vision_component")
 movement = NodePath("EnemyMovement")
-characterBody = NodePath("CharacterBody")
-viewcone = NodePath("CharacterBody/CollisionShape2D/Sprite2D/Viewcone")
-blowUpArea = NodePath("CharacterBody/CollisionShape2D/BlowUpArea")
+characterBody = NodePath("EnemyBody")
+viewcone = NodePath("EnemyBody/CollisionShape2D/Sprite2D/Viewcone")
+blowUpArea = NodePath("EnemyBody/CollisionShape2D/BlowUpArea")
 enemyTimer = NodePath("EnemyTimer")
 damageTimer = NodePath("DamageTimer")
 
-[node name="CharacterBody" type="CharacterBody2D" parent="."]
+[node name="EnemyBody" type="CharacterBody2D" parent="."]
 collision_layer = 4
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBody"]
 position = Vector2(1.1920929e-07, 0)
 scale = Vector2(0.12267116, 0.3199988)
 shape = SubResource("RectangleShape2D_vixnb")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody/CollisionShape2D"]
+[node name="Sprite2D" type="Sprite2D" parent="EnemyBody/CollisionShape2D"]
 texture = ExtResource("2_2b04r")
 
-[node name="Viewcone" type="Area2D" parent="CharacterBody/CollisionShape2D/Sprite2D"]
+[node name="Viewcone" type="Area2D" parent="EnemyBody/CollisionShape2D/Sprite2D"]
 position = Vector2(-24.455624, 0)
 collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody/CollisionShape2D/Sprite2D/Viewcone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBody/CollisionShape2D/Sprite2D/Viewcone"]
 position = Vector2(269.0119, -21.87508)
 scale = Vector2(8.151874, 3.1250112)
 shape = SubResource("ConvexPolygonShape2D_u1fn3")
 
-[node name="StepCast" type="RayCast2D" parent="CharacterBody/CollisionShape2D/Sprite2D"]
+[node name="StepCast" type="RayCast2D" parent="EnemyBody/CollisionShape2D/Sprite2D"]
 position = Vector2(65.215004, 46.875175)
 scale = Vector2(8.151875, 3.1250114)
 target_position = Vector2(9.000001, 0)
 hit_from_inside = true
 
-[node name="VisionCast" type="RayCast2D" parent="CharacterBody/CollisionShape2D/Sprite2D"]
+[node name="VisionCast" type="RayCast2D" parent="EnemyBody/CollisionShape2D/Sprite2D"]
 position = Vector2(81.51873, -46.875164)
 scale = Vector2(8.151873, 3.125011)
 
-[node name="BlowUpArea" type="Area2D" parent="CharacterBody/CollisionShape2D"]
+[node name="BlowUpArea" type="Area2D" parent="EnemyBody/CollisionShape2D"]
 position = Vector2(-9.717792e-07, 0)
 scale = Vector2(8.151875, 3.1250114)
 collision_layer = 4
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody/CollisionShape2D/BlowUpArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBody/CollisionShape2D/BlowUpArea"]
 shape = SubResource("CircleShape2D_3yqyl")
 
 [node name="EnemyMovement" type="Node" parent="." node_paths=PackedStringArray("characterBody", "enemySprite", "enemy_vision_component")]
 script = ExtResource("3_iasw0")
-characterBody = NodePath("../CharacterBody")
-enemySprite = NodePath("../CharacterBody/CollisionShape2D/Sprite2D")
+characterBody = NodePath("../EnemyBody")
+enemySprite = NodePath("../EnemyBody/CollisionShape2D/Sprite2D")
 moveSpeed = 40.0
 enemy_vision_component = NodePath("../enemy_vision_component")
 
 [node name="GravityComponent" parent="." instance=ExtResource("5_2b04r")]
 
 [node name="enemy_vision_component" parent="." node_paths=PackedStringArray("stepRaycast", "visionRaycast", "enemySprite") instance=ExtResource("6_iasw0")]
-stepRaycast = NodePath("../CharacterBody/CollisionShape2D/Sprite2D/StepCast")
-visionRaycast = NodePath("../CharacterBody/CollisionShape2D/Sprite2D/VisionCast")
-enemySprite = NodePath("../CharacterBody/CollisionShape2D/Sprite2D")
+stepRaycast = NodePath("../EnemyBody/CollisionShape2D/Sprite2D/StepCast")
+visionRaycast = NodePath("../EnemyBody/CollisionShape2D/Sprite2D/VisionCast")
+enemySprite = NodePath("../EnemyBody/CollisionShape2D/Sprite2D")
 
 [node name="EnemyTimer" type="Timer" parent="."]
 wait_time = 2.0
