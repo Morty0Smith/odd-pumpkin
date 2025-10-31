@@ -12,15 +12,15 @@ func canSeePlayer(playerMemoryDuration:float, player:CharacterBody2D, viewcone:A
 	var playerIsMoving:bool = !(player.velocity == Vector2(0,0))
 	var spriteFlipped:bool = enemySprite.scale.x == -1
 	var playerViewObstructed:bool = !castToPlayer(player, spriteFlipped)
-	var canSeePlayer:bool = !playerViewObstructed and (playerIsMoving or playerClass.isEvolved) and player in viewcone.get_overlapping_bodies()
-	if canSeePlayer:
+	var playerVisible:bool = !playerViewObstructed and (playerIsMoving or playerClass.isEvolved) and player in viewcone.get_overlapping_bodies()
+	if playerVisible:
 		playerMemoryTimer = playerMemoryDuration
 	var playerInMemory:bool = playerMemoryTimer > 0
-	return canSeePlayer or playerInMemory
+	return playerVisible or playerInMemory
 
 func checkForSteps() ->bool:
 	stepRaycast.force_raycast_update()
-	if stepRaycast.get_collider() is TileMapLayer:
+	if stepRaycast.get_collider() != null:
 		return true
 	return false
 
