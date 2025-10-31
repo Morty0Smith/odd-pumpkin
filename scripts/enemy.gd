@@ -15,6 +15,7 @@ extends Node2D
 @export var damageTimer:Timer
 @export var roamEdgeLeft:Node2D
 @export var roamEdgeRight:Node2D
+@export var visual_viewcone:Node2D
 
 @export_subgroup("Values")
 @export var playerMemoryDuration:float = 3
@@ -54,6 +55,10 @@ func _physics_process(delta: float) -> void:
 		movement.moveNormalCycle(roamEdgeLeft,roamEdgeRight,jumpVelocity)
 	if !canSeePlayer or isDead or isDazed:
 		ui_manager.resetSeenLevel(unique_id_component.getUID())
+	if isDead or isDazed:
+		visual_viewcone.visible = false
+	else:
+		visual_viewcone.visible = true
 	
 func kill():
 	isDead = true

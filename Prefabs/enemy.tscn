@@ -64,7 +64,7 @@ size = Vector2(114.12624, 90.62533)
 [sub_resource type="CircleShape2D" id="CircleShape2D_3yqyl"]
 radius = 77.0065
 
-[node name="Enemy" type="Node2D" node_paths=PackedStringArray("gravity_component", "enemy_vision_component", "movement", "unique_id_component", "characterBody", "viewcone", "blowUpArea", "enemyTimer", "damageTimer")]
+[node name="Enemy" type="Node2D" node_paths=PackedStringArray("gravity_component", "enemy_vision_component", "movement", "unique_id_component", "characterBody", "viewcone", "blowUpArea", "enemyTimer", "damageTimer", "visual_viewcone")]
 script = ExtResource("1_slebx")
 gravity_component = NodePath("GravityComponent")
 enemy_vision_component = NodePath("enemy_vision_component")
@@ -75,6 +75,7 @@ viewcone = NodePath("CharacterBody/Sprite2D/Viewcone")
 blowUpArea = NodePath("CharacterBody/CollisionShape2D/BlowUpArea")
 enemyTimer = NodePath("EnemyTimer")
 damageTimer = NodePath("DamageTimer")
+visual_viewcone = NodePath("CharacterBody/Sprite2D/VisualViewcone")
 
 [node name="CharacterBody" type="CharacterBody2D" parent="."]
 collision_layer = 4
@@ -109,7 +110,7 @@ scale = Vector2(8.151873, 3.125011)
 target_position = Vector2(7.7107606, 2.3841858e-07)
 collision_mask = 7
 
-[node name="Cone" type="Sprite2D" parent="CharacterBody/Sprite2D"]
+[node name="VisualViewcone" type="Sprite2D" parent="CharacterBody/Sprite2D"]
 texture_filter = 1
 position = Vector2(191.42859, -8.287969)
 scale = Vector2(2.8571427, 2.8571427)
