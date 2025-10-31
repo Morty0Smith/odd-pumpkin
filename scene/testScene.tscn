@@ -1,13 +1,26 @@
-[gd_scene load_steps=7 format=4 uid="uid://d4bjpgqwy16ut"]
+[gd_scene load_steps=11 format=4 uid="uid://d4bjpgqwy16ut"]
 
 [ext_resource type="TileSet" uid="uid://c5wlt3m300h6a" path="res://defaultTileset.tres" id="1_4tjo5"]
 [ext_resource type="PackedScene" uid="uid://dcphqcnmub4lo" path="res://scene/player.tscn" id="2_dpac2"]
 [ext_resource type="PackedScene" uid="uid://csq2hy81hoqoh" path="res://enemy.tscn" id="3_4tjo5"]
 [ext_resource type="Texture2D" uid="uid://cimnk1hsnni6n" path="res://scene/sprites/pumpSymbols.png" id="4_wjqfg"]
-[ext_resource type="Script" path="res://scripts/ui_manager.gd" id="5_50bm4"]
+[ext_resource type="Script" uid="uid://dj5vjfvgl5ejy" path="res://scripts/ui_manager.gd" id="5_50bm4"]
+[ext_resource type="Texture2D" uid="uid://bgimu70nf3aeg" path="res://scene/sprites/pumpHeart.png" id="6_q64ej"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wjqfg"]
 atlas = ExtResource("4_wjqfg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8fmr"]
+atlas = ExtResource("6_q64ej")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q64ej"]
+atlas = ExtResource("6_q64ej")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4omt7"]
+atlas = ExtResource("6_q64ej")
 region = Rect2(0, 0, 16, 16)
 
 [node name="SceneRoot" type="Node2D"]
@@ -48,6 +61,35 @@ grow_horizontal = 2
 texture = SubResource("AtlasTexture_wjqfg")
 expand_mode = 2
 
-[node name="UI_Manager" type="Node" parent="UI" node_paths=PackedStringArray("eye_Display")]
+[node name="UI_Manager" type="Node" parent="UI" node_paths=PackedStringArray("eye_Display", "Hearts")]
 script = ExtResource("5_50bm4")
 eye_Display = NodePath("../EyeDisplay")
+Hearts = [NodePath("../LifeDisplay/Heart"), NodePath("../LifeDisplay/Heart2"), NodePath("../LifeDisplay/Heart3")]
+
+[node name="LifeDisplay" type="HBoxContainer" parent="UI"]
+anchors_preset = -1
+anchor_left = 0.04
+anchor_top = 0.05
+anchor_right = 0.04
+anchor_bottom = 0.05
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Heart" type="TextureRect" parent="UI/LifeDisplay"]
+texture_filter = 1
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = SubResource("AtlasTexture_n8fmr")
+expand_mode = 2
+
+[node name="Heart2" type="TextureRect" parent="UI/LifeDisplay"]
+texture_filter = 1
+layout_mode = 2
+texture = SubResource("AtlasTexture_q64ej")
+expand_mode = 2
+
+[node name="Heart3" type="TextureRect" parent="UI/LifeDisplay"]
+texture_filter = 1
+layout_mode = 2
+texture = SubResource("AtlasTexture_4omt7")
+expand_mode = 2
