@@ -11,7 +11,7 @@
 size = Vector2(121.06238, 126.50024)
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_u1fn3"]
-points = PackedVector2Array(78.000015, -129.00003, 120.00003, -3, 72.000015, 148.00003, -23, -9)
+points = PackedVector2Array(104.000015, 4, 83.000015, 83.000015, 34.000004, 120.00003, -24.00001, -8.000003, 40.000004, -101.00002, 92.000015, -60.000015)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3yqyl"]
 radius = 77.0065
@@ -45,7 +45,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody/CollisionShape2D/Sprite2D/Viewcone"]
-position = Vector2(269.0119, -21.87508)
+position = Vector2(301.61942, -21.87508)
 scale = Vector2(8.151874, 3.1250112)
 shape = SubResource("ConvexPolygonShape2D_u1fn3")
 
