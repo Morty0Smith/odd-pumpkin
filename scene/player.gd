@@ -40,6 +40,10 @@ func _physics_process(delta: float) -> void:
 			animation_component.handle_kill()
 			attack_component.handle_kill()
 			
+		if input_component.get_infect() and attack_component.getHasGrabbed():
+			animation_component.handle_infect()
+			attack_component.handle_infect()
+			
 		if input_component.get_grab():
 			animation_component.handle_grab(attack_component.getHasGrabbed())
 			attack_component.handle_grab()

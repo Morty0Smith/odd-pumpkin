@@ -35,10 +35,12 @@ func handle_grab():
 		
 func handle_kill():
 	(prey as Enemy).kill()
+	await get_tree().create_timer(1).timeout
 	holdingPrey = false
 	hasGrabbed = false
 	
 func handle_infect():
 	(prey as Enemy).infect()
+	await get_tree().create_timer(0.75).timeout
 	holdingPrey = false
 	hasGrabbed = false

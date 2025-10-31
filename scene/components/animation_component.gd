@@ -64,3 +64,9 @@ func handle_kill():
 	await get_tree().create_timer(1).timeout
 	hitbox.scale = monster_Size
 	sprite.play("pumpMonsterIdle")
+
+func handle_infect():
+	sprite.play("pumpMonInfect")
+	await get_tree().create_timer(0.75).timeout
+	hitbox.scale = monster_Size
+	sprite.play("pumpMonsterIdle")
