@@ -2,6 +2,7 @@ class_name UIManager
 extends Node
 
 @export var eye_Display:TextureRect
+@export var Hearts:Array[TextureRect]
 
 var eye_texture:AtlasTexture
 var seenLevel:int
@@ -24,3 +25,14 @@ func resetSeenLevel(UID:int):
 
 func getSeenLevel() ->int:
 	return seenLevel
+
+func setLives(lives:int):
+	lives = min(Hearts.size(),lives)
+	for i in Hearts.size():
+		var heart_texture:AtlasTexture = Hearts.get(i).texture as AtlasTexture
+		if i < lives:
+			print("true")
+			switchToAtlasFrame(heart_texture,16,0)
+		else:
+			print("false")
+			switchToAtlasFrame(heart_texture,16,1)
