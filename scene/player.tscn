@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dcphqcnmub4lo"]
+[gd_scene load_steps=37 format=3 uid="uid://dcphqcnmub4lo"]
 
 [ext_resource type="Script" uid="uid://bxmlwoexbyb7l" path="res://scene/player.gd" id="1_g2vtq"]
 [ext_resource type="PackedScene" uid="uid://7wxtqrjwssae" path="res://scene/components/gravity_component.tscn" id="2_2fvbb"]
@@ -11,6 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://dalscbf4j26ta" path="res://scene/components/attack_component.tscn" id="8_ihjo1"]
 [ext_resource type="Texture2D" uid="uid://c5e5byx2ly1hu" path="res://scene/sprites/pumpMonsterIdle.png" id="9_2fvbb"]
 [ext_resource type="Texture2D" uid="uid://cxfv11xf77p7y" path="res://scene/sprites/pumpMonGrab.png" id="9_ml7e8"]
+[ext_resource type="Texture2D" uid="uid://pitmavnog5rd" path="res://scene/sprites/pumpMonGrabWalk.png" id="11_dk1vr"]
+[ext_resource type="Texture2D" uid="uid://dixyr2gk40a1r" path="res://scene/sprites/pumpMonKill.png" id="12_34jf3"]
+[ext_resource type="Texture2D" uid="uid://dllp48fqk1dm4" path="res://scene/sprites/pumpMonInf.png" id="12_u7b46"]
+[ext_resource type="PackedScene" uid="uid://bqnegl0kr5b1r" path="res://scene/components/unique_id_component.tscn" id="14_u7b46"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ihjo1"]
 atlas = ExtResource("8_g2vtq")
@@ -35,6 +39,46 @@ region = Rect2(0, 0, 256, 256)
 [sub_resource type="AtlasTexture" id="AtlasTexture_bup7g"]
 atlas = ExtResource("9_ml7e8")
 region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ja17"]
+atlas = ExtResource("11_dk1vr")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4iqv"]
+atlas = ExtResource("11_dk1vr")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kk4ol"]
+atlas = ExtResource("12_u7b46")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4reak"]
+atlas = ExtResource("12_u7b46")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wt23p"]
+atlas = ExtResource("12_u7b46")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8m7u"]
+atlas = ExtResource("12_u7b46")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qucqc"]
+atlas = ExtResource("12_u7b46")
+region = Rect2(1024, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42h83"]
+atlas = ExtResource("12_34jf3")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iuf2t"]
+atlas = ExtResource("12_34jf3")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jrjdb"]
+atlas = ExtResource("12_34jf3")
+region = Rect2(512, 0, 256, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2fvbb"]
 atlas = ExtResource("9_2fvbb")
@@ -76,6 +120,51 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_4ja17")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4iqv")
+}],
+"loop": true,
+"name": &"pumpMonGrabWalk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kk4ol")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4reak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wt23p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8m7u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qucqc")
+}],
+"loop": false,
+"name": &"pumpMonInfect",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42h83")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iuf2t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jrjdb")
+}],
+"loop": false,
+"name": &"pumpMonKill",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_2fvbb")
 }, {
 "duration": 1.0,
@@ -91,14 +180,17 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_w2vy6"]
 radius = 25.098053
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input_component", "gravity_component", "movement_component", "animation_component", "attack_component", "grabHitbox")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input_component", "gravity_component", "movement_component", "animation_component", "attack_component", "uid_component", "grabHitbox")]
 script = ExtResource("1_g2vtq")
 input_component = NodePath("InputComponent")
 gravity_component = NodePath("GravityComponent")
 movement_component = NodePath("MovementComponent")
 animation_component = NodePath("AnimationComponent")
 attack_component = NodePath("AttackComponent")
+uid_component = NodePath("unique_id_component")
 grabHitbox = NodePath("Pumpkin/grabHitbox")
+
+[node name="unique_id_component" parent="." instance=ExtResource("14_u7b46")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(87, -60)
@@ -129,7 +221,9 @@ animation_component = NodePath("../AnimationComponent")
 position = Vector2(-3.4713746e-06, -1.1749267e-05)
 scale = Vector2(0.28, 0.28)
 sprite_frames = SubResource("SpriteFrames_ihjo1")
-animation = &"pumpMonGrab"
+animation = &"pumpMonInfect"
+frame = 4
+frame_progress = 1.0
 
 [node name="grabHitbox" type="Area2D" parent="Pumpkin"]
 position = Vector2(1.2397766e-05, 4.196167e-05)

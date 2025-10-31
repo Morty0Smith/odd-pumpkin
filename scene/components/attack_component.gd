@@ -9,10 +9,14 @@ var holdingPrey = false
 var hasGrabbed = false
 var prey
 
+func getHasGrabbed():
+	return hasGrabbed
+
 func handle_grab():
 	hasGrabbed = !hasGrabbed
 	if !holdingPrey:
-		if !hasGrabbed:
+		if hasGrabbed:
+			print("ready")
 			var collidingBodies = grabHitbox.get_overlapping_bodies()
 			for body in collidingBodies:
 				var parent = body.get_parent()
@@ -20,13 +24,23 @@ func handle_grab():
 					holdingPrey = true
 					prey = parent
 					(prey as Enemy).setGrabbed(true)
-		else: #wiffed the grab
+					return
+			#wiffed the grab
 			await get_tree().create_timer(0.5).timeout
 			hasGrabbed = false
 			animation_component.handle_grab(true)
 	else:
 		(prey as Enemy).setGrabbed(false)
 		holdingPrey = false
-
-func getHasGrabbed():
-	return hasGrabbed
+		
+func handle_kill():
+	(prey as Enemy).kill()
+	await get_tree().create_timer(1).timeout
+	holdingPrey = false
+	hasGrabbed = false
+	
+func handle_infect():
+	(prey as Enemy).infect()
+	await get_tree().create_timer(0.75).timeout
+	holdingPrey = false
+	hasGrabbed = false

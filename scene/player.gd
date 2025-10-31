@@ -7,28 +7,52 @@ extends CharacterBody2D
 @export var movement_component: MovementComponent
 @export var animation_component: AnimationComponent
 @export var attack_component: AttackComponent
+@export var uid_component: UniqueIdComponent
 @export var grabHitbox:Area2D
 @export_subgroup("Settings")
 @export var isEvolved = false
 
 signal triggerInfection
-var testCounter:int = 0
+var ui_manager:UIManager
+
+func _ready() -> void:
+	ui_manager = get_node("/root/SceneRoot/UI/UI_Manager") as UIManager
+	print(get_node("/root/SceneRoot/UI/UI_Manager"))
 
 func _physics_process(delta: float) -> void:
-	testCounter += 1
-	if testCounter == 100:
-		triggerInfection.emit()
 	if input_component.get_evolved() and !attack_component.getHasGrabbed():
 		isEvolved = !isEvolved
 		animation_component.handle_evolve(isEvolved)
 	gravity_component.handle_gravity(self, delta)
 	movement_component.handle_horizontal_movement(self, input_component.input_horizontal, isEvolved)
+# ---------- UNEVOLVED ----------
 	if !isEvolved:
 		movement_component.handle_jump(self, input_component.get_jump_input())
 		animation_component.handle_roll_animation(input_component.input_horizontal)
 	else:
-		animation_component.handle_move_animation(input_component.input_horizontal)
+# ---------- EVOLVED ----------
+		if !attack_component.getHasGrabbed():
+			animation_component.handle_move_animation(input_component.input_horizontal)
+		else:
+			animation_component.handle_grab_move_animation(input_component.input_horizontal, self.velocity.x)
+# ---------- attacks ----------
+		if input_component.get_kill() and attack_component.getHasGrabbed():
+			animation_component.handle_kill()
+			attack_component.handle_kill()
+			
+		if input_component.get_infect() and attack_component.getHasGrabbed():
+			animation_component.handle_infect()
+			attack_component.handle_infect()
+			
 		if input_component.get_grab():
 			animation_component.handle_grab(attack_component.getHasGrabbed())
 			attack_component.handle_grab()
+		
 	move_and_slide()
+# ---------- SeenLevel ----------
+	if ui_manager.getSeenLevel() >= 2:
+		return
+	if velocity.x == 0 and velocity.y == 0:
+		ui_manager.setSeenLevel(0,uid_component.getUID())
+	else:
+		ui_manager.setSeenLevel(1,uid_component.getUID())

@@ -16,3 +16,9 @@ func get_evolved() -> bool:
 	
 func get_grab() -> bool:
 	return Input.is_action_just_pressed("grab")
+	
+func get_kill() -> bool:
+	return Input.is_action_just_pressed("kill")
+	
+func get_infect() -> bool:
+	return Input.is_action_just_pressed("infect")
