@@ -8,6 +8,7 @@ extends CharacterBody2D
 @export var animation_component: AnimationComponent
 @export var attack_component: AttackComponent
 @export var uid_component: UniqueIdComponent
+@export var health_component:HealthComponent
 @export var grabHitbox:Area2D
 @export_subgroup("Settings")
 @export var isEvolved = false
@@ -17,7 +18,6 @@ var ui_manager:UIManager
 
 func _ready() -> void:
 	ui_manager = get_node("/root/SceneRoot/UI/UI_Manager") as UIManager
-	print(get_node("/root/SceneRoot/UI/UI_Manager"))
 
 func _physics_process(delta: float) -> void:
 	if input_component.get_evolved() and !attack_component.getHasGrabbed():

@@ -31,8 +31,6 @@ func setLives(lives:int):
 	for i in Hearts.size():
 		var heart_texture:AtlasTexture = Hearts.get(i).texture as AtlasTexture
 		if i < lives:
-			print("true")
 			switchToAtlasFrame(heart_texture,16,0)
 		else:
-			print("false")
 			switchToAtlasFrame(heart_texture,16,1)

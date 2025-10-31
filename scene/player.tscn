@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dcphqcnmub4lo"]
+[gd_scene load_steps=39 format=3 uid="uid://dcphqcnmub4lo"]
 
 [ext_resource type="Script" uid="uid://bxmlwoexbyb7l" path="res://scene/player.gd" id="1_g2vtq"]
 [ext_resource type="PackedScene" uid="uid://7wxtqrjwssae" path="res://scene/components/gravity_component.tscn" id="2_2fvbb"]
@@ -15,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://dixyr2gk40a1r" path="res://scene/sprites/pumpMonKill.png" id="12_34jf3"]
 [ext_resource type="Texture2D" uid="uid://dllp48fqk1dm4" path="res://scene/sprites/pumpMonInf.png" id="12_u7b46"]
 [ext_resource type="PackedScene" uid="uid://bqnegl0kr5b1r" path="res://scene/components/unique_id_component.tscn" id="14_u7b46"]
+[ext_resource type="PackedScene" uid="uid://dlsrvs0uolvfa" path="res://scene/components/health_component.tscn" id="16_4ja17"]
+[ext_resource type="Script" uid="uid://dijohid1u35ii" path="res://scene/components/health_component.gd" id="17_v4iqv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ihjo1"]
 atlas = ExtResource("8_g2vtq")
@@ -180,7 +182,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_w2vy6"]
 radius = 25.098053
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input_component", "gravity_component", "movement_component", "animation_component", "attack_component", "uid_component", "grabHitbox")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input_component", "gravity_component", "movement_component", "animation_component", "attack_component", "uid_component", "health_component", "grabHitbox")]
 script = ExtResource("1_g2vtq")
 input_component = NodePath("InputComponent")
 gravity_component = NodePath("GravityComponent")
@@ -188,6 +190,7 @@ movement_component = NodePath("MovementComponent")
 animation_component = NodePath("AnimationComponent")
 attack_component = NodePath("AttackComponent")
 uid_component = NodePath("unique_id_component")
+health_component = NodePath("HealthComponent")
 grabHitbox = NodePath("Pumpkin/grabHitbox")
 
 [node name="unique_id_component" parent="." instance=ExtResource("14_u7b46")]
@@ -237,3 +240,6 @@ shape = SubResource("CircleShape2D_ml7e8")
 [node name="playerCollider" type="CollisionShape2D" parent="."]
 scale = Vector2(0.28, 0.28)
 shape = SubResource("CircleShape2D_w2vy6")
+
+[node name="HealthComponent" parent="." instance=ExtResource("16_4ja17")]
+script = ExtResource("17_v4iqv")
