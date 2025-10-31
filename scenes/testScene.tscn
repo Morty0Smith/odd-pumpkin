@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://d4bjpgqwy16ut"]
+[gd_scene load_steps=11 format=4 uid="uid://d4bjpgqwy16ut"]
 
 [ext_resource type="TileSet" uid="uid://c5wlt3m300h6a" path="res://Prefabs/defaultTileset.tres" id="1_2jiqd"]
 [ext_resource type="PackedScene" uid="uid://dcphqcnmub4lo" path="res://scene/player.tscn" id="2_h481x"]
 [ext_resource type="PackedScene" uid="uid://csq2hy81hoqoh" path="res://Prefabs/enemy.tscn" id="3_ii3td"]
 [ext_resource type="Texture2D" uid="uid://cimnk1hsnni6n" path="res://sprites/pumpSymbols.png" id="4_h6x0i"]
+[ext_resource type="Script" uid="uid://dj5vjfvgl5ejy" path="res://scripts/ui_manager.gd" id="6_2jiqd"]
 [ext_resource type="Texture2D" uid="uid://bgimu70nf3aeg" path="res://sprites/pumpHeart.png" id="6_7vqvu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wjqfg"]
@@ -87,3 +88,9 @@ texture_filter = 1
 layout_mode = 2
 texture = SubResource("AtlasTexture_4omt7")
 expand_mode = 2
+
+[node name="UI_Manager" type="Node" parent="UI" node_paths=PackedStringArray("eye_Display", "Hearts")]
+script = ExtResource("6_2jiqd")
+eye_Display = NodePath("../EyeDisplay")
+Hearts = [NodePath("../LifeDisplay/Heart"), NodePath("../LifeDisplay/Heart2"), NodePath("../LifeDisplay/Heart3")]
+metadata/_custom_type_script = "uid://dj5vjfvgl5ejy"
