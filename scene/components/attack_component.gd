@@ -39,4 +39,6 @@ func handle_kill():
 	hasGrabbed = false
 	
 func handle_infect():
-	pass
+	(prey as Enemy).infect()
+	holdingPrey = false
+	hasGrabbed = false
