@@ -27,5 +27,3 @@ position = Vector2(37, 82)
 
 [node name="RoamEdge2" type="Node2D" parent="RoamEdges"]
 position = Vector2(184, 76)
-
-[connection signal="triggerInfection" from="Player" to="Enemy" method="_on_player_trigger_infection"]
