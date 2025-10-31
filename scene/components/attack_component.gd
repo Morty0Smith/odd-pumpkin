@@ -34,7 +34,7 @@ func handle_grab():
 		holdingPrey = false
 		
 func handle_kill():
-	(prey as Enemy).setGrabbed(false)
+	(prey as Enemy).kill()
 	holdingPrey = false
 	hasGrabbed = false
 	
