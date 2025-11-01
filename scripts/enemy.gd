@@ -53,6 +53,7 @@ func _physics_process(delta: float) -> void:
 	gravity_component.handle_gravity(characterBody,delta)
 	enemy_animation_component.handleAnimation(isAttacking,characterBody.velocity.x)
 	if isDead or isDazed:
+		damageTimer.stop()
 		isInvestigating = false
 		visual_viewcone.visible = false
 		enemy_vision_component.forgetPlayer()
