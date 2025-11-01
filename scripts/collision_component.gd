@@ -15,3 +15,9 @@ func handle_collision(body: CharacterBody2D, delta: float) -> void:
 
 		if (length <= 22):
 			body.velocity = Vector2.ZERO
+
+		if body.killWhenDroppedOntoEnemy != null and body.killWhenDroppedOntoEnemy:
+			var parent = collision.get_collider().get_parent()
+			if (parent != null):
+				if(parent is Enemy and (-body.velocity.y) > body.speedNeededToKill):
+					collision.get_collider().get_parent().kill()

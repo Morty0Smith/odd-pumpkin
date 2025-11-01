@@ -124,4 +124,5 @@ Hearts = [NodePath("../LifeDisplay/Heart"), NodePath("../LifeDisplay/Heart2"), N
 metadata/_custom_type_script = "uid://dj5vjfvgl5ejy"
 
 [node name="breakAbleObj" parent="." instance=ExtResource("9_h6x0i")]
-position = Vector2(-10, -28)
+position = Vector2(63, -58)
+onlyBreakWhenFalling = false
