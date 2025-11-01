@@ -1,6 +1,8 @@
 class_name AnimationComponent
 extends Node
 
+@onready var audio_player_component: AudioPlayerComponent = $"../AudioPlayerComponent"
+
 @export_subgroup("Nodes")
 @export var sprite: AnimatedSprite2D
 @export var hitbox: CollisionShape2D
@@ -19,6 +21,7 @@ func _ready():
 
 func handle_evolve(isEvolved: bool):
 	if isEvolved:
+		audio_player_component.playSoundEffectWithName("evolve")
 		hitbox.scale = monster_Size
 		#sprite.apply_scale(Vector2(0.25,0.25))
 		sprite.play("pumpMonsterIdle")

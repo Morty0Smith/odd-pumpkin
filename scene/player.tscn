@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://dlsrvs0uolvfa" path="res://components/health_component.tscn" id="16_4ja17"]
 [ext_resource type="Script" uid="uid://dijohid1u35ii" path="res://scripts/health_component.gd" id="17_v4iqv"]
 [ext_resource type="PackedScene" uid="uid://dba4ek6y1p6yu" path="res://components/audio_player_component.tscn" id="18_42h83"]
-[ext_resource type="Script" uid="uid://d2i04vi85p3ti" path="res://scripts/audio_player_component.gd" id="19_iuf2t"]
+[ext_resource type="AudioStream" uid="uid://7qx77igkn44v" path="res://audio/monsterEvolve.wav" id="19_42h83"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ihjo1"]
 atlas = ExtResource("8_g2vtq")
@@ -248,7 +248,6 @@ shape = SubResource("CircleShape2D_w2vy6")
 script = ExtResource("17_v4iqv")
 
 [node name="AudioPlayerComponent" parent="." instance=ExtResource("18_42h83")]
-script = ExtResource("19_iuf2t")
 soundEffectsWithNames = Dictionary[String, AudioStream]({
-"": null
+"evolve": ExtResource("19_42h83")
 })
