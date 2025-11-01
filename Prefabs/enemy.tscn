@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://csq2hy81hoqoh"]
+[gd_scene load_steps=36 format=3 uid="uid://csq2hy81hoqoh"]
 
 [ext_resource type="Script" uid="uid://dx4bcpymmfg7r" path="res://scripts/enemy.gd" id="1_slebx"]
 [ext_resource type="Texture2D" uid="uid://b83ejelxpf8na" path="res://sprites/farmer_walk1.png" id="2_3yqyl"]
@@ -12,6 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://2sc717stb6mh" path="res://components/enemy_vision_component.tscn" id="6_iasw0"]
 [ext_resource type="Script" uid="uid://bkamsbk4xeorw" path="res://scripts/enemy_animation_component.gd" id="10_ggq53"]
 [ext_resource type="Texture2D" uid="uid://bjj86ardchpd4" path="res://sprites/question.png" id="11_xk43f"]
+[ext_resource type="PackedScene" uid="uid://dba4ek6y1p6yu" path="res://components/audio_player_component.tscn" id="13_1ox27"]
+[ext_resource type="AudioStream" uid="uid://ckc5lcggnkbx5" path="res://audio/pistol-single-gunshot.wav" id="14_fax4q"]
+[ext_resource type="AudioStream" uid="uid://7qx77igkn44v" path="res://audio/monsterEvolve.wav" id="15_mxgsx"]
+[ext_resource type="AudioStream" uid="uid://2rh840mal4y2" path="res://audio/explosion-322491.mp3" id="16_hwma7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x0wuq"]
 atlas = ExtResource("2_xk43f")
@@ -271,6 +275,13 @@ enemySprite = NodePath("../CharacterBody/Sprite2D")
 
 [node name="InvestigateWaitTImer" type="Timer" parent="."]
 one_shot = true
+
+[node name="AudioPlayerComponent" parent="." instance=ExtResource("13_1ox27")]
+soundEffectsWithNames = Dictionary[String, AudioStream]({
+"blow_up": ExtResource("16_hwma7"),
+"evolve": ExtResource("15_mxgsx"),
+"shot": ExtResource("14_fax4q")
+})
 
 [connection signal="timeout" from="EnemyMovement/RoamWaitTimer" to="EnemyMovement" method="_on_roam_wait_timer_timeout"]
 [connection signal="timeout" from="EnemyTimer" to="." method="_on_enemy_timer_timeout"]
