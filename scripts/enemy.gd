@@ -6,6 +6,7 @@ extends Node2D
 @export var enemy_vision_component: EnemyVisionComponent
 @export var movement:EnemyMovement
 @export var unique_id_component:UniqueIdComponent
+@export var enemy_animation_component:EnemyAnimationComponent
 
 @export_subgroup("Nodes")
 @export var characterBody:CharacterBody2D
@@ -13,9 +14,11 @@ extends Node2D
 @export var blowUpArea:Area2D
 @export var enemyTimer:Timer
 @export var damageTimer:Timer
-@export var roamEdgeLeft:Node2D
-@export var roamEdgeRight:Node2D
+@export var roamEdgeLeft:RoamEdge
+@export var roamEdgeRight:RoamEdge
 @export var visual_viewcone:Node2D
+@export var questionMark:Sprite2D
+@export var investigate_wait_timer:Timer
 
 @export_subgroup("Values")
 @export var playerMemoryDuration:float = 3
@@ -32,8 +35,10 @@ var isDazed:bool = false
 var isDead:bool = false
 var isInfected:bool = false
 var isGrabbed:bool = false
+var isAttacking:bool = false
 var isInvestigating:bool = false
 var investigationPos:Vector2
+var investigatingWaitTime:float = 1
 
 func _ready() -> void:
 	player = get_node("/root/SceneRoot/Player")
@@ -42,19 +47,27 @@ func _ready() -> void:
 	playerClass.triggerInfection.connect(_on_player_trigger_infection)
 	
 func _physics_process(delta: float) -> void:
+	questionMark.visible = isInvestigating
 	gravity_component.handle_gravity(characterBody,delta)
+	enemy_animation_component.handleAnimation(isAttacking,characterBody.velocity.x)
 	if isDead or isDazed:
 		visual_viewcone.visible = false
 		enemy_vision_component.forgetPlayer()
 		ui_manager.resetSeenLevel(unique_id_component.getUID())
+		isAttacking = false
+		movement.stopMoving()
 		return
 	visual_viewcone.visible = true
 	var canSeePlayer:bool = enemy_vision_component.canSeePlayer(playerMemoryDuration, player,viewcone,delta)
 	if (damageTimer.time_left == 0):
+		isAttacking = false
 		playerClass.animation_component.remove_crosshair(unique_id_component.getUID())
+	else:
+		isAttacking = true
 	if !canSeePlayer:
 		ui_manager.resetSeenLevel(unique_id_component.getUID())
 	if isGrabbed:
+		isAttacking = false
 		damageTimer.stop()
 		characterBody.global_position.x = grabCollider.global_position.x
 		return
@@ -71,7 +84,8 @@ func _physics_process(delta: float) -> void:
 		if !isInvestigating:
 			movement.moveNormalCycle(roamEdgeLeft,roamEdgeRight,jumpVelocity)
 		else:
-			isInvestigating = !movement.goToPos(investigationPos,4,jumpVelocity)
+			if (movement.goToPos(investigationPos,4,jumpVelocity)) and investigate_wait_timer.time_left == 0:
+				investigate_wait_timer.start(investigatingWaitTime)
 	
 func kill():
 	isDead = true
@@ -97,6 +111,7 @@ func blowUp():
 func _on_enemy_timer_timeout() -> void:
 	if isDazed: #After two seconds, the enemy get up from dazing
 		isDazed = false
+		movement.startMovingAfterDazed()
 		enemyTimer.start(58)
 	else: #After one minute, the health regenerates
 		isInfected = false
@@ -110,3 +125,7 @@ func _on_damage_timer_timeout() -> void:
 func _on_player_trigger_infection() -> void:
 	if isInfected:
 		blowUp()
+
+
+func _on_investigate_wait_t_imer_timeout() -> void:
+	isInvestigating = false

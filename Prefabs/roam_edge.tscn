@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://blxvgkp7trv0b"]
+
+[ext_resource type="Script" uid="uid://bg7cvh063n4l3" path="res://scenes/roam_edge.gd" id="1_h2so6"]
+
+[node name="RoamEdge" type="Node2D"]
+script = ExtResource("1_h2so6")

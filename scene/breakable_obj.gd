@@ -4,12 +4,16 @@ extends CharacterBody2D
 @export_subgroup("Componets")
 @export var collision_component: CollisionComponent
 @export var gravity_component: GravityComponent
+@export var speedNeededToKill: int = 50
+@export var killWhenDroppedOntoEnemy: bool = true
 @export var speedNeededToBreak: int = 50
+@export var unbreakable: bool = false
 @export var onlyBreakWhenFalling: bool = true
 @export var push_force: int = 50
 @export var damping: float = 0.98
 @export var noiseArea:Area2D
 @export var makeNoise:bool = true
+@export var investigateWaitTime:float = 3
 
 var speed = 0
 var doBreak = false
@@ -22,13 +26,14 @@ func _physics_process(delta: float) -> void:
 		if(velocity.y > speedNeededToBreak):
 			doBreak = true
 	
-	for index in get_slide_collision_count():
+	if get_slide_collision_count() > 0:
 		speed = velocity.y
 		if(!onlyBreakWhenFalling):
 			speed = velocity.length()
 			
 		if(speed > speedNeededToBreak or doBreak):
-			destroy()
+			fellAction(delta)
+		
 	move_and_slide()
 
 func makeSomeNoise():
@@ -41,9 +46,12 @@ func makeSomeNoise():
 				if(enemyVision.castToObj(self)):
 					parent.isInvestigating = true
 					parent.investigationPos = self.position
+					parent.investigatingWaitTime = investigateWaitTime
 
-func destroy():
+func fellAction(delta):
 	doBreak = false
 	if makeNoise:
 		makeSomeNoise()
-	queue_free()
+	if !unbreakable:
+		collision_component.handle_collision(self,delta)
+		queue_free()

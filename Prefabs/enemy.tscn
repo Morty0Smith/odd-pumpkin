@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://csq2hy81hoqoh"]
+[gd_scene load_steps=23 format=3 uid="uid://csq2hy81hoqoh"]
 
 [ext_resource type="Script" uid="uid://dx4bcpymmfg7r" path="res://scripts/enemy.gd" id="1_slebx"]
 [ext_resource type="Texture2D" uid="uid://b83ejelxpf8na" path="res://sprites/farmer_walk1.png" id="2_3yqyl"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://7wxtqrjwssae" path="res://components/gravity_component.tscn" id="5_2b04r"]
 [ext_resource type="PackedScene" uid="uid://bqnegl0kr5b1r" path="res://components/unique_id_component.tscn" id="6_3yqyl"]
 [ext_resource type="PackedScene" uid="uid://2sc717stb6mh" path="res://components/enemy_vision_component.tscn" id="6_iasw0"]
+[ext_resource type="Script" uid="uid://bkamsbk4xeorw" path="res://scripts/enemy_animation_component.gd" id="10_ggq53"]
+[ext_resource type="Texture2D" uid="uid://bjj86ardchpd4" path="res://sprites/question.png" id="11_xk43f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ggq53"]
 atlas = ExtResource("2_kuc4i")
@@ -22,6 +24,10 @@ region = Rect2(128, 44, 64, 84)
 atlas = ExtResource("2_3yqyl")
 region = Rect2(0, 44, 64, 84)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_hb8ge"]
+atlas = ExtResource("3_wujgv")
+region = Rect2(0, 43, 64, 85)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_3yqyl"]
 atlas = ExtResource("2_3yqyl")
 region = Rect2(0, 43, 64, 85)
@@ -29,10 +35,6 @@ region = Rect2(0, 43, 64, 85)
 [sub_resource type="AtlasTexture" id="AtlasTexture_wujgv"]
 atlas = ExtResource("2_3yqyl")
 region = Rect2(64, 43, 64, 85)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hb8ge"]
-atlas = ExtResource("3_wujgv")
-region = Rect2(0, 43, 64, 85)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e1ltt"]
 atlas = ExtResource("3_wujgv")
@@ -56,7 +58,15 @@ animations = [{
 "texture": SubResource("AtlasTexture_4r6ty")
 }],
 "loop": true,
-"name": &"motionless",
+"name": &"motionless0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hb8ge")
+}],
+"loop": true,
+"name": &"motionless1",
 "speed": 5.0
 }, {
 "frames": [{
@@ -67,7 +77,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_wujgv")
 }],
 "loop": true,
-"name": &"walk",
+"name": &"walk0",
 "speed": 5.0
 }, {
 "frames": [{
@@ -78,7 +88,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_e1ltt")
 }],
 "loop": true,
-"name": &"walk2",
+"name": &"walk1",
 "speed": 5.0
 }]
 
@@ -91,18 +101,21 @@ size = Vector2(114.12624, 90.62533)
 [sub_resource type="CircleShape2D" id="CircleShape2D_3yqyl"]
 radius = 77.0065
 
-[node name="Enemy" type="Node2D" node_paths=PackedStringArray("gravity_component", "enemy_vision_component", "movement", "unique_id_component", "characterBody", "viewcone", "blowUpArea", "enemyTimer", "damageTimer", "visual_viewcone")]
+[node name="Enemy" type="Node2D" node_paths=PackedStringArray("gravity_component", "enemy_vision_component", "movement", "unique_id_component", "enemy_animation_component", "characterBody", "viewcone", "blowUpArea", "enemyTimer", "damageTimer", "visual_viewcone", "questionMark", "investigate_wait_timer")]
 script = ExtResource("1_slebx")
 gravity_component = NodePath("GravityComponent")
 enemy_vision_component = NodePath("enemy_vision_component")
 movement = NodePath("EnemyMovement")
 unique_id_component = NodePath("unique_id_component")
+enemy_animation_component = NodePath("enemy_animation_component")
 characterBody = NodePath("CharacterBody")
 viewcone = NodePath("CharacterBody/Sprite2D/Viewcone")
 blowUpArea = NodePath("CharacterBody/CollisionShape2D/BlowUpArea")
 enemyTimer = NodePath("EnemyTimer")
 damageTimer = NodePath("DamageTimer")
 visual_viewcone = NodePath("CharacterBody/Sprite2D/VisualViewcone")
+questionMark = NodePath("CharacterBody/QuestionMark")
+investigate_wait_timer = NodePath("InvestigateWaitTImer")
 
 [node name="CharacterBody" type="CharacterBody2D" parent="."]
 collision_layer = 4
@@ -112,8 +125,8 @@ texture_filter = 1
 position = Vector2(1.1920929e-07, 2.900789)
 scale = Vector2(0.35, 0.35)
 sprite_frames = SubResource("SpriteFrames_e1ltt")
-animation = &"gun"
-autoplay = "walk"
+animation = &"motionless1"
+autoplay = "walk0"
 
 [node name="Viewcone" type="Area2D" parent="CharacterBody/Sprite2D"]
 position = Vector2(-24.455624, 0)
@@ -126,7 +139,7 @@ scale = Vector2(8.151874, 3.1250112)
 shape = SubResource("ConvexPolygonShape2D_u1fn3")
 
 [node name="StepCast" type="RayCast2D" parent="CharacterBody/Sprite2D"]
-position = Vector2(8.57143, 34.569176)
+position = Vector2(8.571429, 34.569176)
 scale = Vector2(8.151875, 3.1250114)
 target_position = Vector2(4.2058682, -9.536743e-07)
 hit_from_inside = true
@@ -157,12 +170,23 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody/CollisionShape2D/BlowUpArea"]
 shape = SubResource("CircleShape2D_3yqyl")
 
-[node name="EnemyMovement" type="Node" parent="." node_paths=PackedStringArray("characterBody", "enemySprite", "enemy_vision_component")]
+[node name="QuestionMark" type="Sprite2D" parent="CharacterBody"]
+visible = false
+texture_filter = 1
+position = Vector2(-5.9604645e-08, -22)
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("11_xk43f")
+
+[node name="EnemyMovement" type="Node" parent="." node_paths=PackedStringArray("characterBody", "enemySprite", "enemy_vision_component", "roam_wait_timer")]
 script = ExtResource("3_iasw0")
 characterBody = NodePath("../CharacterBody")
 enemySprite = NodePath("../CharacterBody/Sprite2D")
 moveSpeed = 40.0
 enemy_vision_component = NodePath("../enemy_vision_component")
+roam_wait_timer = NodePath("RoamWaitTimer")
+
+[node name="RoamWaitTimer" type="Timer" parent="EnemyMovement"]
+one_shot = true
 
 [node name="GravityComponent" parent="." instance=ExtResource("5_2b04r")]
 
@@ -179,5 +203,14 @@ one_shot = true
 
 [node name="unique_id_component" parent="." instance=ExtResource("6_3yqyl")]
 
+[node name="enemy_animation_component" type="Node" parent="." node_paths=PackedStringArray("enemySprite")]
+script = ExtResource("10_ggq53")
+enemySprite = NodePath("../CharacterBody/Sprite2D")
+
+[node name="InvestigateWaitTImer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="EnemyMovement/RoamWaitTimer" to="EnemyMovement" method="_on_roam_wait_timer_timeout"]
 [connection signal="timeout" from="EnemyTimer" to="." method="_on_enemy_timer_timeout"]
 [connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]
+[connection signal="timeout" from="InvestigateWaitTImer" to="." method="_on_investigate_wait_t_imer_timeout"]
