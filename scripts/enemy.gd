@@ -108,6 +108,8 @@ func setGrabbed(grab:bool):
 	grabCollider = player.get_node("Pumpkin/grabHitbox/grabCollider")
 
 func blowUp():
+	if isDead or isDazed:
+		return
 	enemy_animation_component.die()
 	enemy_animation_component.explode()
 	var objectsInRadius = blowUpArea.get_overlapping_bodies()
