@@ -13,6 +13,7 @@ extends CharacterBody2D
 @export var damping: float = 0.98
 @export var noiseArea:Area2D
 @export var makeNoise:bool = true
+@export var investigateWaitTime:float = 3
 
 var speed = 0
 var doBreak = false
@@ -45,6 +46,7 @@ func makeSomeNoise():
 				if(enemyVision.castToObj(self)):
 					parent.isInvestigating = true
 					parent.investigationPos = self.position
+					parent.investigatingWaitTime = investigateWaitTime
 
 func fellAction(delta):
 	doBreak = false

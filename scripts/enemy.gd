@@ -18,6 +18,7 @@ extends Node2D
 @export var roamEdgeRight:RoamEdge
 @export var visual_viewcone:Node2D
 @export var questionMark:Sprite2D
+@export var investigate_wait_timer:Timer
 
 @export_subgroup("Values")
 @export var playerMemoryDuration:float = 3
@@ -37,6 +38,7 @@ var isGrabbed:bool = false
 var isAttacking:bool = false
 var isInvestigating:bool = false
 var investigationPos:Vector2
+var investigatingWaitTime:float = 1
 
 func _ready() -> void:
 	player = get_node("/root/SceneRoot/Player")
@@ -82,7 +84,8 @@ func _physics_process(delta: float) -> void:
 		if !isInvestigating:
 			movement.moveNormalCycle(roamEdgeLeft,roamEdgeRight,jumpVelocity)
 		else:
-			isInvestigating = !movement.goToPos(investigationPos,4,jumpVelocity)
+			if (movement.goToPos(investigationPos,4,jumpVelocity)) and investigate_wait_timer.time_left == 0:
+				investigate_wait_timer.start(investigatingWaitTime)
 	
 func kill():
 	isDead = true
@@ -122,3 +125,7 @@ func _on_damage_timer_timeout() -> void:
 func _on_player_trigger_infection() -> void:
 	if isInfected:
 		blowUp()
+
+
+func _on_investigate_wait_t_imer_timeout() -> void:
+	isInvestigating = false
