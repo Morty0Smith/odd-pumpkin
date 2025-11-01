@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://d4bjpgqwy16ut"]
+[gd_scene load_steps=17 format=4 uid="uid://d4bjpgqwy16ut"]
 
 [ext_resource type="TileSet" uid="uid://c5wlt3m300h6a" path="res://Prefabs/defaultTileset.tres" id="1_2jiqd"]
 [ext_resource type="Texture2D" uid="uid://c27u8w4utoubj" path="res://sprites/city.png" id="1_7vqvu"]
@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bgimu70nf3aeg" path="res://sprites/pumpHeart.png" id="6_7vqvu"]
 [ext_resource type="Texture2D" uid="uid://bgbynqke2yt83" path="res://sprites/pumpHeartFrame.png" id="6_h481x"]
 [ext_resource type="Texture2D" uid="uid://d0ibupg2yu6j1" path="res://sprites/vains.png" id="6_ii3td"]
-[ext_resource type="PackedScene" uid="uid://blxvgkp7trv0b" path="res://Prefabs/roam_edge.tscn" id="9_h6x0i"]
+[ext_resource type="PackedScene" path="res://Prefabs/roam_edge.tscn" id="9_h6x0i"]
 [ext_resource type="PackedScene" uid="uid://cioy3t7mdbwa0" path="res://scene/breakable_obj.tscn" id="11_7vqvu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wjqfg"]
@@ -63,7 +63,7 @@ use_kinematic_bodies = true
 position = Vector2(-51, 46)
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("roamEdgeLeft", "roamEdgeRight") instance=ExtResource("3_ii3td")]
-position = Vector2(-256, 118)
+position = Vector2(144, -73)
 roamEdgeLeft = NodePath("../RoamEdges/RoamEdge")
 roamEdgeRight = NodePath("../RoamEdges/RoamEdge2")
 playerChaseDistance = 60.0

@@ -102,6 +102,7 @@ func setGrabbed(grab:bool):
 	grabCollider = player.get_node("Pumpkin/grabHitbox/grabCollider")
 
 func blowUp():
+	enemy_animation_component.isTurnedToDust = true
 	var objectsInRadius = blowUpArea.get_overlapping_bodies()
 	for object in objectsInRadius:
 		var objectParent = object.get_parent()

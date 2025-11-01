@@ -4,8 +4,12 @@ extends Node
 @export var enemySprite:AnimatedSprite2D
 
 var guyIndex:int = 0
+var isTurnedToDust
 
 func handleAnimation(isAttacking:bool, xVelocity:float):
+	if isTurnedToDust:
+		handle_explode()
+		return
 	if xVelocity == 0 and isAttacking:
 		attack()
 		enemySprite.speed_scale = 0
@@ -39,6 +43,13 @@ func die():
 		return
 	enemySprite.play("motionless" + str(guyIndex))
 	enemySprite.speed_scale = 1
+	
+func handle_explode():
+	
+	if getAnimationType() == "explode":
+		return
+	enemySprite.apply_scale(Vector2(4,4))
+	enemySprite.play("explode")
 
 func getAnimationType() ->String:
 	if (enemySprite.animation == null):
