@@ -104,17 +104,17 @@ scale = Vector2(8.151875, 3.1250114)
 target_position = Vector2(4.2058682, -9.536743e-07)
 hit_from_inside = true
 
-[node name="VisionCast" type="RayCast2D" parent="CharacterBody/Sprite2D"]
-position = Vector2(8.571428, -16.859398)
-scale = Vector2(8.151873, 3.125011)
-target_position = Vector2(7.7107606, 2.3841858e-07)
-collision_mask = 7
-
 [node name="VisualViewcone" type="Sprite2D" parent="CharacterBody/Sprite2D"]
 texture_filter = 1
 position = Vector2(191.42859, -8.287969)
 scale = Vector2(2.8571427, 2.8571427)
 texture = ExtResource("4_hb8ge")
+
+[node name="VisionCast" type="RayCast2D" parent="CharacterBody/Sprite2D"]
+position = Vector2(11.428571, -16.859396)
+target_position = Vector2(7.7107606, 2.3841858e-07)
+collision_mask = 7
+hit_from_inside = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody"]
 position = Vector2(-4, 3.4999995)
@@ -132,17 +132,17 @@ shape = SubResource("CircleShape2D_3yqyl")
 
 [node name="EnemyMovement" type="Node" parent="." node_paths=PackedStringArray("characterBody", "enemySprite", "enemy_vision_component")]
 script = ExtResource("3_iasw0")
+moveSpeed = 40.0
 characterBody = NodePath("../CharacterBody")
 enemySprite = NodePath("../CharacterBody/Sprite2D")
-moveSpeed = 40.0
 enemy_vision_component = NodePath("../enemy_vision_component")
 
 [node name="GravityComponent" parent="." instance=ExtResource("5_2b04r")]
 
-[node name="enemy_vision_component" parent="." node_paths=PackedStringArray("stepRaycast", "visionRaycast", "enemySprite") instance=ExtResource("6_iasw0")]
+[node name="enemy_vision_component" parent="." node_paths=PackedStringArray("stepRaycast", "visionRaycast", "characterBody") instance=ExtResource("6_iasw0")]
 stepRaycast = NodePath("../CharacterBody/Sprite2D/StepCast")
 visionRaycast = NodePath("../CharacterBody/Sprite2D/VisionCast")
-enemySprite = NodePath("../CharacterBody/Sprite2D")
+characterBody = NodePath("../CharacterBody")
 
 [node name="EnemyTimer" type="Timer" parent="."]
 wait_time = 2.0

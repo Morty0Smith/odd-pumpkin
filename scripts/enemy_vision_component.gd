@@ -4,17 +4,16 @@ extends Node
 var playerMemoryTimer:float
 @export var stepRaycast:RayCast2D
 @export var visionRaycast:RayCast2D
-@export var enemySprite:AnimatedSprite2D
+@export var characterBody:CharacterBody2D
 
 func canSeePlayer(playerMemoryDuration:float, player:CharacterBody2D, viewcone:Area2D, deltaT:float) ->bool:
 	var playerClass = player as Player
 	playerMemoryTimer -= deltaT
 	var playerIsMoving:bool = !(player.velocity == Vector2(0,0))
-	var spriteFlipped:bool = enemySprite.scale.x < 0
-	var playerViewObstructed:bool = !castToPlayer(player, spriteFlipped)
+	var playerViewObstructed:bool = !castToPlayer(player)
 	var playerVisible:bool = !playerViewObstructed and player in viewcone.get_overlapping_bodies()
 	var playerInMemory:bool = playerMemoryTimer > 0
-	if playerVisible and (playerInMemory or (playerIsMoving or playerClass.isEvolved)):
+	if playerVisible and (playerInMemory or playerIsMoving or playerClass.isEvolved):
 		playerMemoryTimer = playerMemoryDuration
 	return playerMemoryTimer > 0
 
@@ -24,12 +23,13 @@ func checkForSteps() ->bool:
 		return true
 	return false
 
-func castToPlayer(player:CharacterBody2D, spriteFlipped:bool) ->bool:
+func castToPlayer(player:CharacterBody2D) ->bool:
+	var enemySprite:Node2D = visionRaycast.get_parent() as Node2D
+	visionRaycast.scale = Vector2( 1/enemySprite.scale.x, 1/enemySprite.scale.y) # To fix weird scaling issues with the raycast
 	var directionToPlayer:Vector2 = visionRaycast.get_global_transform().origin.direction_to(player.global_position)
 	var distanceToPlayer:float = visionRaycast.get_global_transform().origin.distance_to(player.global_position)
 	visionRaycast.target_position = directionToPlayer * distanceToPlayer
-	if (spriteFlipped):
-		visionRaycast.target_position.x *= -1
+	visionRaycast.add_exception(characterBody)
 	visionRaycast.force_raycast_update()
 	return visionRaycast.is_colliding() and visionRaycast.get_collider() == player
 

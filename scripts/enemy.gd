@@ -40,14 +40,23 @@ func _ready() -> void:
 	playerClass.triggerInfection.connect(_on_player_trigger_infection)
 	
 func _physics_process(delta: float) -> void:
+	gravity_component.handle_gravity(characterBody,delta)
+	if isDead or isDazed:
+		visual_viewcone.visible = false
+		enemy_vision_component.forgetPlayer()
+		ui_manager.resetSeenLevel(unique_id_component.getUID())
+		return
+	visual_viewcone.visible = true
+	var canSeePlayer:bool = enemy_vision_component.canSeePlayer(playerMemoryDuration, player,viewcone,delta)
 	if (damageTimer.time_left == 0):
 		playerClass.animation_component.remove_crosshair(unique_id_component.getUID())
-	gravity_component.handle_gravity(characterBody,delta)
-	var canSeePlayer:bool = enemy_vision_component.canSeePlayer(playerMemoryDuration, player,viewcone,delta)
-	if isGrabbed and !isDazed and !isDead:
+	if !canSeePlayer:
+		ui_manager.resetSeenLevel(unique_id_component.getUID())
+	if isGrabbed:
 		damageTimer.stop()
 		characterBody.global_position.x = grabCollider.global_position.x
-	if canSeePlayer and !isDead and !isDazed and !isGrabbed:
+		return
+	if canSeePlayer:
 		ui_manager.setSeenLevel(2,unique_id_component.getUID())
 		var hasReachedPlayer:bool = movement.goToPos(player.global_position,playerChaseDistance,jumpVelocity)
 		if !hasReachedPlayer:
@@ -55,16 +64,9 @@ func _physics_process(delta: float) -> void:
 		if hasReachedPlayer and damageTimer.time_left == 0:
 			damageTimer.start(0.5)
 			playerClass.animation_component.add_crosshair(unique_id_component.getUID())
-	if !canSeePlayer and !isDead and !isDazed and !isGrabbed:
+	if !canSeePlayer:
 		damageTimer.stop()
 		movement.moveNormalCycle(roamEdgeLeft,roamEdgeRight,jumpVelocity)
-	if !canSeePlayer or isDead or isDazed:
-		ui_manager.resetSeenLevel(unique_id_component.getUID())
-	if isDead or isDazed:
-		visual_viewcone.visible = false
-		enemy_vision_component.forgetPlayer()
-	else:
-		visual_viewcone.visible = true
 	
 func kill():
 	isDead = true
