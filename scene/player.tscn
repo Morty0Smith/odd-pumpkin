@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dcphqcnmub4lo"]
+[gd_scene load_steps=41 format=3 uid="uid://dcphqcnmub4lo"]
 
 [ext_resource type="Script" uid="uid://bxmlwoexbyb7l" path="res://scene/player.gd" id="1_g2vtq"]
 [ext_resource type="PackedScene" uid="uid://7wxtqrjwssae" path="res://components/gravity_component.tscn" id="2_2fvbb"]
@@ -17,6 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://bqnegl0kr5b1r" path="res://components/unique_id_component.tscn" id="14_u7b46"]
 [ext_resource type="PackedScene" uid="uid://dlsrvs0uolvfa" path="res://components/health_component.tscn" id="16_4ja17"]
 [ext_resource type="Script" uid="uid://dijohid1u35ii" path="res://scripts/health_component.gd" id="17_v4iqv"]
+[ext_resource type="PackedScene" uid="uid://dba4ek6y1p6yu" path="res://components/audio_player_component.tscn" id="18_42h83"]
+[ext_resource type="Script" uid="uid://d2i04vi85p3ti" path="res://scripts/audio_player_component.gd" id="19_iuf2t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ihjo1"]
 atlas = ExtResource("8_g2vtq")
@@ -244,3 +246,9 @@ shape = SubResource("CircleShape2D_w2vy6")
 
 [node name="HealthComponent" parent="." instance=ExtResource("16_4ja17")]
 script = ExtResource("17_v4iqv")
+
+[node name="AudioPlayerComponent" parent="." instance=ExtResource("18_42h83")]
+script = ExtResource("19_iuf2t")
+soundEffectsWithNames = Dictionary[String, AudioStream]({
+"": null
+})

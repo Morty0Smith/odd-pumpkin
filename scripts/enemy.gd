@@ -1,6 +1,8 @@
 class_name Enemy
 extends Node2D
 
+@onready var audio_player_component: AudioPlayerComponent = $AudioPlayerComponent
+
 @export_subgroup("Components")
 @export var gravity_component: GravityComponent
 @export var enemy_vision_component: EnemyVisionComponent
@@ -77,6 +79,7 @@ func _physics_process(delta: float) -> void:
 		if !hasReachedPlayer:
 			damageTimer.stop()
 		if hasReachedPlayer and damageTimer.time_left == 0:
+			audio_player_component.playSoundEffectWithName("shot")
 			damageTimer.start(0.5)
 			playerClass.animation_component.add_crosshair(unique_id_component.getUID())
 	if !canSeePlayer:
@@ -120,6 +123,7 @@ func _on_enemy_timer_timeout() -> void:
 func _on_damage_timer_timeout() -> void:
 	playerClass.health_component.add_health(-1,ui_manager)
 	playerClass.animation_component.add_crosshair(unique_id_component.getUID())
+	audio_player_component.playSoundEffectWithName("shot")
 	
 
 func _on_player_trigger_infection() -> void:
