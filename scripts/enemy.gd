@@ -108,7 +108,8 @@ func setGrabbed(grab:bool):
 	grabCollider = player.get_node("Pumpkin/grabHitbox/grabCollider")
 
 func blowUp():
-	enemy_animation_component.isTurnedToDust = true
+	enemy_animation_component.die()
+	enemy_animation_component.explode()
 	var objectsInRadius = blowUpArea.get_overlapping_bodies()
 	audio_player_component.playSoundEffectWithName("blow_up")
 	for object in objectsInRadius:

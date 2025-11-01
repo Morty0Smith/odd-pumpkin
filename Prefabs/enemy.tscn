@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://csq2hy81hoqoh"]
+[gd_scene load_steps=37 format=3 uid="uid://csq2hy81hoqoh"]
 
 [ext_resource type="Script" uid="uid://dx4bcpymmfg7r" path="res://scripts/enemy.gd" id="1_slebx"]
 [ext_resource type="Texture2D" uid="uid://b83ejelxpf8na" path="res://sprites/farmer_walk1.png" id="2_3yqyl"]
@@ -167,6 +167,38 @@ size = Vector2(114.12624, 90.62533)
 [sub_resource type="CircleShape2D" id="CircleShape2D_3yqyl"]
 radius = 77.0065
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_mxgsx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x0wuq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ox27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fax4q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxgsx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hwma7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2pe0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lh86g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mh0ig")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 5.0
+}]
+
 [node name="Enemy" type="Node2D" node_paths=PackedStringArray("gravity_component", "enemy_vision_component", "movement", "unique_id_component", "enemy_animation_component", "characterBody", "viewcone", "blowUpArea", "enemyTimer", "damageTimer", "visual_viewcone", "questionMark", "investigate_wait_timer")]
 script = ExtResource("1_slebx")
 gravity_component = NodePath("GravityComponent")
@@ -242,6 +274,12 @@ texture_filter = 1
 position = Vector2(-5.9604645e-08, -22)
 scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("11_xk43f")
+
+[node name="explosion" type="AnimatedSprite2D" parent="CharacterBody"]
+visible = false
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_mxgsx")
+animation = &"explode"
 
 [node name="EnemyMovement" type="Node" parent="." node_paths=PackedStringArray("characterBody", "enemySprite", "enemy_vision_component", "roam_wait_timer")]
 script = ExtResource("3_iasw0")
