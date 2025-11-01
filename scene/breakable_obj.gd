@@ -40,7 +40,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func makeSomeNoise():
-	break_sound_effect.play(0)
+	break_sound_effect.play(0.1)
 	for collider in noiseArea.get_overlapping_bodies():
 		var parent = collider.get_parent()
 		if(parent != null and parent is Enemy):

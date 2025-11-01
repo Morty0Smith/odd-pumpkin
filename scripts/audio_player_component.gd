@@ -8,4 +8,4 @@ func playSoundEffectWithName(soundEffect:String):
 		print("Errror: Invalid sound effect name")
 		return
 	self.stream  = soundEffectsWithNames[soundEffect]
-	self.play(0.3)
+	self.play(0)
