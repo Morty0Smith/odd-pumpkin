@@ -64,7 +64,19 @@ use_kinematic_bodies = true
 position = Vector2(-51, 46)
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("roamEdgeLeft", "roamEdgeRight") instance=ExtResource("3_ii3td")]
-position = Vector2(144, -73)
+position = Vector2(142, 65)
+roamEdgeLeft = NodePath("../RoamEdges/RoamEdge")
+roamEdgeRight = NodePath("../RoamEdges/RoamEdge2")
+playerChaseDistance = 60.0
+
+[node name="Enemy2" parent="." node_paths=PackedStringArray("roamEdgeLeft", "roamEdgeRight") instance=ExtResource("3_ii3td")]
+position = Vector2(108, 64)
+roamEdgeLeft = NodePath("../RoamEdges/RoamEdge")
+roamEdgeRight = NodePath("../RoamEdges/RoamEdge2")
+playerChaseDistance = 60.0
+
+[node name="Enemy3" parent="." node_paths=PackedStringArray("roamEdgeLeft", "roamEdgeRight") instance=ExtResource("3_ii3td")]
+position = Vector2(82, 64)
 roamEdgeLeft = NodePath("../RoamEdges/RoamEdge")
 roamEdgeRight = NodePath("../RoamEdges/RoamEdge2")
 playerChaseDistance = 60.0
