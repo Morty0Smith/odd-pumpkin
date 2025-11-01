@@ -4,6 +4,7 @@ extends Node
 @export var characterBody:CharacterBody2D
 @export var enemySprite:AnimatedSprite2D
 @export var moveSpeed:float = 20
+@export var fallDistanceAfterDead = 11
 @export var enemy_vision_component:EnemyVisionComponent
 
 var moveToLeft:bool = false
@@ -37,4 +38,7 @@ func jump(jumpVelocity:float):
 		characterBody.move_and_slide()
 
 func stopMoving():
-	characterBody.velocity = Vector2(0,0)
+	if (characterBody.rotation_degrees != 90):
+		characterBody.velocity.x = 0
+		characterBody.position.y += fallDistanceAfterDead
+		characterBody.rotation_degrees = 90
