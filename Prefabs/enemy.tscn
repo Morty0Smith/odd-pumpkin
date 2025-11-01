@@ -1,14 +1,48 @@
-[gd_scene load_steps=21 format=3 uid="uid://csq2hy81hoqoh"]
+[gd_scene load_steps=31 format=3 uid="uid://csq2hy81hoqoh"]
 
 [ext_resource type="Script" uid="uid://dx4bcpymmfg7r" path="res://scripts/enemy.gd" id="1_slebx"]
 [ext_resource type="Texture2D" uid="uid://b83ejelxpf8na" path="res://sprites/farmer_walk1.png" id="2_3yqyl"]
 [ext_resource type="Texture2D" uid="uid://cu6j0hlxq120n" path="res://sprites/farmer_walk_gun1.png" id="2_kuc4i"]
+[ext_resource type="Texture2D" uid="uid://bebf5mwnojs1k" path="res://sprites/explo.png" id="2_xk43f"]
+[ext_resource type="Texture2D" uid="uid://bgimu70nf3aeg" path="res://sprites/pumpHeart.png" id="3_4r6ty"]
 [ext_resource type="Script" uid="uid://bpoy5qpx0bvro" path="res://scripts/enemy_movement.gd" id="3_iasw0"]
 [ext_resource type="Texture2D" uid="uid://ciqtc1cccg63l" path="res://sprites/farmer_walk2.png" id="3_wujgv"]
 [ext_resource type="Texture2D" uid="uid://cjh1tbbh0jtw5" path="res://sprites/cone.png" id="4_hb8ge"]
 [ext_resource type="PackedScene" uid="uid://7wxtqrjwssae" path="res://components/gravity_component.tscn" id="5_2b04r"]
 [ext_resource type="PackedScene" uid="uid://bqnegl0kr5b1r" path="res://components/unique_id_component.tscn" id="6_3yqyl"]
 [ext_resource type="PackedScene" uid="uid://2sc717stb6mh" path="res://components/enemy_vision_component.tscn" id="6_iasw0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x0wuq"]
+atlas = ExtResource("2_xk43f")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ox27"]
+atlas = ExtResource("2_xk43f")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fax4q"]
+atlas = ExtResource("2_xk43f")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxgsx"]
+atlas = ExtResource("2_xk43f")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwma7"]
+atlas = ExtResource("2_xk43f")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2pe0"]
+atlas = ExtResource("2_xk43f")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lh86g"]
+atlas = ExtResource("2_xk43f")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mh0ig"]
+atlas = ExtResource("3_4r6ty")
+region = Rect2(15, 0, 5, 4)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ggq53"]
 atlas = ExtResource("2_kuc4i")
@@ -40,6 +74,35 @@ region = Rect2(64, 43, 64, 85)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_e1ltt"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x0wuq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ox27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fax4q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxgsx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hwma7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2pe0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lh86g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mh0ig")
+}],
+"loop": false,
+"name": &"explo",
+"speed": 11.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ggq53")
@@ -112,8 +175,10 @@ texture_filter = 1
 position = Vector2(1.1920929e-07, 2.900789)
 scale = Vector2(0.35, 0.35)
 sprite_frames = SubResource("SpriteFrames_e1ltt")
-animation = &"gun"
+animation = &"explo"
 autoplay = "walk"
+frame = 7
+frame_progress = 1.0
 
 [node name="Viewcone" type="Area2D" parent="CharacterBody/Sprite2D"]
 position = Vector2(-24.455624, 0)
