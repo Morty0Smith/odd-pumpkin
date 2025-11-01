@@ -14,8 +14,8 @@ extends Node2D
 @export var blowUpArea:Area2D
 @export var enemyTimer:Timer
 @export var damageTimer:Timer
-@export var roamEdgeLeft:Node2D
-@export var roamEdgeRight:Node2D
+@export var roamEdgeLeft:RoamEdge
+@export var roamEdgeRight:RoamEdge
 @export var visual_viewcone:Node2D
 
 @export_subgroup("Values")

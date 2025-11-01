@@ -1,4 +1,5 @@
-extends Node
+class_name RoamEdge
+extends Node2D
 
 @export var waitTime:float = 1
 

@@ -167,12 +167,16 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody/CollisionShape2D/BlowUpArea"]
 shape = SubResource("CircleShape2D_3yqyl")
 
-[node name="EnemyMovement" type="Node" parent="." node_paths=PackedStringArray("characterBody", "enemySprite", "enemy_vision_component")]
+[node name="EnemyMovement" type="Node" parent="." node_paths=PackedStringArray("characterBody", "enemySprite", "enemy_vision_component", "roam_wait_timer")]
 script = ExtResource("3_iasw0")
 characterBody = NodePath("../CharacterBody")
 enemySprite = NodePath("../CharacterBody/Sprite2D")
 moveSpeed = 40.0
 enemy_vision_component = NodePath("../enemy_vision_component")
+roam_wait_timer = NodePath("RoamWaitTimer")
+
+[node name="RoamWaitTimer" type="Timer" parent="EnemyMovement"]
+one_shot = true
 
 [node name="GravityComponent" parent="." instance=ExtResource("5_2b04r")]
 
@@ -193,5 +197,6 @@ one_shot = true
 script = ExtResource("10_ggq53")
 enemySprite = NodePath("../CharacterBody/Sprite2D")
 
+[connection signal="timeout" from="EnemyMovement/RoamWaitTimer" to="EnemyMovement" method="_on_roam_wait_timer_timeout"]
 [connection signal="timeout" from="EnemyTimer" to="." method="_on_enemy_timer_timeout"]
 [connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]
