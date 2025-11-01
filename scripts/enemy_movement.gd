@@ -17,6 +17,7 @@ func moveNormalCycle(roamEdgeLeft:Node2D,roamEdgeRight:Node2D, jumpVelocity:floa
 
 func goToPos(targetPos:Vector2, stopMargin:float, jumpVelocity:float) ->bool: # Returns true, if it has reached it's destination
 	if(abs(targetPos.x - characterBody.global_position.x) < stopMargin):
+		characterBody.velocity.x = 0
 		return true
 	if (characterBody.global_position.x < targetPos.x):
 		characterBody.velocity.x = moveSpeed
@@ -33,3 +34,6 @@ func jump(jumpVelocity:float):
 	if (characterBody.is_on_floor()):
 		characterBody.velocity.y = -jumpVelocity
 		characterBody.move_and_slide()
+
+func stopMoving():
+	characterBody.velocity = Vector2(0,0)

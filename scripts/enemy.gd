@@ -6,6 +6,7 @@ extends Node2D
 @export var enemy_vision_component: EnemyVisionComponent
 @export var movement:EnemyMovement
 @export var unique_id_component:UniqueIdComponent
+@export var enemy_animation_component:EnemyAnimationComponent
 
 @export_subgroup("Nodes")
 @export var characterBody:CharacterBody2D
@@ -32,6 +33,7 @@ var isDazed:bool = false
 var isDead:bool = false
 var isInfected:bool = false
 var isGrabbed:bool = false
+var isAttacking:bool = false
 
 func _ready() -> void:
 	player = get_node("/root/SceneRoot/Player")
@@ -41,18 +43,25 @@ func _ready() -> void:
 	
 func _physics_process(delta: float) -> void:
 	gravity_component.handle_gravity(characterBody,delta)
+	enemy_animation_component.handleAnimation(isAttacking,characterBody.velocity.x)
 	if isDead or isDazed:
 		visual_viewcone.visible = false
 		enemy_vision_component.forgetPlayer()
 		ui_manager.resetSeenLevel(unique_id_component.getUID())
+		isAttacking = false
+		movement.stopMoving()
 		return
 	visual_viewcone.visible = true
 	var canSeePlayer:bool = enemy_vision_component.canSeePlayer(playerMemoryDuration, player,viewcone,delta)
 	if (damageTimer.time_left == 0):
+		isAttacking = false
 		playerClass.animation_component.remove_crosshair(unique_id_component.getUID())
+	else:
+		isAttacking = true
 	if !canSeePlayer:
 		ui_manager.resetSeenLevel(unique_id_component.getUID())
 	if isGrabbed:
+		isAttacking = false
 		damageTimer.stop()
 		characterBody.global_position.x = grabCollider.global_position.x
 		return
@@ -67,7 +76,6 @@ func _physics_process(delta: float) -> void:
 	if !canSeePlayer:
 		damageTimer.stop()
 		movement.moveNormalCycle(roamEdgeLeft,roamEdgeRight,jumpVelocity)
-	
 func kill():
 	isDead = true
 	isGrabbed = false

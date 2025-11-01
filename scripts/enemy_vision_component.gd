@@ -34,4 +34,5 @@ func castToPlayer(player:CharacterBody2D) ->bool:
 	return visionRaycast.is_colliding() and visionRaycast.get_collider() == player
 
 func forgetPlayer():
-	playerMemoryTimer = 0
+	pass
+	#playerMemoryTimer = 0
