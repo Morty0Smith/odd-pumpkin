@@ -49,6 +49,7 @@ func handle_explode():
 	if getAnimationType() == "explode":
 		return
 	enemySprite.apply_scale(Vector2(4,4))
+	enemySprite.rotation_degrees = -90
 	enemySprite.play("explode")
 
 func getAnimationType() ->String:
