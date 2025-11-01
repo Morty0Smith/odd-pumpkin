@@ -8,15 +8,18 @@ extends Node
 var holdingPrey = false
 var hasGrabbed = false
 var prey
+var zombies = []
 
 func getHasGrabbed():
 	return hasGrabbed
+	
+func getHoldingPrey():
+	return holdingPrey
 
 func handle_grab():
 	hasGrabbed = !hasGrabbed
 	if !holdingPrey:
 		if hasGrabbed:
-			print("ready")
 			var collidingBodies = grabHitbox.get_overlapping_bodies()
 			for body in collidingBodies:
 				var parent = body.get_parent()
@@ -41,6 +44,7 @@ func handle_kill():
 	
 func handle_infect():
 	(prey as Enemy).infect()
+	zombies.append(prey)
 	await get_tree().create_timer(0.75).timeout
 	holdingPrey = false
 	hasGrabbed = false

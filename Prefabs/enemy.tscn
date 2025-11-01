@@ -1,13 +1,26 @@
-[gd_scene load_steps=17 format=3 uid="uid://csq2hy81hoqoh"]
+[gd_scene load_steps=21 format=3 uid="uid://csq2hy81hoqoh"]
 
 [ext_resource type="Script" uid="uid://dx4bcpymmfg7r" path="res://scripts/enemy.gd" id="1_slebx"]
 [ext_resource type="Texture2D" uid="uid://b83ejelxpf8na" path="res://sprites/farmer_walk1.png" id="2_3yqyl"]
+[ext_resource type="Texture2D" uid="uid://cu6j0hlxq120n" path="res://sprites/farmer_walk_gun1.png" id="2_kuc4i"]
 [ext_resource type="Script" uid="uid://bpoy5qpx0bvro" path="res://scripts/enemy_movement.gd" id="3_iasw0"]
 [ext_resource type="Texture2D" uid="uid://ciqtc1cccg63l" path="res://sprites/farmer_walk2.png" id="3_wujgv"]
 [ext_resource type="Texture2D" uid="uid://cjh1tbbh0jtw5" path="res://sprites/cone.png" id="4_hb8ge"]
 [ext_resource type="PackedScene" uid="uid://7wxtqrjwssae" path="res://components/gravity_component.tscn" id="5_2b04r"]
 [ext_resource type="PackedScene" uid="uid://bqnegl0kr5b1r" path="res://components/unique_id_component.tscn" id="6_3yqyl"]
 [ext_resource type="PackedScene" uid="uid://2sc717stb6mh" path="res://components/enemy_vision_component.tscn" id="6_iasw0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggq53"]
+atlas = ExtResource("2_kuc4i")
+region = Rect2(0, 44, 64, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xk43f"]
+atlas = ExtResource("2_kuc4i")
+region = Rect2(128, 44, 64, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4r6ty"]
+atlas = ExtResource("2_3yqyl")
+region = Rect2(0, 44, 64, 84)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3yqyl"]
 atlas = ExtResource("2_3yqyl")
@@ -27,9 +40,23 @@ region = Rect2(64, 43, 64, 85)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_e1ltt"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggq53")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xk43f")
+}],
 "loop": true,
-"name": &"default",
+"name": &"gun",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4r6ty")
+}],
+"loop": true,
+"name": &"motionless",
 "speed": 5.0
 }, {
 "frames": [{
@@ -85,7 +112,7 @@ texture_filter = 1
 position = Vector2(1.1920929e-07, 2.900789)
 scale = Vector2(0.35, 0.35)
 sprite_frames = SubResource("SpriteFrames_e1ltt")
-animation = &"walk"
+animation = &"gun"
 autoplay = "walk"
 
 [node name="Viewcone" type="Area2D" parent="CharacterBody/Sprite2D"]
