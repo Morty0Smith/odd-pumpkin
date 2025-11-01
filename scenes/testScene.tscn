@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://d4bjpgqwy16ut"]
+[gd_scene load_steps=15 format=4 uid="uid://d4bjpgqwy16ut"]
 
 [ext_resource type="TileSet" uid="uid://c5wlt3m300h6a" path="res://Prefabs/defaultTileset.tres" id="1_2jiqd"]
 [ext_resource type="PackedScene" uid="uid://dcphqcnmub4lo" path="res://scene/player.tscn" id="2_h481x"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bgbynqke2yt83" path="res://sprites/pumpHeartFrame.png" id="6_h481x"]
 [ext_resource type="Texture2D" uid="uid://d0ibupg2yu6j1" path="res://sprites/vains.png" id="6_ii3td"]
 [ext_resource type="PackedScene" uid="uid://cioy3t7mdbwa0" path="res://scene/breakable_obj.tscn" id="9_h6x0i"]
+[ext_resource type="Script" uid="uid://bg7cvh063n4l3" path="res://scenes/roam_edge.gd" id="10_t12nq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wjqfg"]
 atlas = ExtResource("4_h6x0i")
@@ -119,3 +120,6 @@ metadata/_custom_type_script = "uid://dj5vjfvgl5ejy"
 
 [node name="breakAbleObj" parent="." instance=ExtResource("9_h6x0i")]
 position = Vector2(-10, -28)
+
+[node name="RoamEdge" type="Node" parent="."]
+script = ExtResource("10_t12nq")
