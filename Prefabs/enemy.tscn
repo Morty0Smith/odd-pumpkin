@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://csq2hy81hoqoh"]
+[gd_scene load_steps=26 format=3 uid="uid://csq2hy81hoqoh"]
 
 [ext_resource type="Script" uid="uid://dx4bcpymmfg7r" path="res://scripts/enemy.gd" id="1_slebx"]
 [ext_resource type="Texture2D" uid="uid://b83ejelxpf8na" path="res://sprites/farmer_walk1.png" id="2_3yqyl"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bpoy5qpx0bvro" path="res://scripts/enemy_movement.gd" id="3_iasw0"]
 [ext_resource type="Texture2D" uid="uid://ciqtc1cccg63l" path="res://sprites/farmer_walk2.png" id="3_wujgv"]
 [ext_resource type="AudioStream" uid="uid://ckc5lcggnkbx5" path="res://audio/pistol-single-gunshot.wav" id="3_x0wuq"]
+[ext_resource type="AudioStream" uid="uid://2rh840mal4y2" path="res://audio/explosion-322491.mp3" id="4_1ox27"]
 [ext_resource type="Texture2D" uid="uid://cjh1tbbh0jtw5" path="res://sprites/cone.png" id="4_hb8ge"]
 [ext_resource type="PackedScene" uid="uid://7wxtqrjwssae" path="res://components/gravity_component.tscn" id="5_2b04r"]
 [ext_resource type="PackedScene" uid="uid://bqnegl0kr5b1r" path="res://components/unique_id_component.tscn" id="6_3yqyl"]
@@ -121,6 +122,7 @@ investigate_wait_timer = NodePath("InvestigateWaitTImer")
 
 [node name="AudioPlayerComponent" parent="." instance=ExtResource("2_4r6ty")]
 soundEffectsWithNames = Dictionary[String, AudioStream]({
+"blow_up": ExtResource("4_1ox27"),
 "shot": ExtResource("3_x0wuq")
 })
 

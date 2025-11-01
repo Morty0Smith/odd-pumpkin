@@ -1,7 +1,7 @@
 class_name BreakableObj
 extends CharacterBody2D
 
-@export_subgroup("Componets")
+@export var break_sound_effect:AudioStreamPlayer2D
 @export var collision_component: CollisionComponent
 @export var gravity_component: GravityComponent
 @export var speedNeededToKill: int = 50
@@ -17,8 +17,11 @@ extends CharacterBody2D
 
 var speed = 0
 var doBreak = false
+var isBroken = false
 
 func _physics_process(delta: float) -> void:
+	if isBroken:
+		return
 	gravity_component.handle_gravity(self, delta)
 	collision_component.handle_collision(self,delta)
 	
@@ -37,6 +40,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func makeSomeNoise():
+	break_sound_effect.play(0)
 	for collider in noiseArea.get_overlapping_bodies():
 		var parent = collider.get_parent()
 		if(parent != null and parent is Enemy):
@@ -53,5 +57,8 @@ func fellAction(delta):
 	if makeNoise:
 		makeSomeNoise()
 	if !unbreakable:
+		isBroken = true
 		collision_component.handle_collision(self,delta)
-		queue_free()
+		collision_component.queue_free()
+		gravity_component.queue_free()
+		self.get_node("CollisionShape2D").queue_free()

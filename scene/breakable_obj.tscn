@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cioy3t7mdbwa0"]
+[gd_scene load_steps=8 format=3 uid="uid://cioy3t7mdbwa0"]
 
 [ext_resource type="PackedScene" uid="uid://dfdrhkhbv33mg" path="res://components/collision_component.tscn" id="1_120ia"]
 [ext_resource type="Script" uid="uid://n5bahx2x3ryr" path="res://scene/breakable_obj.gd" id="1_jbhqd"]
 [ext_resource type="PackedScene" uid="uid://7wxtqrjwssae" path="res://components/gravity_component.tscn" id="2_jbhqd"]
 [ext_resource type="Texture2D" uid="uid://d2pb2khmkbpls" path="res://sprites/glass.png" id="4_cholg"]
+[ext_resource type="AudioStream" uid="uid://ghtrg658v70l" path="res://audio/glass-bottle-smash-277554.mp3" id="5_5qhuv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1twgr"]
 size = Vector2(19.421875, 19.070313)
@@ -11,10 +12,11 @@ size = Vector2(19.421875, 19.070313)
 [sub_resource type="CircleShape2D" id="CircleShape2D_jbhqd"]
 radius = 117.24239
 
-[node name="breakAbleObj" type="CharacterBody2D" node_paths=PackedStringArray("collision_component", "gravity_component", "noiseArea")]
+[node name="breakAbleObj" type="CharacterBody2D" node_paths=PackedStringArray("break_sound_effect", "collision_component", "gravity_component", "noiseArea")]
 collision_layer = 5
 collision_mask = 7
 script = ExtResource("1_jbhqd")
+break_sound_effect = NodePath("BreakSoundEffect")
 collision_component = NodePath("CollisionComponent")
 gravity_component = NodePath("GravityComponent")
 speedNeededToBreak = 400
@@ -40,3 +42,6 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/NoiseArea"]
 shape = SubResource("CircleShape2D_jbhqd")
+
+[node name="BreakSoundEffect" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_5qhuv")

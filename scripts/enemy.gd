@@ -53,6 +53,7 @@ func _physics_process(delta: float) -> void:
 	gravity_component.handle_gravity(characterBody,delta)
 	enemy_animation_component.handleAnimation(isAttacking,characterBody.velocity.x)
 	if isDead or isDazed:
+		isInvestigating = false
 		visual_viewcone.visible = false
 		enemy_vision_component.forgetPlayer()
 		ui_manager.resetSeenLevel(unique_id_component.getUID())
@@ -74,6 +75,7 @@ func _physics_process(delta: float) -> void:
 		characterBody.global_position.x = grabCollider.global_position.x
 		return
 	if canSeePlayer:
+		isInvestigating = false
 		ui_manager.setSeenLevel(2,unique_id_component.getUID())
 		var hasReachedPlayer:bool = movement.goToPos(player.global_position,playerChaseDistance,jumpVelocity)
 		if !hasReachedPlayer:
@@ -106,6 +108,7 @@ func setGrabbed(grab:bool):
 
 func blowUp():
 	var objectsInRadius = blowUpArea.get_overlapping_bodies()
+	audio_player_component.playSoundEffectWithName("blow_up")
 	for object in objectsInRadius:
 		var objectParent = object.get_parent()
 		if objectParent != null and objectParent is Enemy:
