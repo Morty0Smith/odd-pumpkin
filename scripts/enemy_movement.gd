@@ -9,6 +9,7 @@ extends Node
 var moveToLeft:bool = false
 var normalCycleTurnMargin:float = 5
 
+
 func moveNormalCycle(roamEdgeLeft:Node2D,roamEdgeRight:Node2D, jumpVelocity:float):
 	var targetPos:Vector2 = roamEdgeLeft.global_position if (moveToLeft) else roamEdgeRight.global_position
 	if(abs(targetPos.x - characterBody.global_position.x) < normalCycleTurnMargin):

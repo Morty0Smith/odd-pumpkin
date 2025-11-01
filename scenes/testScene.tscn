@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bgimu70nf3aeg" path="res://sprites/pumpHeart.png" id="6_7vqvu"]
 [ext_resource type="Texture2D" uid="uid://bgbynqke2yt83" path="res://sprites/pumpHeartFrame.png" id="6_h481x"]
 [ext_resource type="Texture2D" uid="uid://d0ibupg2yu6j1" path="res://sprites/vains.png" id="6_ii3td"]
-[ext_resource type="PackedScene" uid="uid://foqfb8oc6agj" path="res://scene/object.tscn" id="9_h6x0i"]
+[ext_resource type="PackedScene" uid="uid://cioy3t7mdbwa0" path="res://scene/breakable_obj.tscn" id="9_h6x0i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wjqfg"]
 atlas = ExtResource("4_h6x0i")
@@ -41,7 +41,6 @@ use_kinematic_bodies = true
 
 [node name="Player" parent="." instance=ExtResource("2_h481x")]
 position = Vector2(-51, 46)
-collision_layer = 2
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("roamEdgeLeft", "roamEdgeRight") instance=ExtResource("3_ii3td")]
 position = Vector2(48, 74)
@@ -124,6 +123,5 @@ eye_Display = NodePath("../EyeDisplay")
 Hearts = [NodePath("../LifeDisplay/Heart"), NodePath("../LifeDisplay/Heart2"), NodePath("../LifeDisplay/Heart3")]
 metadata/_custom_type_script = "uid://dj5vjfvgl5ejy"
 
-[node name="Object" parent="." instance=ExtResource("9_h6x0i")]
-position = Vector2(79, -68)
-speedNeededToKill = 1
+[node name="breakAbleObj" parent="." instance=ExtResource("9_h6x0i")]
+position = Vector2(-10, -28)

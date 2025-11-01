@@ -32,6 +32,8 @@ var isDazed:bool = false
 var isDead:bool = false
 var isInfected:bool = false
 var isGrabbed:bool = false
+var isInvestigating:bool = false
+var investigationPos:Vector2
 
 func _ready() -> void:
 	player = get_node("/root/SceneRoot/Player")
@@ -66,7 +68,10 @@ func _physics_process(delta: float) -> void:
 			playerClass.animation_component.add_crosshair(unique_id_component.getUID())
 	if !canSeePlayer:
 		damageTimer.stop()
-		movement.moveNormalCycle(roamEdgeLeft,roamEdgeRight,jumpVelocity)
+		if !isInvestigating:
+			movement.moveNormalCycle(roamEdgeLeft,roamEdgeRight,jumpVelocity)
+		else:
+			isInvestigating = !movement.goToPos(investigationPos,4,jumpVelocity)
 	
 func kill():
 	isDead = true

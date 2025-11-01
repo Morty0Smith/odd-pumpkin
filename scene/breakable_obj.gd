@@ -8,6 +8,7 @@ extends CharacterBody2D
 @export var onlyBreakWhenFalling: bool = true
 @export var push_force: int = 50
 @export var damping: float = 0.98
+@export var noiseArea:Area2D
 
 var speed = 0
 var doBreak = false
@@ -18,13 +19,9 @@ func _physics_process(delta: float) -> void:
 	
 	if(onlyBreakWhenFalling):
 		if(velocity.y > speedNeededToBreak):
-			#print(velocity.y)
 			doBreak = true
-			
 	
 	for index in get_slide_collision_count():
-		#var collision: KinematicCollision2D = get_slide_collision(index)
-		#var colName = collision.get_collider().name
 		speed = velocity.y
 		if(!onlyBreakWhenFalling):
 			speed = velocity.length()
@@ -34,8 +31,22 @@ func _physics_process(delta: float) -> void:
 			
 	move_and_slide()
 
+func makeSomeNoise():
+	for collider in noiseArea.get_overlapping_bodies():
+		var parent = collider.get_parent()
+		if(parent != null and parent is Enemy):
+			var enemyMovement: EnemyMovement = parent.find_child("EnemyMovement")
+			var enemyVision: EnemyVisionComponent = parent.find_child("enemy_vision_component")
+			if(enemyMovement != null and enemyVision != null):
+				if(enemyVision.castToObj(self)):
+					parent.isInvestigating = true
+					parent.investigationPos = self.position
+			
+	
+
 func destroy():
 	doBreak = false
-	#print("BREAK")
-	#print(speed)
+	print("BREAK")
+	print(speed)
+	makeSomeNoise()
 	queue_free()
