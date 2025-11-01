@@ -23,6 +23,7 @@ func checkForSteps() ->bool:
 		return true
 	return false
 
+	
 func castToObj(obj:CharacterBody2D) ->bool:
 	var enemySprite:Node2D = visionRaycast.get_parent() as Node2D
 	visionRaycast.scale = Vector2( 1/enemySprite.scale.x, 1/enemySprite.scale.y) # To fix weird scaling issues with the raycast
@@ -36,3 +37,4 @@ func castToObj(obj:CharacterBody2D) ->bool:
 func forgetPlayer():
 	pass
 	#playerMemoryTimer = 0
+ 

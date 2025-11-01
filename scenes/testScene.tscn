@@ -42,6 +42,24 @@ roamEdgeLeft = NodePath("../RoamEdges/RoamEdge")
 roamEdgeRight = NodePath("../RoamEdges/RoamEdge2")
 playerChaseDistance = 60.0
 
+[node name="Enemy2" parent="." node_paths=PackedStringArray("roamEdgeLeft", "roamEdgeRight") instance=ExtResource("3_ii3td")]
+position = Vector2(66, 74)
+roamEdgeLeft = NodePath("../RoamEdges/RoamEdge")
+roamEdgeRight = NodePath("../RoamEdges/RoamEdge2")
+playerChaseDistance = 60.0
+
+[node name="Enemy3" parent="." node_paths=PackedStringArray("roamEdgeLeft", "roamEdgeRight") instance=ExtResource("3_ii3td")]
+position = Vector2(91, 73)
+roamEdgeLeft = NodePath("../RoamEdges/RoamEdge")
+roamEdgeRight = NodePath("../RoamEdges/RoamEdge2")
+playerChaseDistance = 60.0
+
+[node name="Enemy4" parent="." node_paths=PackedStringArray("roamEdgeLeft", "roamEdgeRight") instance=ExtResource("3_ii3td")]
+position = Vector2(91, 73)
+roamEdgeLeft = NodePath("../RoamEdges/RoamEdge")
+roamEdgeRight = NodePath("../RoamEdges/RoamEdge2")
+playerChaseDistance = 60.0
+
 [node name="RoamEdges" type="Node" parent="."]
 
 [node name="RoamEdge" type="Node2D" parent="RoamEdges"]

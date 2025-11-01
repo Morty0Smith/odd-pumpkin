@@ -9,13 +9,15 @@ extends Node
 
 var moveToLeft:bool = false
 var normalCycleTurnMargin:float = 5
+var randomCycleTurnMarginOffset:float = 0
 
 
 func moveNormalCycle(roamEdgeLeft:Node2D,roamEdgeRight:Node2D, jumpVelocity:float):
 	var targetPos:Vector2 = roamEdgeLeft.global_position if (moveToLeft) else roamEdgeRight.global_position
-	if(abs(targetPos.x - characterBody.global_position.x) < normalCycleTurnMargin):
+	if(abs(targetPos.x - characterBody.global_position.x) < normalCycleTurnMargin + randomCycleTurnMarginOffset):
+		randomCycleTurnMarginOffset = randi_range(0,30)
 		moveToLeft = !moveToLeft
-	goToPos(targetPos, normalCycleTurnMargin - 1, jumpVelocity)
+	goToPos(targetPos, normalCycleTurnMargin - 1 + randomCycleTurnMarginOffset, jumpVelocity)
 
 func goToPos(targetPos:Vector2, stopMargin:float, jumpVelocity:float) ->bool: # Returns true, if it has reached it's destination
 	if(abs(targetPos.x - characterBody.global_position.x) < stopMargin):

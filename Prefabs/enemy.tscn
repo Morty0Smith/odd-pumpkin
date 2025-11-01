@@ -136,7 +136,7 @@ scale = Vector2(8.151874, 3.1250112)
 shape = SubResource("ConvexPolygonShape2D_u1fn3")
 
 [node name="StepCast" type="RayCast2D" parent="CharacterBody/Sprite2D"]
-position = Vector2(8.57143, 34.569176)
+position = Vector2(8.571429, 34.569176)
 scale = Vector2(8.151875, 3.1250114)
 target_position = Vector2(4.2058682, -9.536743e-07)
 hit_from_inside = true
