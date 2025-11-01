@@ -14,8 +14,9 @@ func _physics_process(delta: float) -> void:
 	
 	for index in get_slide_collision_count():
 		var collision: KinematicCollision2D = get_slide_collision(index)
-		var colName = collision.get_collider().name
-		if(colName == "EnemyBody" and (-velocity.y) > speedNeededToKill):
-			collision.get_collider().get_parent().kill()
+		var parent = collision.get_collider().get_parent()
+		if (parent != null):
+			if(parent is Enemy and (-velocity.y) > speedNeededToKill):
+				collision.get_collider().get_parent().kill()
 			
 	move_and_slide()

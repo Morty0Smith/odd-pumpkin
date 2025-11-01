@@ -183,6 +183,7 @@ animations = [{
 radius = 25.098053
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input_component", "gravity_component", "movement_component", "animation_component", "attack_component", "uid_component", "health_component", "grabHitbox")]
+collision_layer = 2
 script = ExtResource("1_g2vtq")
 input_component = NodePath("InputComponent")
 gravity_component = NodePath("GravityComponent")
