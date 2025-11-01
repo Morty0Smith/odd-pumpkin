@@ -49,6 +49,10 @@ func stopMoving():
 		characterBody.position.y += fallDistanceAfterDead
 		characterBody.rotation_degrees = 90
 
+func startMovingAfterDazed():
+	characterBody.position.y -= fallDistanceAfterDead
+	characterBody.rotation_degrees = 0
+	
 
 func _on_roam_wait_timer_timeout() -> void:
 	randomCycleTurnMarginOffset = randi_range(0,30)

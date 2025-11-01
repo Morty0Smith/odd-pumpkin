@@ -106,6 +106,7 @@ func blowUp():
 func _on_enemy_timer_timeout() -> void:
 	if isDazed: #After two seconds, the enemy get up from dazing
 		isDazed = false
+		movement.startMovingAfterDazed()
 		enemyTimer.start(58)
 	else: #After one minute, the health regenerates
 		isInfected = false
