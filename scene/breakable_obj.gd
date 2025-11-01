@@ -9,6 +9,7 @@ extends CharacterBody2D
 @export var push_force: int = 50
 @export var damping: float = 0.98
 @export var noiseArea:Area2D
+@export var makeNoise:bool = true
 
 var speed = 0
 var doBreak = false
@@ -28,7 +29,6 @@ func _physics_process(delta: float) -> void:
 			
 		if(speed > speedNeededToBreak or doBreak):
 			destroy()
-			
 	move_and_slide()
 
 func makeSomeNoise():
@@ -41,12 +41,9 @@ func makeSomeNoise():
 				if(enemyVision.castToObj(self)):
 					parent.isInvestigating = true
 					parent.investigationPos = self.position
-			
-	
 
 func destroy():
 	doBreak = false
-	print("BREAK")
-	print(speed)
-	makeSomeNoise()
+	if makeNoise:
+		makeSomeNoise()
 	queue_free()
