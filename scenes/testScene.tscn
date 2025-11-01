@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=4 uid="uid://d4bjpgqwy16ut"]
+[gd_scene load_steps=16 format=4 uid="uid://d4bjpgqwy16ut"]
 
 [ext_resource type="TileSet" uid="uid://c5wlt3m300h6a" path="res://Prefabs/defaultTileset.tres" id="1_2jiqd"]
+[ext_resource type="Texture2D" uid="uid://c27u8w4utoubj" path="res://sprites/city.png" id="1_7vqvu"]
 [ext_resource type="Texture2D" uid="uid://hke0uxywsxsp" path="res://sprites/hills.png" id="1_t12nq"]
 [ext_resource type="PackedScene" uid="uid://dcphqcnmub4lo" path="res://scene/player.tscn" id="2_h481x"]
 [ext_resource type="PackedScene" uid="uid://csq2hy81hoqoh" path="res://Prefabs/enemy.tscn" id="3_ii3td"]
@@ -29,7 +30,19 @@ region = Rect2(0, 0, 16, 16)
 
 [node name="SceneRoot" type="Node2D"]
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="BackgroundLvL2" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = -495.0
+offset_top = -370.0
+offset_right = 452.0
+offset_bottom = 65.05499
+scale = Vector2(1.4400007, 1.3200003)
+texture = ExtResource("1_7vqvu")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="BackgroundLvL1" type="TextureRect" parent="."]
+visible = false
 texture_filter = 1
 offset_left = -496.0
 offset_top = -326.0
@@ -41,7 +54,7 @@ expand_mode = 1
 stretch_mode = 1
 
 [node name="Enemy2" parent="." node_paths=PackedStringArray("roamEdgeLeft", "roamEdgeRight") instance=ExtResource("3_ii3td")]
-position = Vector2(117, -138)
+position = Vector2(-324, -21)
 roamEdgeLeft = NodePath("../RoamEdges/RoamEdge")
 roamEdgeRight = NodePath("../RoamEdges/RoamEdge2")
 playerChaseDistance = 60.0
@@ -55,7 +68,7 @@ use_kinematic_bodies = true
 position = Vector2(-51, 46)
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("roamEdgeLeft", "roamEdgeRight") instance=ExtResource("3_ii3td")]
-position = Vector2(48, 74)
+position = Vector2(-256, 118)
 roamEdgeLeft = NodePath("../RoamEdges/RoamEdge")
 roamEdgeRight = NodePath("../RoamEdges/RoamEdge2")
 playerChaseDistance = 60.0
