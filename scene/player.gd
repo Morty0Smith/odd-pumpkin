@@ -29,8 +29,11 @@ func _physics_process(delta: float) -> void:
 	if !isEvolved:
 		movement_component.handle_jump(self, input_component.get_jump_input())
 		animation_component.handle_roll_animation(input_component.input_horizontal)
-	else:
+# ---------- attack ----------
+		if input_component.get_infect():
+			triggerInfection.emit()
 # ---------- EVOLVED ----------
+	else:
 		if !attack_component.getHasGrabbed():
 			animation_component.handle_move_animation(input_component.input_horizontal)
 		else:
@@ -40,9 +43,12 @@ func _physics_process(delta: float) -> void:
 			animation_component.handle_kill()
 			attack_component.handle_kill()
 			
-		if input_component.get_infect() and attack_component.getHasGrabbed():
-			animation_component.handle_infect()
-			attack_component.handle_infect()
+		if input_component.get_infect():
+			if attack_component.getHasGrabbed():
+				animation_component.handle_infect()
+				attack_component.handle_infect()
+			else:
+				triggerInfection.emit()
 			
 		if input_component.get_grab():
 			animation_component.handle_grab(attack_component.getHasGrabbed())

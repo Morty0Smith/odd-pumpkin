@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://7wxtqrjwssae" path="res://components/gravity_component.tscn" id="2_2fvbb"]
 [ext_resource type="PackedScene" uid="uid://gva21qp8rxt8" path="res://components/input_component.tscn" id="3_ml7e8"]
 [ext_resource type="PackedScene" uid="uid://ctpwtvx0r1ifn" path="res://components/movement_component.tscn" id="4_ihjo1"]
-[ext_resource type="Script" uid="uid://hl2ki3328msj" path="res://scripts/movement_component.gd" id="5_dk1vr"]
+[ext_resource type="Script" path="res://scripts/movement_component.gd" id="5_dk1vr"]
 [ext_resource type="PackedScene" uid="uid://bwkbw6np82rvp" path="res://components/animation_component.tscn" id="6_34jf3"]
 [ext_resource type="Script" uid="uid://dy7wigiqhqpvr" path="res://scripts/animation_component.gd" id="7_u7b46"]
 [ext_resource type="Texture2D" uid="uid://b4qpa1sdikeme" path="res://sprites/pumpIdle.png" id="8_g2vtq"]
@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://dllp48fqk1dm4" path="res://sprites/pumpMonInf.png" id="12_u7b46"]
 [ext_resource type="PackedScene" uid="uid://bqnegl0kr5b1r" path="res://components/unique_id_component.tscn" id="14_u7b46"]
 [ext_resource type="PackedScene" uid="uid://dlsrvs0uolvfa" path="res://components/health_component.tscn" id="16_4ja17"]
-[ext_resource type="Script" uid="uid://dijohid1u35ii" path="res://scripts/health_component.gd" id="17_v4iqv"]
+[ext_resource type="Script" path="res://scripts/health_component.gd" id="17_v4iqv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ihjo1"]
 atlas = ExtResource("8_g2vtq")
