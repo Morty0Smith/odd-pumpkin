@@ -54,7 +54,7 @@ expand_mode = 1
 stretch_mode = 1
 
 [node name="Enemy2" parent="." node_paths=PackedStringArray("roamEdgeLeft", "roamEdgeRight") instance=ExtResource("3_ii3td")]
-position = Vector2(-324, -21)
+position = Vector2(140, 7)
 roamEdgeLeft = NodePath("../RoamEdges/RoamEdge")
 roamEdgeRight = NodePath("../RoamEdges/RoamEdge2")
 playerChaseDistance = 60.0
