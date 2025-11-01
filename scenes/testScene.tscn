@@ -133,4 +133,4 @@ metadata/_custom_type_script = "uid://dj5vjfvgl5ejy"
 
 [node name="breakAbleObj" parent="." instance=ExtResource("11_7vqvu")]
 texture_filter = 1
-position = Vector2(-10, -28)
+position = Vector2(2, -26)

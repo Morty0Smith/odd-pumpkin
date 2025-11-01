@@ -17,6 +17,7 @@ extends Node2D
 @export var roamEdgeLeft:RoamEdge
 @export var roamEdgeRight:RoamEdge
 @export var visual_viewcone:Node2D
+@export var questionMark:Sprite2D
 
 @export_subgroup("Values")
 @export var playerMemoryDuration:float = 3
@@ -44,6 +45,7 @@ func _ready() -> void:
 	playerClass.triggerInfection.connect(_on_player_trigger_infection)
 	
 func _physics_process(delta: float) -> void:
+	questionMark.visible = isInvestigating
 	gravity_component.handle_gravity(characterBody,delta)
 	enemy_animation_component.handleAnimation(isAttacking,characterBody.velocity.x)
 	if isDead or isDazed:
