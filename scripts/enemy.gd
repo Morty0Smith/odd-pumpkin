@@ -28,8 +28,9 @@ extends Node2D
 @export var jumpVelocity:float = 200
 @export var damageIntervall = 0.5
 @export var isLobotomized:bool = false
-@export var visualViewconeVisible = true
-@export var moveToRighttAtStart = true
+@export var visualViewconeVisible:bool = true
+@export var moveToRighttAtStart:bool = true
+@export var guyIndex:int = 0
 
 var ui_manager:UIManager
 var player:CharacterBody2D
@@ -48,6 +49,7 @@ var investigatingWaitTime:float = 1
 func _ready() -> void:
 	movement.moveToLeft = !moveToRighttAtStart
 	var sceneName:String = get_tree().current_scene.name
+	enemy_animation_component.setGuyIndex(guyIndex)
 	player = get_node("/root/" + sceneName +  "/Player")
 	ui_manager = get_node("/root/" + sceneName + "/UI/UI_Manager") as UIManager
 	playerClass = player as Player

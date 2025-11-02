@@ -203,8 +203,8 @@ grabHitbox = NodePath("Pumpkin/grabHitbox")
 [node name="unique_id_component" parent="." instance=ExtResource("14_u7b46")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(87, -60)
-zoom = Vector2(3, 3)
+position = Vector2(87, -30)
+zoom = Vector2(2, 2)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_left_margin = 0.1

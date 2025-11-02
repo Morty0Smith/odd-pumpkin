@@ -265,5 +265,11 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "LEVEL 1"
 
+[node name="level2" type="Button" parent="UI/VBoxContainer/LevelButtons"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "LEVEL 2"
+
 [connection signal="button_up" from="UI/VBoxContainer/LevelButtons/level0" to="LevelManager" method="_on_button_up" binds= ["level0"]]
 [connection signal="button_up" from="UI/VBoxContainer/LevelButtons/level1" to="LevelManager" method="_on_button_up" binds= ["level1"]]
+[connection signal="button_up" from="UI/VBoxContainer/LevelButtons/level2" to="LevelManager" method="_on_button_up" binds= ["level2"]]
