@@ -27,6 +27,7 @@ extends Node2D
 @export var playerChaseDistance:float = 20
 @export var jumpVelocity:float = 200
 @export var damageIntervall = 0.5
+@export var isLobotomized:bool = false
 
 var ui_manager:UIManager
 var player:CharacterBody2D
@@ -49,9 +50,12 @@ func _ready() -> void:
 	playerClass.triggerInfection.connect(_on_player_trigger_infection)
 	
 func _physics_process(delta: float) -> void:
-	questionMark.visible = isInvestigating
-	gravity_component.handle_gravity(characterBody,delta)
+	if !isGrabbed:
+		gravity_component.handle_gravity(characterBody,delta)
+		characterBody.move_and_slide()
+	print(characterBody.velocity.y)
 	enemy_animation_component.handleAnimation(isAttacking,characterBody.velocity.x)
+	visual_viewcone.visible = true
 	if isDead or isDazed:
 		damageTimer.stop()
 		isInvestigating = false
@@ -61,12 +65,12 @@ func _physics_process(delta: float) -> void:
 		isAttacking = false
 		movement.stopMoving()
 		return
-	visual_viewcone.visible = true
+	questionMark.visible = isInvestigating
 	var canSeePlayer:bool = enemy_vision_component.canSeePlayer(playerMemoryDuration, player,viewcone,delta)
 	if (damageTimer.time_left == 0):
 		isAttacking = false
 		playerClass.animation_component.remove_crosshair(unique_id_component.getUID())
-	else:
+	elif !isLobotomized:
 		isAttacking = true
 	if !canSeePlayer:
 		ui_manager.resetSeenLevel(unique_id_component.getUID())
@@ -75,21 +79,22 @@ func _physics_process(delta: float) -> void:
 		damageTimer.stop()
 		characterBody.global_position.x = grabCollider.global_position.x
 		return
-	if canSeePlayer:
+	if canSeePlayer and !isLobotomized:
 		isInvestigating = false
 		ui_manager.setSeenLevel(2,unique_id_component.getUID())
 		var hasReachedPlayer:bool = movement.goToPos(player.global_position,playerChaseDistance,jumpVelocity)
 		if !hasReachedPlayer:
 			damageTimer.stop()
-		if hasReachedPlayer and damageTimer.time_left == 0:
+		var isOnPlayerHeight = abs(player.global_position.y - characterBody.global_position.y) < 40
+		if hasReachedPlayer and damageTimer.time_left == 0 and isOnPlayerHeight:
 			audio_player_component.playSoundEffectWithName("shot")
 			damageTimer.start(0.5)
 			playerClass.animation_component.add_crosshair(unique_id_component.getUID())
 	if !canSeePlayer:
 		damageTimer.stop()
-		if !isInvestigating:
+		if !isInvestigating and !isLobotomized:
 			movement.moveNormalCycle(roamEdgeLeft,roamEdgeRight,jumpVelocity)
-		else:
+		elif !isLobotomized:
 			if (movement.goToPos(investigationPos,4,jumpVelocity)) and investigate_wait_timer.time_left == 0:
 				investigate_wait_timer.start(investigatingWaitTime)
 	

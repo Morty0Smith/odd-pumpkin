@@ -226,6 +226,7 @@ grabHitbox = NodePath("../Pumpkin/grabHitbox")
 animation_component = NodePath("../AnimationComponent")
 
 [node name="Pumpkin" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 position = Vector2(-3.4713746e-06, -1.1749267e-05)
 scale = Vector2(0.28, 0.28)
 sprite_frames = SubResource("SpriteFrames_ihjo1")

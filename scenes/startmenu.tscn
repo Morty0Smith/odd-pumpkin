@@ -46,4 +46,4 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "TODO"
 
-[connection signal="button_up" from="UI/VBoxContainer/LevelButtons/level0" to="LevelManager" method="_on_button_up" binds= ["level69"]]
+[connection signal="button_up" from="UI/VBoxContainer/LevelButtons/level0" to="LevelManager" method="_on_button_up" binds= ["level0"]]

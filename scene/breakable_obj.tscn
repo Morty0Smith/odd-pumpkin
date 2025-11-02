@@ -10,7 +10,7 @@
 size = Vector2(19.421875, 19.070313)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jbhqd"]
-radius = 117.24239
+radius = 162.06348
 
 [node name="breakAbleObj" type="CharacterBody2D" node_paths=PackedStringArray("break_sound_effect", "collision_component", "gravity_component", "noiseArea")]
 collision_layer = 5

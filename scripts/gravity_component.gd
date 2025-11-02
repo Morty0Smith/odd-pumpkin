@@ -8,6 +8,8 @@ extends Node
 var is_falling: bool = false
 
 func handle_gravity(body: CharacterBody2D, delta: float) -> void:
+	if ((body as Node).get_parent() != null and (body as Node) is Enemy):
+		print(body.is_on_floor())
 	if not body.is_on_floor():
 		# Need to multiply by delta when adding to velocity
 		body.velocity.y += gravity * delta
