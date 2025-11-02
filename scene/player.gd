@@ -53,7 +53,6 @@ func _physics_process(delta: float) -> void:
 				attack_component.handle_infect()
 			else:
 				triggerInfection.emit()
-			
 		if input_component.get_grab():
 			animation_component.handle_grab(attack_component.getHasGrabbed())
 			attack_component.handle_grab()

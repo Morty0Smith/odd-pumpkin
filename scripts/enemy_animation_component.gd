@@ -5,7 +5,7 @@ extends Node
 
 @export var enemySprite:AnimatedSprite2D
 
-var guyIndex:int = 2
+var guyIndex:int = 0
 
 func _ready() -> void:
 	explosion.visible = false
