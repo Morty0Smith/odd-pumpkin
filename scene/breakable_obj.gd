@@ -47,7 +47,7 @@ func makeSomeNoise():
 			var enemyMovement: EnemyMovement = parent.find_child("EnemyMovement")
 			var enemyVision: EnemyVisionComponent = parent.find_child("enemy_vision_component")
 			if(enemyMovement != null and enemyVision != null):
-				if(enemyVision.castToObj(self)):
+				if true:
 					parent.isInvestigating = true
 					parent.investigationPos = self.position
 					parent.investigatingWaitTime = investigateWaitTime

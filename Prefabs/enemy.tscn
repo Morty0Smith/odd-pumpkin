@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://csq2hy81hoqoh"]
+[gd_scene load_steps=50 format=3 uid="uid://csq2hy81hoqoh"]
 
 [ext_resource type="Script" uid="uid://dx4bcpymmfg7r" path="res://scripts/enemy.gd" id="1_slebx"]
 [ext_resource type="Texture2D" uid="uid://b83ejelxpf8na" path="res://sprites/farmer_walk1.png" id="2_3yqyl"]
@@ -263,6 +263,7 @@ damageTimer = NodePath("DamageTimer")
 visual_viewcone = NodePath("CharacterBody/Sprite2D/VisualViewcone")
 questionMark = NodePath("CharacterBody/QuestionMark")
 investigate_wait_timer = NodePath("InvestigateWaitTImer")
+playerChaseDistance = 120.0
 
 [node name="CharacterBody" type="CharacterBody2D" parent="."]
 collision_layer = 4
@@ -335,7 +336,7 @@ animation = &"explode"
 script = ExtResource("3_iasw0")
 characterBody = NodePath("../CharacterBody")
 enemySprite = NodePath("../CharacterBody/Sprite2D")
-moveSpeed = 40.0
+moveSpeed = 80.0
 enemy_vision_component = NodePath("../enemy_vision_component")
 roam_wait_timer = NodePath("RoamWaitTimer")
 

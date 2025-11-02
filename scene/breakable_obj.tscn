@@ -10,7 +10,7 @@
 size = Vector2(19.421875, 19.070313)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jbhqd"]
-radius = 162.06348
+radius = 403.02475
 
 [node name="breakAbleObj" type="CharacterBody2D" node_paths=PackedStringArray("break_sound_effect", "collision_component", "gravity_component", "noiseArea")]
 collision_layer = 5
@@ -19,7 +19,8 @@ script = ExtResource("1_jbhqd")
 break_sound_effect = NodePath("BreakSoundEffect")
 collision_component = NodePath("CollisionComponent")
 gravity_component = NodePath("GravityComponent")
-speedNeededToBreak = 400
+speedNeededToBreak = 300
+push_force = 30
 noiseArea = NodePath("CollisionShape2D/NoiseArea")
 
 [node name="CollisionComponent" parent="." instance=ExtResource("1_120ia")]
