@@ -4,6 +4,10 @@
 
 [node name="GameOver" type="Node2D"]
 
+[node name="LevelManager" parent="." node_paths=PackedStringArray("levelButtons") instance=ExtResource("1_jaeev")]
+thisSceneName = "startmenu"
+levelButtons = NodePath("../UI/VBoxContainer/LevelButtons")
+
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI"]
@@ -29,14 +33,17 @@ text = "[b]Odd Pumpkin[/b]
 fit_content = true
 horizontal_alignment = 1
 
-[node name="home" type="Button" parent="UI/VBoxContainer"]
+[node name="LevelButtons" type="VBoxContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="level0" type="Button" parent="UI/VBoxContainer/LevelButtons"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "LEVEL 0"
+
+[node name="level1" type="Button" parent="UI/VBoxContainer/LevelButtons"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "TODO"
 
-[node name="Button2" type="Button" parent="UI/VBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-text = "TODO"
-
-[node name="LevelManager" parent="UI/VBoxContainer" instance=ExtResource("1_jaeev")]
+[connection signal="button_up" from="UI/VBoxContainer/LevelButtons/level0" to="LevelManager" method="_on_button_up" binds= ["level69"]]

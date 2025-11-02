@@ -31,6 +31,9 @@ region = Rect2(0, 0, 16, 16)
 
 [node name="SceneRoot" type="Node2D"]
 
+[node name="LevelManager" parent="." instance=ExtResource("12_67j4a")]
+thisSceneName = "level69"
+
 [node name="Background" type="TextureRect" parent="."]
 texture_filter = 1
 offset_left = -496.0
@@ -135,6 +138,3 @@ metadata/_custom_type_script = "uid://dj5vjfvgl5ejy"
 [node name="breakAbleObj" parent="." instance=ExtResource("11_fvkvt")]
 texture_filter = 1
 position = Vector2(2, -26)
-
-[node name="LevelManager" parent="." instance=ExtResource("12_67j4a")]
-thisSceneName = "level69"
