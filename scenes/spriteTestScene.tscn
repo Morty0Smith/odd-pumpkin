@@ -1,0 +1,162 @@
+[gd_scene load_steps=17 format=4 uid="uid://dlve65jstat6f"]
+
+[ext_resource type="Texture2D" uid="uid://c27u8w4utoubj" path="res://sprites/city.png" id="1_scnnv"]
+[ext_resource type="Texture2D" uid="uid://hke0uxywsxsp" path="res://sprites/hills.png" id="2_t6ka1"]
+[ext_resource type="TileSet" uid="uid://c5wlt3m300h6a" path="res://Prefabs/defaultTileset.tres" id="3_o7skh"]
+[ext_resource type="PackedScene" uid="uid://dcphqcnmub4lo" path="res://scene/player.tscn" id="4_nk67c"]
+[ext_resource type="PackedScene" uid="uid://csq2hy81hoqoh" path="res://Prefabs/enemy.tscn" id="5_fvyy1"]
+[ext_resource type="PackedScene" path="res://Prefabs/roam_edge.tscn" id="6_ihuuo"]
+[ext_resource type="Texture2D" uid="uid://cimnk1hsnni6n" path="res://sprites/pumpSymbols.png" id="7_nwj4a"]
+[ext_resource type="Texture2D" uid="uid://bgbynqke2yt83" path="res://sprites/pumpHeartFrame.png" id="8_47r17"]
+[ext_resource type="Texture2D" uid="uid://d0ibupg2yu6j1" path="res://sprites/vains.png" id="9_ax0oi"]
+[ext_resource type="Texture2D" uid="uid://bgimu70nf3aeg" path="res://sprites/pumpHeart.png" id="10_nuq8p"]
+[ext_resource type="Script" uid="uid://dj5vjfvgl5ejy" path="res://scripts/ui_manager.gd" id="11_slsys"]
+[ext_resource type="PackedScene" uid="uid://cioy3t7mdbwa0" path="res://scene/breakable_obj.tscn" id="12_0k4pl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wjqfg"]
+atlas = ExtResource("7_nwj4a")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8fmr"]
+atlas = ExtResource("10_nuq8p")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q64ej"]
+atlas = ExtResource("10_nuq8p")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4omt7"]
+atlas = ExtResource("10_nuq8p")
+region = Rect2(0, 0, 16, 16)
+
+[node name="SceneRoot" type="Node2D"]
+
+[node name="BackgroundLvL2" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = -495.0
+offset_top = -370.0
+offset_right = 452.0
+offset_bottom = 65.05499
+scale = Vector2(1.4400007, 1.3200003)
+texture = ExtResource("1_scnnv")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="BackgroundLvL1" type="TextureRect" parent="."]
+visible = false
+texture_filter = 1
+offset_left = -496.0
+offset_top = -326.0
+offset_right = 451.0
+offset_bottom = 109.05499
+scale = Vector2(1.4400007, 1.3200003)
+texture = ExtResource("2_t6ka1")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+texture_filter = 1
+tile_map_data = PackedByteArray("AAD3/wUAAAADAAEAAAD4/wUAAAABAAEAAAD5/wUAAAABAAEAAAD6/wUAAAABAAEAAAD7/wUAAAABAAEAAAD8/wUAAAAFAAEAAAD9/wYAAAABAAEAAAD+/wYAAAABAAEAAAD//wYAAAABAAEAAAAAAAYAAAABAAEAAAABAAYAAAABAAEAAAACAAYAAAABAAEAAAADAAYAAAABAAEAAAAEAAYAAAABAAEAAAAFAAYAAAABAAEAAAAGAAYAAAABAAEAAAAHAAYAAAABAAEAAAAIAAYAAAABAAEAAAAJAAYAAAABAAEAAAAKAAYAAAABAAEAAAALAAYAAAABAAEAAAAMAAYAAAABAAEAAAANAAYAAAABAAEAAAAOAAYAAAABAAEAAAAPAAYAAAACAAEAAAAPAAUAAAAAAAEAAAAQAAUAAAABAAEAAAARAAUAAAABAAEAAAASAAUAAAABAAEAAAATAAUAAAABAAEAAAAUAAUAAAABAAEAAAAVAAUAAAABAAEAAAAWAAUAAAACAAEAAAAWAAQAAAAAAAIAAAAWAAMAAAAAAAIAAAAWAAIAAAAAAAIAAAAWAAEAAAAAAAIAAAAWAAAAAAAAAAIAAAAWAP//AAAAAAIAAAAWAP7/AAAAAAIAAAAWAP3/AAAAAAIAAAAWAPz/AAAAAAIAAAD3//z/AAAFAAIAAAD3//3/AAAFAAIAAAD3//7/AAAFAAIAAAD3////AAAFAAIAAAD3/wAAAAAFAAIAAAD3/wEAAAAFAAIAAAD3/wIAAAAFAAIAAAD3/wMAAAAFAAIAAAD3/wQAAAAFAAIAAAD3/wYAAAABAAIAAAAQAAYAAAABAAIAAAARAAYAAAABAAIAAAASAAYAAAABAAIAAAATAAYAAAABAAIAAAAUAAYAAAABAAIAAAAVAAYAAAABAAIAAAAWAAYAAAABAAIAAAAWAAcAAAABAAIAAAAVAAcAAAABAAIAAAAUAAcAAAABAAIAAAATAAcAAAABAAIAAAASAAcAAAABAAIAAAARAAcAAAABAAIAAAAQAAcAAAABAAIAAAAPAAcAAAABAAIAAAAOAAcAAAABAAIAAAANAAcAAAABAAIAAAAMAAcAAAABAAIAAAALAAcAAAABAAIAAAAKAAcAAAABAAIAAAAJAAcAAAABAAIAAAAIAAcAAAABAAIAAAAHAAcAAAABAAIAAAAGAAcAAAABAAIAAAAFAAcAAAABAAIAAAAEAAcAAAABAAIAAAADAAcAAAABAAIAAAACAAcAAAABAAIAAAABAAcAAAABAAIAAAAAAAcAAAABAAIAAAD//wcAAAABAAIAAAD+/wcAAAABAAIAAAD9/wcAAAABAAIAAAD8/wcAAAABAAIAAAD7/wcAAAABAAIAAAD6/wcAAAABAAIAAAD4/wYAAAABAAIAAAD5/wYAAAABAAIAAAD6/wYAAAABAAIAAAD7/wYAAAABAAIAAAD8/wYAAAADAAEAAAD5/wcAAAABAAIAAAD4/wcAAAABAAIAAAD3/wcAAAABAAIAAAD6/wgAAgADAAIAAAD7/wgAAgADAAIAAAD8/wgAAgADAAIAAAD9/wgAAgADAAIAAAD+/wgAAgADAAIAAAD//wgAAgADAAIAAAAAAAgAAgADAAIAAAA=")
+tile_set = ExtResource("3_o7skh")
+use_kinematic_bodies = true
+
+[node name="Player" parent="." instance=ExtResource("4_nk67c")]
+position = Vector2(-51, 46)
+
+[node name="Enemy" parent="." node_paths=PackedStringArray("roamEdgeLeft", "roamEdgeRight") instance=ExtResource("5_fvyy1")]
+position = Vector2(142, 65)
+roamEdgeLeft = NodePath("../RoamEdges/RoamEdge")
+roamEdgeRight = NodePath("../RoamEdges/RoamEdge2")
+playerChaseDistance = 60.0
+
+[node name="Enemy2" parent="." node_paths=PackedStringArray("roamEdgeLeft", "roamEdgeRight") instance=ExtResource("5_fvyy1")]
+position = Vector2(108, 64)
+roamEdgeLeft = NodePath("../RoamEdges/RoamEdge")
+roamEdgeRight = NodePath("../RoamEdges/RoamEdge2")
+playerChaseDistance = 60.0
+
+[node name="Enemy3" parent="." node_paths=PackedStringArray("roamEdgeLeft", "roamEdgeRight") instance=ExtResource("5_fvyy1")]
+position = Vector2(82, 64)
+roamEdgeLeft = NodePath("../RoamEdges/RoamEdge")
+roamEdgeRight = NodePath("../RoamEdges/RoamEdge2")
+playerChaseDistance = 60.0
+
+[node name="RoamEdges" type="Node" parent="."]
+
+[node name="RoamEdge" parent="RoamEdges" instance=ExtResource("6_ihuuo")]
+position = Vector2(-32, 72)
+
+[node name="RoamEdge2" parent="RoamEdges" instance=ExtResource("6_ihuuo")]
+position = Vector2(200, 72)
+waitTime = 5.0
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="EyeDisplay" type="TextureRect" parent="UI"]
+texture_filter = 1
+custom_minimum_size = Vector2(75, 75)
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.05
+anchor_right = 0.5
+anchor_bottom = 0.05
+grow_horizontal = 2
+texture = SubResource("AtlasTexture_wjqfg")
+expand_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI"]
+visible = false
+texture_filter = 1
+offset_left = 39.0
+offset_top = 18.0
+offset_right = 103.000015
+offset_bottom = 78.0
+scale = Vector2(3, 1.5)
+texture = ExtResource("8_47r17")
+
+[node name="TextureRect2" type="TextureRect" parent="UI"]
+texture_filter = 1
+offset_left = 17.0
+offset_top = -31.0
+offset_right = 81.000015
+offset_bottom = 29.0
+scale = Vector2(4.1, 2.05)
+texture = ExtResource("9_ax0oi")
+
+[node name="LifeDisplay" type="HBoxContainer" parent="UI"]
+anchors_preset = -1
+anchor_left = 0.04
+anchor_top = 0.05
+anchor_right = 0.04
+anchor_bottom = 0.05
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Heart" type="TextureRect" parent="UI/LifeDisplay"]
+texture_filter = 1
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = SubResource("AtlasTexture_n8fmr")
+expand_mode = 2
+
+[node name="Heart2" type="TextureRect" parent="UI/LifeDisplay"]
+texture_filter = 1
+layout_mode = 2
+texture = SubResource("AtlasTexture_q64ej")
+expand_mode = 2
+
+[node name="Heart3" type="TextureRect" parent="UI/LifeDisplay"]
+texture_filter = 1
+layout_mode = 2
+texture = SubResource("AtlasTexture_4omt7")
+expand_mode = 2
+
+[node name="UI_Manager" type="Node" parent="UI" node_paths=PackedStringArray("eye_Display", "Hearts")]
+script = ExtResource("11_slsys")
+eye_Display = NodePath("../EyeDisplay")
+Hearts = [NodePath("../LifeDisplay/Heart"), NodePath("../LifeDisplay/Heart2"), NodePath("../LifeDisplay/Heart3")]
+metadata/_custom_type_script = "uid://dj5vjfvgl5ejy"
+
+[node name="breakAbleObj" parent="." instance=ExtResource("12_0k4pl")]
+texture_filter = 1
+position = Vector2(2, -26)
