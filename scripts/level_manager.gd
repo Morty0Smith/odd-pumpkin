@@ -2,6 +2,9 @@ extends Node
 
 @export var thisSceneName: String
 @export var levelButtons: VBoxContainer
+@export var titel: AnimatedSprite2D
+@export var right: AnimatedSprite2D
+@export var left: AnimatedSprite2D
 var showMinAmountOfLevels = 1 # show atleast this many buttons on startscreen
 var lastLevel:String
 var configPath = "user://save.ini"
@@ -57,6 +60,8 @@ func readSaveData():#
 		levelsUnlocked = val
 
 func switchToScene(sceneName:String):
+	playAnimation()
+	await get_tree().create_timer(1.2).timeout
 	get_tree().change_scene_to_file("res://scenes/"+sceneName+".tscn")
 
 func unlockNextLevel():
@@ -73,3 +78,8 @@ func _on_button_up(action: String) -> void:
 		scene = lastLevel
 	print(scene)
 	switchToScene(scene)
+
+func playAnimation():
+	titel.play("start")
+	right.play("fadeOut")
+	left.play("fadeOut")
