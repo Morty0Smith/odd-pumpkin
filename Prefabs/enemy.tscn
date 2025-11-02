@@ -264,6 +264,7 @@ visual_viewcone = NodePath("CharacterBody/Sprite2D/VisualViewcone")
 questionMark = NodePath("CharacterBody/QuestionMark")
 investigate_wait_timer = NodePath("InvestigateWaitTImer")
 playerChaseDistance = 120.0
+infectedColor = Color(0.48470217, 0.7213785, 0.39014423, 1)
 
 [node name="CharacterBody" type="CharacterBody2D" parent="."]
 collision_layer = 4

@@ -31,6 +31,7 @@ extends Node2D
 @export var visualViewconeVisible:bool = true
 @export var moveToRighttAtStart:bool = true
 @export var guyIndex:int = 0
+@export var infectedColor:Color
 
 var ui_manager:UIManager
 var player:CharacterBody2D
@@ -59,6 +60,10 @@ func _physics_process(delta: float) -> void:
 	characterBody.move_and_slide()
 	if !isGrabbed:
 		gravity_component.handle_gravity(characterBody,delta)
+	if isInfected:
+		enemy_animation_component.enemySprite.modulate = infectedColor
+	else:
+		enemy_animation_component.enemySprite.modulate = Color.WHITE
 	enemy_animation_component.handleAnimation(isAttacking,characterBody.velocity.x)
 	visual_viewcone.visible = visualViewconeVisible
 	if isDead or isDazed:
