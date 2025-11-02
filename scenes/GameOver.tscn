@@ -1,35 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://cr2n3dg0yl5ji"]
+[gd_scene load_steps=3 format=3 uid="uid://cr2n3dg0yl5ji"]
 
-[ext_resource type="PackedScene" path="res://scene/level_manager.tscn" id="1_6bcno"]
+[ext_resource type="PackedScene" uid="uid://btr3kghhtj4rr" path="res://scene/level_manager.tscn" id="1_6bcno"]
 [ext_resource type="Texture2D" uid="uid://cg28o7s0vfmvi" path="res://sprites/dead.png" id="1_qae0b"]
-
-[sub_resource type="Gradient" id="Gradient_qae0b"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_vuicl"]
-gradient = SubResource("Gradient_qae0b")
-fill_from = Vector2(1, 0)
 
 [node name="GameOver" type="Node2D"]
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="background" type="Sprite2D" parent="UI"]
-position = Vector2(647, 429.00003)
-scale = Vector2(40, 20)
-texture = SubResource("GradientTexture2D_vuicl")
-
-[node name="Sprite2D" type="Sprite2D" parent="UI"]
-texture_filter = 1
-position = Vector2(1201, 541.00006)
-scale = Vector2(5, 5)
-texture = ExtResource("1_qae0b")
-
 [node name="RichTextLabel" type="RichTextLabel" parent="UI"]
 custom_minimum_size = Vector2(1000, 80)
-offset_left = 372.0
-offset_top = 47.0
-offset_right = 1372.0
-offset_bottom = 184.0
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.1
+anchor_right = 0.5
+anchor_bottom = 0.1
+offset_left = -500.0
+offset_right = 500.0
+offset_bottom = 137.0
+grow_horizontal = 2
 theme_override_font_sizes/bold_font_size = 100
 bbcode_enabled = true
 text = "[b]Game Over[/b]"
@@ -37,30 +25,38 @@ fit_content = true
 horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.6
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -527.0
-offset_top = -25.0
-offset_right = -277.0
-offset_bottom = 163.0
+anchor_bottom = 0.798
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(2, 2)
 
 [node name="startmenu" type="Button" parent="UI/VBoxContainer"]
-custom_minimum_size = Vector2(20, 49.87)
 layout_mode = 2
+size_flags_vertical = 3
 text = "Give up - Go home"
 
 [node name="restart" type="Button" parent="UI/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+size_flags_vertical = 3
 text = "Restart"
 
 [node name="LevelManager" parent="UI/VBoxContainer" instance=ExtResource("1_6bcno")]
+
+[node name="TextureRect" type="TextureRect" parent="UI"]
+texture_filter = 1
+anchors_preset = -1
+anchor_left = 0.6
+anchor_top = 0.4
+anchor_right = 0.9
+anchor_bottom = 0.9
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_qae0b")
+stretch_mode = 4
 
 [connection signal="button_up" from="UI/VBoxContainer/startmenu" to="UI/VBoxContainer/LevelManager" method="_on_button_up" binds= ["startmenu"]]
 [connection signal="button_up" from="UI/VBoxContainer/restart" to="UI/VBoxContainer/LevelManager" method="_on_button_up" binds= ["restart"]]

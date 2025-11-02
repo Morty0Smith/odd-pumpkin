@@ -19,7 +19,8 @@ signal triggerInfection
 var ui_manager:UIManager
 
 func _ready() -> void:
-	ui_manager = get_node("/root/SceneRoot/UI/UI_Manager") as UIManager
+	var sceneName:String = get_tree().current_scene.name
+	ui_manager = get_node("/root/" + sceneName + "/UI/UI_Manager") as UIManager
 
 func _physics_process(delta: float) -> void:
 	if input_component.get_evolved() and !attack_component.getHasGrabbed():

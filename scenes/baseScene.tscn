@@ -1,0 +1,148 @@
+[gd_scene load_steps=18 format=3 uid="uid://dmv1nhhvuceai"]
+
+[ext_resource type="PackedScene" uid="uid://btr3kghhtj4rr" path="res://scene/level_manager.tscn" id="1_qra01"]
+[ext_resource type="Texture2D" uid="uid://hke0uxywsxsp" path="res://sprites/hills.png" id="2_0j276"]
+[ext_resource type="TileSet" uid="uid://c5wlt3m300h6a" path="res://Prefabs/defaultTileset.tres" id="3_r3hcn"]
+[ext_resource type="PackedScene" uid="uid://dcphqcnmub4lo" path="res://scene/player.tscn" id="4_0ayf2"]
+[ext_resource type="PackedScene" uid="uid://blxvgkp7trv0b" path="res://Prefabs/roam_edge.tscn" id="5_uwcir"]
+[ext_resource type="Texture2D" uid="uid://cimnk1hsnni6n" path="res://sprites/pumpSymbols.png" id="6_b4pp7"]
+[ext_resource type="Texture2D" uid="uid://bgbynqke2yt83" path="res://sprites/pumpHeartFrame.png" id="7_s2xmg"]
+[ext_resource type="Texture2D" uid="uid://d0ibupg2yu6j1" path="res://sprites/vains.png" id="8_rkuly"]
+[ext_resource type="Script" uid="uid://dj5vjfvgl5ejy" path="res://scripts/ui_manager.gd" id="9_aa3i3"]
+[ext_resource type="Texture2D" uid="uid://bgimu70nf3aeg" path="res://sprites/pumpHeart.png" id="10_ueuyi"]
+[ext_resource type="PackedScene" uid="uid://dtr36l6lee327" path="res://Prefabs/background_music.tscn" id="11_y7fps"]
+[ext_resource type="PackedScene" uid="uid://b1drp0nrcsy8a" path="res://Prefabs/table.tscn" id="12_rv6v3"]
+[ext_resource type="Script" uid="uid://01c7y012tdrp" path="res://scripts/level_end.gd" id="13_h5jli"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wjqfg"]
+atlas = ExtResource("6_b4pp7")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8fmr"]
+atlas = ExtResource("10_ueuyi")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q64ej"]
+atlas = ExtResource("10_ueuyi")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4omt7"]
+atlas = ExtResource("10_ueuyi")
+region = Rect2(0, 0, 16, 16)
+
+[node name="SceneRoot" type="Node2D"]
+
+[node name="LevelManager" parent="." instance=ExtResource("1_qra01")]
+thisSceneName = "level0"
+
+[node name="Background" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = -899.0
+offset_top = -324.0
+offset_right = 9101.0
+offset_bottom = 111.05499
+scale = Vector2(1.4400007, 1.3200003)
+texture = ExtResource("2_0j276")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+texture_filter = 1
+tile_map_data = PackedByteArray(0, 0, 15, 0, 6, 0, 3, 0, 2, 0, 1, 0, 0, 0, 35, 0, 4, 0, 3, 0, 0, 0, 1, 0, 0, 0, 86, 0, 4, 0, 3, 0, 5, 0, 1, 0, 0, 0, 128, 0, 6, 0, 3, 0, 3, 0, 1, 0, 0, 0, 203, 0, 6, 0, 3, 0, 5, 0, 1, 0, 0, 0)
+tile_set = ExtResource("3_r3hcn")
+use_kinematic_bodies = true
+
+[node name="Player" parent="." instance=ExtResource("4_0ayf2")]
+position = Vector2(3, -1)
+
+[node name="RoamEdges" type="Node" parent="."]
+
+[node name="RoamEdge" parent="RoamEdges" instance=ExtResource("5_uwcir")]
+position = Vector2(-5, 39)
+waitTime = 0.5
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="EyeDisplay" type="TextureRect" parent="UI"]
+texture_filter = 1
+custom_minimum_size = Vector2(75, 75)
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.05
+anchor_right = 0.5
+anchor_bottom = 0.05
+grow_horizontal = 2
+texture = SubResource("AtlasTexture_wjqfg")
+expand_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI"]
+visible = false
+texture_filter = 1
+offset_left = 39.0
+offset_top = 18.0
+offset_right = 103.000015
+offset_bottom = 78.0
+scale = Vector2(3, 1.5)
+texture = ExtResource("7_s2xmg")
+
+[node name="TextureRect2" type="TextureRect" parent="UI"]
+texture_filter = 1
+offset_left = 17.0
+offset_top = -31.0
+offset_right = 81.000015
+offset_bottom = 29.0
+scale = Vector2(4.1, 2.05)
+texture = ExtResource("8_rkuly")
+
+[node name="LifeDisplay" type="HBoxContainer" parent="UI"]
+offset_left = 73.0
+offset_top = 54.0
+offset_right = 261.0
+offset_bottom = 114.0
+
+[node name="UI_Manager" type="Node" parent="UI" node_paths=PackedStringArray("eye_Display", "Hearts")]
+script = ExtResource("9_aa3i3")
+eye_Display = NodePath("../EyeDisplay")
+Hearts = [NodePath("../Heart"), NodePath("../Heart2"), NodePath("../Heart3")]
+metadata/_custom_type_script = "uid://dj5vjfvgl5ejy"
+
+[node name="Heart" type="TextureRect" parent="UI"]
+texture_filter = 1
+custom_minimum_size = Vector2(60, 60)
+offset_left = 73.0
+offset_top = 54.0
+offset_right = 133.0
+offset_bottom = 114.0
+texture = SubResource("AtlasTexture_n8fmr")
+expand_mode = 1
+
+[node name="Heart2" type="TextureRect" parent="UI"]
+texture_filter = 1
+custom_minimum_size = Vector2(60, 60)
+offset_left = 137.0
+offset_top = 54.0
+offset_right = 197.0
+offset_bottom = 114.0
+texture = SubResource("AtlasTexture_q64ej")
+expand_mode = 1
+
+[node name="Heart3" type="TextureRect" parent="UI"]
+texture_filter = 1
+custom_minimum_size = Vector2(60, 60)
+offset_left = 201.0
+offset_top = 54.0
+offset_right = 261.0
+offset_bottom = 114.0
+texture = SubResource("AtlasTexture_4omt7")
+expand_mode = 1
+
+[node name="BackgroundMusic" parent="." instance=ExtResource("11_y7fps")]
+
+[node name="Background_Objects" type="Node" parent="."]
+
+[node name="Table" parent="Background_Objects" instance=ExtResource("12_rv6v3")]
+position = Vector2(2495, 88)
+
+[node name="LevelEnd" type="Node2D" parent="."]
+position = Vector2(0, 57)
+script = ExtResource("13_h5jli")

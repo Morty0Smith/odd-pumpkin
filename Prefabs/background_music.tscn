@@ -4,4 +4,6 @@
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D"]
 stream = ExtResource("1_dk3pe")
+volume_db = -15.0
 autoplay = true
+max_distance = 1000000.0

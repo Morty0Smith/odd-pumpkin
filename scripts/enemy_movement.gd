@@ -33,7 +33,6 @@ func goToPos(targetPos:Vector2, stopMargin:float, jumpVelocity:float) ->bool: # 
 	if (characterBody.global_position.x > targetPos.x):
 		characterBody.velocity.x = -moveSpeed
 		enemySprite.scale.x = -abs(enemySprite.scale.x)
-	characterBody.move_and_slide()
 	if enemy_vision_component.checkForSteps():
 		jump(jumpVelocity)
 	return false

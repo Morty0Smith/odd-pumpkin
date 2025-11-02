@@ -29,6 +29,7 @@ extends Node2D
 @export var damageIntervall = 0.5
 @export var isLobotomized:bool = false
 @export var visualViewconeVisible = true
+@export var moveToRighttAtStart = true
 
 var ui_manager:UIManager
 var player:CharacterBody2D
@@ -45,15 +46,17 @@ var investigationPos:Vector2
 var investigatingWaitTime:float = 1
 
 func _ready() -> void:
-	player = get_node("/root/SceneRoot/Player")
-	ui_manager = get_node("/root/SceneRoot/UI/UI_Manager") as UIManager
+	movement.moveToLeft = !moveToRighttAtStart
+	var sceneName:String = get_tree().current_scene.name
+	player = get_node("/root/" + sceneName +  "/Player")
+	ui_manager = get_node("/root/" + sceneName + "/UI/UI_Manager") as UIManager
 	playerClass = player as Player
 	playerClass.triggerInfection.connect(_on_player_trigger_infection)
 	
 func _physics_process(delta: float) -> void:
+	characterBody.move_and_slide()
 	if !isGrabbed:
 		gravity_component.handle_gravity(characterBody,delta)
-		characterBody.move_and_slide()
 	enemy_animation_component.handleAnimation(isAttacking,characterBody.velocity.x)
 	visual_viewcone.visible = visualViewconeVisible
 	if isDead or isDazed:
@@ -85,7 +88,7 @@ func _physics_process(delta: float) -> void:
 		var hasReachedPlayer:bool = movement.goToPos(player.global_position,playerChaseDistance,jumpVelocity)
 		if !hasReachedPlayer:
 			damageTimer.stop()
-		var isOnPlayerHeight = abs(player.global_position.y - characterBody.global_position.y) < 40
+		var isOnPlayerHeight = abs(player.global_position.y - characterBody.global_position.y) < 15
 		if hasReachedPlayer and damageTimer.time_left == 0 and isOnPlayerHeight:
 			audio_player_component.playSoundEffectWithName("shot")
 			damageTimer.start(0.5)

@@ -187,6 +187,7 @@ animations = [{
 radius = 25.098053
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input_component", "gravity_component", "movement_component", "animation_component", "attack_component", "uid_component", "health_component", "grabHitbox")]
+texture_filter = 1
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_g2vtq")
@@ -227,7 +228,7 @@ grabHitbox = NodePath("../Pumpkin/grabHitbox")
 animation_component = NodePath("../AnimationComponent")
 
 [node name="Pumpkin" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
+texture_filter = 5
 position = Vector2(-3.4713746e-06, -1.1749267e-05)
 scale = Vector2(0.28, 0.28)
 sprite_frames = SubResource("SpriteFrames_ihjo1")

@@ -1,6 +1,6 @@
-[gd_scene load_steps=29 format=3 uid="uid://ccmqbltgc2x4o"]
+[gd_scene load_steps=29 format=3 uid="uid://54thkqdk72ii"]
 
-[ext_resource type="PackedScene" path="res://scene/level_manager.tscn" id="1_jaeev"]
+[ext_resource type="PackedScene" uid="uid://btr3kghhtj4rr" path="res://scene/level_manager.tscn" id="1_jaeev"]
 [ext_resource type="Texture2D" uid="uid://bixfk8oqmfw0x" path="res://sprites/titelScreen.png" id="1_t0y3k"]
 [ext_resource type="Texture2D" uid="uid://bfji003xkbdff" path="res://sprites/titelScreenBackground.png" id="2_ids67"]
 
@@ -188,7 +188,7 @@ gradient = SubResource("Gradient_ids67")
 fill_from = Vector2(1, 1)
 fill_to = Vector2(1, 1)
 
-[node name="GameOver" type="Node2D"]
+[node name="StartMenu" type="Node2D"]
 
 [node name="RightBackground" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -234,10 +234,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -125.0
-offset_top = 186.0
-offset_right = 125.0
-offset_bottom = 290.0
+offset_left = -124.0
+offset_top = 86.0
+offset_right = 126.0
+offset_bottom = 190.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -263,6 +263,7 @@ text = "LEVEL 0"
 [node name="level1" type="Button" parent="UI/VBoxContainer/LevelButtons"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-text = "TODO"
+text = "LEVEL 1"
 
 [connection signal="button_up" from="UI/VBoxContainer/LevelButtons/level0" to="LevelManager" method="_on_button_up" binds= ["level0"]]
+[connection signal="button_up" from="UI/VBoxContainer/LevelButtons/level1" to="LevelManager" method="_on_button_up" binds= ["level1"]]

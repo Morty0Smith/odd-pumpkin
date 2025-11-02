@@ -1,3 +1,4 @@
+class_name LevelManager
 extends Node
 #TODO make levelselect animation work, please
 @export var thisSceneName: String
@@ -13,7 +14,6 @@ var config:ConfigFile = null
 
 func _ready() -> void:
 	config = getConfig()
-	
 	readSaveData()
 	setLastLvl()
 	
@@ -51,7 +51,7 @@ func setLastLvl():
 		config.set_value("data","lastLevel",thisSceneName)
 		config.save(configPath)
 
-func readSaveData():#
+func readSaveData():
 	var val = config.get_value("data","lastLevel")
 	if val != null:
 		lastLevel = val
@@ -60,12 +60,13 @@ func readSaveData():#
 		levelsUnlocked = val
 
 func switchToScene(sceneName:String):
-	if get_tree().current_scene.name == "GameOver" or get_tree().current_scene.name == "restart":
-		pass # TODO: fadeOut
-	else:
+	if get_tree().current_scene.name == "StartMenu":
 		playAnimation()
 		await get_tree().create_timer(1.2).timeout
+	elif get_tree().current_scene.name != "GameOver":
+		await Fade.fade_out().finished
 	get_tree().change_scene_to_file("res://scenes/"+sceneName+".tscn")
+	Fade.fade_in()
 
 func unlockNextLevel():
 	config = getConfig()

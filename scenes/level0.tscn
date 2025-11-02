@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://cmmv0dcycuxib"]
+[gd_scene load_steps=19 format=4 uid="uid://cmmv0dcycuxib"]
 
 [ext_resource type="PackedScene" uid="uid://btr3kghhtj4rr" path="res://scene/level_manager.tscn" id="1_6hrqr"]
 [ext_resource type="Texture2D" uid="uid://hke0uxywsxsp" path="res://sprites/hills.png" id="2_wetln"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://dj5vjfvgl5ejy" path="res://scripts/ui_manager.gd" id="11_8qpon"]
 [ext_resource type="PackedScene" uid="uid://dtr36l6lee327" path="res://Prefabs/background_music.tscn" id="12_6hrqr"]
 [ext_resource type="PackedScene" uid="uid://b1drp0nrcsy8a" path="res://Prefabs/table.tscn" id="13_wetln"]
+[ext_resource type="Script" uid="uid://01c7y012tdrp" path="res://scripts/level_end.gd" id="14_ooohs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wjqfg"]
 atlas = ExtResource("7_3i82n")
@@ -33,7 +34,7 @@ region = Rect2(0, 0, 16, 16)
 [node name="SceneRoot" type="Node2D"]
 
 [node name="LevelManager" parent="." instance=ExtResource("1_6hrqr")]
-thisSceneName = "level69"
+thisSceneName = "level0"
 
 [node name="Background" type="TextureRect" parent="."]
 texture_filter = 1
@@ -53,7 +54,7 @@ tile_set = ExtResource("3_ooohs")
 use_kinematic_bodies = true
 
 [node name="Player" parent="." instance=ExtResource("4_pnrra")]
-position = Vector2(3004, 56)
+position = Vector2(-244, 58)
 
 [node name="RoamEdges" type="Node" parent="."]
 
@@ -360,3 +361,4 @@ position = Vector2(2495, 88)
 
 [node name="LevelEnd" type="Node2D" parent="."]
 position = Vector2(3422, 439)
+script = ExtResource("14_ooohs")
