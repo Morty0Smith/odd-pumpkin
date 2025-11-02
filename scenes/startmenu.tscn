@@ -1,12 +1,230 @@
-[gd_scene load_steps=2 format=3 uid="uid://54thkqdk72ii"]
+[gd_scene load_steps=29 format=3 uid="uid://ccmqbltgc2x4o"]
 
-[ext_resource type="PackedScene" uid="uid://btr3kghhtj4rr" path="res://scene/level_manager.tscn" id="1_jaeev"]
+[ext_resource type="PackedScene" path="res://scene/level_manager.tscn" id="1_jaeev"]
+[ext_resource type="Texture2D" uid="uid://bixfk8oqmfw0x" path="res://sprites/titelScreen.png" id="1_t0y3k"]
+[ext_resource type="Texture2D" uid="uid://bfji003xkbdff" path="res://sprites/titelScreenBackground.png" id="2_ids67"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0y3k"]
+atlas = ExtResource("1_t0y3k")
+region = Rect2(512, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aj0wn"]
+atlas = ExtResource("2_ids67")
+region = Rect2(0, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5eiq6"]
+atlas = ExtResource("2_ids67")
+region = Rect2(512, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2egik"]
+atlas = ExtResource("2_ids67")
+region = Rect2(1024, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dfktg"]
+atlas = ExtResource("2_ids67")
+region = Rect2(1536, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12tt7"]
+atlas = ExtResource("2_ids67")
+region = Rect2(2048, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mh7sq"]
+atlas = ExtResource("2_ids67")
+region = Rect2(2560, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ow8gm"]
+atlas = ExtResource("2_ids67")
+region = Rect2(3072, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljhcq"]
+atlas = ExtResource("2_ids67")
+region = Rect2(3584, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0mr1"]
+atlas = ExtResource("2_ids67")
+region = Rect2(4096, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0a7t6"]
+atlas = ExtResource("2_ids67")
+region = Rect2(4608, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f11r0"]
+atlas = ExtResource("2_ids67")
+region = Rect2(0, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ids67"]
+atlas = ExtResource("1_t0y3k")
+region = Rect2(0, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_poymh"]
+atlas = ExtResource("1_t0y3k")
+region = Rect2(512, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cy0qo"]
+atlas = ExtResource("1_t0y3k")
+region = Rect2(1024, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihhoq"]
+atlas = ExtResource("1_t0y3k")
+region = Rect2(1536, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ag814"]
+atlas = ExtResource("1_t0y3k")
+region = Rect2(2048, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqn8n"]
+atlas = ExtResource("1_t0y3k")
+region = Rect2(2560, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fndww"]
+atlas = ExtResource("1_t0y3k")
+region = Rect2(3072, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qj7i"]
+atlas = ExtResource("1_t0y3k")
+region = Rect2(3584, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbbg3"]
+atlas = ExtResource("1_t0y3k")
+region = Rect2(4096, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpdwg"]
+atlas = ExtResource("1_t0y3k")
+region = Rect2(4608, 0, 512, 512)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aj0wn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t0y3k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aj0wn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5eiq6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2egik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dfktg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12tt7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mh7sq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ow8gm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ljhcq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0mr1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0a7t6")
+}],
+"loop": false,
+"name": &"fadeOut",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f11r0")
+}],
+"loop": false,
+"name": &"silent hills",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ids67")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_poymh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cy0qo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihhoq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ag814")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lqn8n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fndww")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qj7i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbbg3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpdwg")
+}],
+"loop": false,
+"name": &"start",
+"speed": 10.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_ids67"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_poymh"]
+gradient = SubResource("Gradient_ids67")
+fill_from = Vector2(1, 1)
+fill_to = Vector2(1, 1)
 
 [node name="GameOver" type="Node2D"]
 
-[node name="LevelManager" parent="." node_paths=PackedStringArray("levelButtons") instance=ExtResource("1_jaeev")]
+[node name="RightBackground" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1598, 384)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_aj0wn")
+animation = &"silent hills"
+autoplay = "silent hills"
+
+[node name="LeftBackground" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(64, 384)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_aj0wn")
+animation = &"silent hills"
+autoplay = "silent hills"
+
+[node name="Titel" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(832, 384)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_aj0wn")
+animation = &"start"
+autoplay = "default"
+
+[node name="Void" type="Sprite2D" parent="."]
+position = Vector2(826.0001, 811.00006)
+scale = Vector2(46.374107, 6.6498766)
+texture = SubResource("GradientTexture2D_poymh")
+
+[node name="LevelManager" parent="." node_paths=PackedStringArray("levelButtons", "titel", "right", "left") instance=ExtResource("1_jaeev")]
 thisSceneName = "startmenu"
 levelButtons = NodePath("../UI/VBoxContainer/LevelButtons")
+titel = NodePath("../Titel")
+right = NodePath("../RightBackground")
+left = NodePath("../LeftBackground")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -17,13 +235,14 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -125.0
-offset_top = -42.0
+offset_top = 186.0
 offset_right = 125.0
-offset_bottom = 42.0
+offset_bottom = 290.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UI/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(250, 80)
 layout_mode = 2
 theme_override_font_sizes/bold_font_size = 40
