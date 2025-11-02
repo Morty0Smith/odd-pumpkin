@@ -1,6 +1,8 @@
 class_name Player
 extends CharacterBody2D
 
+@onready var audio_player_component: AudioPlayerComponent = $AudioPlayerComponent
+
 @export_subgroup("Nodes")
 @export var input_component: InputComponent
 @export var gravity_component: GravityComponent
@@ -40,11 +42,13 @@ func _physics_process(delta: float) -> void:
 			animation_component.handle_grab_move_animation(input_component.input_horizontal, self.velocity.x)
 # ---------- attacks ----------
 		if input_component.get_kill() and attack_component.getHasGrabbed():
+			audio_player_component.playSoundEffectWithName("kill")
 			animation_component.handle_kill()
 			attack_component.handle_kill()
 			
 		if input_component.get_infect():
 			if attack_component.getHasGrabbed():
+				audio_player_component.playSoundEffectWithName("infect")
 				animation_component.handle_infect()
 				attack_component.handle_infect()
 			else:

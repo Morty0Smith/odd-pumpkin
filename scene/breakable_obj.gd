@@ -51,6 +51,7 @@ func makeSomeNoise():
 					parent.isInvestigating = true
 					parent.investigationPos = self.position
 					parent.investigatingWaitTime = investigateWaitTime
+					parent.audio_player_component.playSoundEffectWithName("huh")
 
 func fellAction(delta):
 	doBreak = false

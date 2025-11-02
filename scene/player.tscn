@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dcphqcnmub4lo"]
+[gd_scene load_steps=43 format=3 uid="uid://dcphqcnmub4lo"]
 
 [ext_resource type="Script" uid="uid://bxmlwoexbyb7l" path="res://scene/player.gd" id="1_g2vtq"]
 [ext_resource type="PackedScene" uid="uid://7wxtqrjwssae" path="res://components/gravity_component.tscn" id="2_2fvbb"]
@@ -19,6 +19,8 @@
 [ext_resource type="Script" uid="uid://dijohid1u35ii" path="res://scripts/health_component.gd" id="17_v4iqv"]
 [ext_resource type="PackedScene" uid="uid://dba4ek6y1p6yu" path="res://components/audio_player_component.tscn" id="18_42h83"]
 [ext_resource type="AudioStream" uid="uid://7qx77igkn44v" path="res://audio/monsterEvolve.wav" id="19_42h83"]
+[ext_resource type="AudioStream" uid="uid://c1gtlqtk88qu5" path="res://audio/slashkut-108175.mp3" id="20_jrjdb"]
+[ext_resource type="AudioStream" uid="uid://bow2c241acsgf" path="res://audio/infect_sound.wav" id="21_kk4ol"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ihjo1"]
 atlas = ExtResource("8_g2vtq")
@@ -248,6 +250,9 @@ shape = SubResource("CircleShape2D_w2vy6")
 script = ExtResource("17_v4iqv")
 
 [node name="AudioPlayerComponent" parent="." instance=ExtResource("18_42h83")]
+position = Vector2(1, 1)
 soundEffectsWithNames = Dictionary[String, AudioStream]({
-"evolve": ExtResource("19_42h83")
+"evolve": ExtResource("19_42h83"),
+"infect": ExtResource("21_kk4ol"),
+"kill": ExtResource("20_jrjdb")
 })

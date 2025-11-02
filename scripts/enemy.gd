@@ -140,4 +140,9 @@ func _on_player_trigger_infection() -> void:
 
 
 func _on_investigate_wait_t_imer_timeout() -> void:
+	var randSound = randi_range(0,15)
+	if randSound == 1:
+		audio_player_component.playSoundEffectWithName("been_wind")
+	else:
+		audio_player_component.playSoundEffectWithName("hm")
 	isInvestigating = false
