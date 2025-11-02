@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://ghtrg658v70l" path="res://audio/glass-bottle-smash-277554.mp3" id="5_5qhuv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1twgr"]
-size = Vector2(19.421875, 19.070313)
+size = Vector2(10, 19.070313)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jbhqd"]
 radius = 403.02475

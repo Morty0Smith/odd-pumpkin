@@ -337,7 +337,7 @@ animation = &"explode"
 script = ExtResource("3_iasw0")
 characterBody = NodePath("../CharacterBody")
 enemySprite = NodePath("../CharacterBody/Sprite2D")
-moveSpeed = 80.0
+moveSpeed = 60.0
 enemy_vision_component = NodePath("../enemy_vision_component")
 roam_wait_timer = NodePath("RoamWaitTimer")
 

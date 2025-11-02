@@ -192,7 +192,7 @@ fill_to = Vector2(1, 1)
 
 [node name="RightBackground" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(1598, 384)
+position = Vector2(1485, 384)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_aj0wn")
 animation = &"silent hills"
@@ -200,7 +200,7 @@ autoplay = "silent hills"
 
 [node name="LeftBackground" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(64, 384)
+position = Vector2(-49, 384)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_aj0wn")
 animation = &"silent hills"
@@ -208,7 +208,7 @@ autoplay = "silent hills"
 
 [node name="Titel" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(832, 384)
+position = Vector2(719, 384)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_aj0wn")
 animation = &"start"
@@ -258,7 +258,7 @@ layout_mode = 2
 [node name="level0" type="Button" parent="UI/VBoxContainer/LevelButtons"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-text = "LEVEL 0"
+text = "TUTORIAL"
 
 [node name="level1" type="Button" parent="UI/VBoxContainer/LevelButtons"]
 custom_minimum_size = Vector2(0, 50)
@@ -270,6 +270,13 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "LEVEL 2"
 
+[node name="level3" type="Button" parent="UI/VBoxContainer/LevelButtons"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "LEVEL 3
+"
+
 [connection signal="button_up" from="UI/VBoxContainer/LevelButtons/level0" to="LevelManager" method="_on_button_up" binds= ["level0"]]
 [connection signal="button_up" from="UI/VBoxContainer/LevelButtons/level1" to="LevelManager" method="_on_button_up" binds= ["level1"]]
 [connection signal="button_up" from="UI/VBoxContainer/LevelButtons/level2" to="LevelManager" method="_on_button_up" binds= ["level2"]]
+[connection signal="button_up" from="UI/VBoxContainer/LevelButtons/level3" to="LevelManager" method="_on_button_up" binds= ["level3"]]
