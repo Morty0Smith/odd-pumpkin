@@ -60,8 +60,11 @@ func readSaveData():#
 		levelsUnlocked = val
 
 func switchToScene(sceneName:String):
-	playAnimation()
-	await get_tree().create_timer(1.2).timeout
+	if get_tree().current_scene.name == "GameOver" or get_tree().current_scene.name == "restart":
+		pass # TODO: fadeOut
+	else:
+		playAnimation()
+		await get_tree().create_timer(1.2).timeout
 	get_tree().change_scene_to_file("res://scenes/"+sceneName+".tscn")
 
 func unlockNextLevel():
