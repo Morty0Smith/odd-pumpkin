@@ -1,5 +1,5 @@
 extends Node
-
+#TODO make levelselect animation work, please
 @export var thisSceneName: String
 @export var levelButtons: VBoxContainer
 @export var titel: AnimatedSprite2D
