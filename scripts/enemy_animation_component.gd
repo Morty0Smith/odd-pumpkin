@@ -5,7 +5,7 @@ extends Node
 
 @export var enemySprite:AnimatedSprite2D
 
-var guyIndex:int = 0
+var guyIndex:int = 2
 
 func _ready() -> void:
 	explosion.visible = false
@@ -30,7 +30,7 @@ func setGuyIndex(newGuyIndex:int):
 func attack():
 	if getAnimationType() == "gun":
 		return
-	enemySprite.play("gun")
+	enemySprite.play("gun" + str(guyIndex))
 	enemySprite.speed_scale = 1
 	
 func walk():
