@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtr36l6lee327"]
+
+[ext_resource type="AudioStream" uid="uid://ddedcacltrbly" path="res://audio/halloween-348242.mp3" id="1_dk3pe"]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_dk3pe")
+autoplay = true

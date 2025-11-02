@@ -24,10 +24,11 @@ extends Node2D
 
 @export_subgroup("Values")
 @export var playerMemoryDuration:float = 3
-@export var playerChaseDistance:float = 20
+@export var playerChaseDistance:float = 60
 @export var jumpVelocity:float = 200
 @export var damageIntervall = 0.5
 @export var isLobotomized:bool = false
+@export var visualViewconeVisible = true
 
 var ui_manager:UIManager
 var player:CharacterBody2D
@@ -53,9 +54,8 @@ func _physics_process(delta: float) -> void:
 	if !isGrabbed:
 		gravity_component.handle_gravity(characterBody,delta)
 		characterBody.move_and_slide()
-	print(characterBody.velocity.y)
 	enemy_animation_component.handleAnimation(isAttacking,characterBody.velocity.x)
-	visual_viewcone.visible = true
+	visual_viewcone.visible = visualViewconeVisible
 	if isDead or isDazed:
 		damageTimer.stop()
 		isInvestigating = false
