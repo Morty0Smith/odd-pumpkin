@@ -15,7 +15,7 @@ universal_fade/patterns_directory="res://addons/UniversalFade/Patterns"
 [application]
 
 config/name="Odd Pumpkin"
-run/main_scene="uid://d4bjpgqwy16ut"
+run/main_scene="uid://54thkqdk72ii"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://sprites/icon.svg"
 

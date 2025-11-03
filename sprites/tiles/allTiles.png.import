@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7bl4mp6jci5y"
-path="res://.godot/imported/bricks.png-7202fac29c16d18cfc2a68205c54eec8.ctex"
+uid="uid://cfr73k841xnkx"
+path="res://.godot/imported/allTiles.png-8383c10de92b144184414e0ad0f49e04.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/tiles/bricks.png"
-dest_files=["res://.godot/imported/bricks.png-7202fac29c16d18cfc2a68205c54eec8.ctex"]
+source_file="res://sprites/tiles/allTiles.png"
+dest_files=["res://.godot/imported/allTiles.png-8383c10de92b144184414e0ad0f49e04.ctex"]
 
 [params]
 
@@ -37,4 +37,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

@@ -5,7 +5,7 @@
 [ext_resource type="TileSet" uid="uid://c5wlt3m300h6a" path="res://Prefabs/defaultTileset.tres" id="3_o7skh"]
 [ext_resource type="PackedScene" uid="uid://dcphqcnmub4lo" path="res://scene/player.tscn" id="4_nk67c"]
 [ext_resource type="PackedScene" uid="uid://csq2hy81hoqoh" path="res://Prefabs/enemy.tscn" id="5_fvyy1"]
-[ext_resource type="PackedScene" path="res://Prefabs/roam_edge.tscn" id="6_ihuuo"]
+[ext_resource type="PackedScene" uid="uid://blxvgkp7trv0b" path="res://Prefabs/roam_edge.tscn" id="6_ihuuo"]
 [ext_resource type="Texture2D" uid="uid://cimnk1hsnni6n" path="res://sprites/pumpSymbols.png" id="7_nwj4a"]
 [ext_resource type="Texture2D" uid="uid://bgbynqke2yt83" path="res://sprites/pumpHeartFrame.png" id="8_47r17"]
 [ext_resource type="Texture2D" uid="uid://d0ibupg2yu6j1" path="res://sprites/vains.png" id="9_ax0oi"]
