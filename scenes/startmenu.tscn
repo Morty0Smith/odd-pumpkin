@@ -192,7 +192,7 @@ fill_to = Vector2(1, 1)
 
 [node name="RightBackground" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(1485, 384)
+position = Vector2(1303, 384)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_aj0wn")
 animation = &"silent hills"
@@ -200,7 +200,7 @@ autoplay = "silent hills"
 
 [node name="LeftBackground" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-49, 384)
+position = Vector2(-231, 384)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_aj0wn")
 animation = &"silent hills"
@@ -208,7 +208,7 @@ autoplay = "silent hills"
 
 [node name="Titel" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(719, 384)
+position = Vector2(537, 384)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_aj0wn")
 animation = &"start"
