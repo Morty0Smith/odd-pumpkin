@@ -1,15 +1,16 @@
-[gd_scene load_steps=19 format=4 uid="uid://c1c6dnplyxx6p"]
+[gd_scene load_steps=20 format=4 uid="uid://c1c6dnplyxx6p"]
 
-[ext_resource type="PackedScene" uid="uid://btr3kghhtj4rr" path="res://scene/level_manager.tscn" id="1_56gwk"]
+[ext_resource type="PackedScene" path="res://scene/level_manager.tscn" id="1_56gwk"]
 [ext_resource type="Texture2D" uid="uid://c27u8w4utoubj" path="res://sprites/city.png" id="2_56gwk"]
 [ext_resource type="TileSet" uid="uid://c5wlt3m300h6a" path="res://Prefabs/defaultTileset.tres" id="3_cleqw"]
 [ext_resource type="PackedScene" uid="uid://dcphqcnmub4lo" path="res://scene/player.tscn" id="4_wvb8j"]
-[ext_resource type="PackedScene" uid="uid://blxvgkp7trv0b" path="res://Prefabs/roam_edge.tscn" id="5_g8vcy"]
+[ext_resource type="PackedScene" path="res://Prefabs/roam_edge.tscn" id="5_g8vcy"]
 [ext_resource type="Texture2D" uid="uid://cimnk1hsnni6n" path="res://sprites/pumpSymbols.png" id="6_cqal4"]
 [ext_resource type="Texture2D" uid="uid://bgbynqke2yt83" path="res://sprites/pumpHeartFrame.png" id="7_o3sye"]
 [ext_resource type="Texture2D" uid="uid://d0ibupg2yu6j1" path="res://sprites/vains.png" id="8_24ks5"]
 [ext_resource type="Script" uid="uid://dj5vjfvgl5ejy" path="res://scripts/ui_manager.gd" id="9_s4es8"]
 [ext_resource type="Texture2D" uid="uid://bgimu70nf3aeg" path="res://sprites/pumpHeart.png" id="10_63e4f"]
+[ext_resource type="PackedScene" uid="uid://bcdsbpv167o6" path="res://scene/give_up_btn.tscn" id="11_cleqw"]
 [ext_resource type="PackedScene" uid="uid://dtr36l6lee327" path="res://Prefabs/background_music.tscn" id="11_y6lc1"]
 [ext_resource type="Script" uid="uid://01c7y012tdrp" path="res://scripts/level_end.gd" id="13_nflru"]
 [ext_resource type="PackedScene" uid="uid://csq2hy81hoqoh" path="res://Prefabs/enemy.tscn" id="13_ve5ok"]
@@ -153,6 +154,8 @@ offset_right = 261.0
 offset_bottom = 114.0
 texture = SubResource("AtlasTexture_4omt7")
 expand_mode = 1
+
+[node name="giveUpBtn" parent="UI" instance=ExtResource("11_cleqw")]
 
 [node name="BackgroundMusic" parent="." instance=ExtResource("11_y6lc1")]
 

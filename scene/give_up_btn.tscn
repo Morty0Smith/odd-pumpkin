@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcdsbpv167o6"]
+
+[ext_resource type="Script" uid="uid://bo7qidxuex8d4" path="res://scene/give_up_button.gd" id="1_tbo36"]
+
+[node name="giveUpBtn" type="VBoxContainer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -64.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+text = "give up"
+script = ExtResource("1_tbo36")
+
+[connection signal="button_up" from="Button" to="Button" method="_on_button_up"]
